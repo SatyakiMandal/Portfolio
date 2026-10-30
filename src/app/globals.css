@@ -171,19 +171,15 @@ body {
 }
 
 /* Load-in: letters and lines rise, copy fades up. */
-@media (prefers-reduced-motion: no-preference) {
-  .rise {
-    animation: rise 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
-  .fade-up {
-    animation: fade-up 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
+.rise {
+  animation: rise 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
-@media (prefers-reduced-motion: no-preference) {
-  .draw path {
-    stroke-dasharray: 400;
-    animation: draw 1.6s cubic-bezier(0.65, 0, 0.35, 1) 300ms both;
-  }
+.fade-up {
+  animation: fade-up 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.draw path {
+  stroke-dasharray: 400;
+  animation: draw 1.6s cubic-bezier(0.65, 0, 0.35, 1) 300ms both;
 }
 @keyframes draw {
   from {
@@ -211,13 +207,11 @@ body {
   border-radius: 6px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
+html.motion-paused *,
+html.motion-paused *::before,
+html.motion-paused *::after {
+  animation-duration: 0.01ms !important;
+  transition-duration: 0.01ms !important;
 }
 
 /* Podium-style blueprint: dashed guides and a faint circle. */
@@ -232,21 +226,17 @@ body {
 }
 
 /* Hero ribbon: endless drift plus a gentle bob on each card with full GPU acceleration. */
-@media (prefers-reduced-motion: no-preference) {
-  .marquee-track {
-    animation: marquee 75s linear infinite;
-    will-change: transform;
-    transform: translate3d(0, 0, 0);
-  }
-  .float-card {
-    animation: bob 6s ease-in-out infinite;
-    will-change: transform;
-  }
+.marquee-track {
+  animation: marquee 75s linear infinite;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
 }
-@media (prefers-reduced-motion: reduce) {
-  .marquee {
-    overflow-x: auto;
-  }
+.float-card {
+  animation: bob 6s ease-in-out infinite;
+  will-change: transform;
+}
+html.motion-paused .marquee {
+  overflow-x: auto;
 }
 @keyframes marquee {
   to {
@@ -287,10 +277,8 @@ html.has-cursor summary {
 }
 
 /* The hero signature redraws itself every few seconds. */
-@media (prefers-reduced-motion: no-preference) {
-  .draw-loop path {
-    animation: draw-loop 7s cubic-bezier(0.65, 0, 0.35, 1) 300ms infinite;
-  }
+.draw-loop path {
+  animation: draw-loop 7s cubic-bezier(0.65, 0, 0.35, 1) 300ms infinite;
 }
 @keyframes draw-loop {
   0% {
@@ -325,16 +313,14 @@ html.has-cursor summary {
   position: absolute;
   inset: -48px;
 }
-@media (prefers-reduced-motion: no-preference) {
-  .hero-bg .b1 { animation: drift-a 22s ease-in-out infinite; }
-  .hero-bg .b2 { animation: drift-b 28s ease-in-out infinite; }
-  .hero-bg .b3 { animation: drift-c 34s ease-in-out infinite; }
-  .hero-bg .grid-pan { animation: grid-pan 18s linear infinite; }
-  .ambient-drift { animation: drift-a 24s ease-in-out infinite; }
-  .ambient-drift-reverse { animation: drift-b 28s ease-in-out infinite; }
-  .ambient-dash { animation: dash-flow 18s linear infinite; }
-  .ambient-dash-reverse { animation: dash-flow-rev 22s linear infinite; }
-}
+.hero-bg .b1 { animation: drift-a 22s ease-in-out infinite; }
+.hero-bg .b2 { animation: drift-b 28s ease-in-out infinite; }
+.hero-bg .b3 { animation: drift-c 34s ease-in-out infinite; }
+.hero-bg .grid-pan { animation: grid-pan 18s linear infinite; }
+.ambient-drift { animation: drift-a 24s ease-in-out infinite; }
+.ambient-drift-reverse { animation: drift-b 28s ease-in-out infinite; }
+.ambient-dash { animation: dash-flow 18s linear infinite; }
+.ambient-dash-reverse { animation: dash-flow-rev 22s linear infinite; }
 @keyframes drift-a {
   0%, 100% { transform: translate(0, 0) scale(1); }
   50% { transform: translate(18vw, 8vh) scale(1.2); }
@@ -393,12 +379,10 @@ html.has-cursor summary {
   pointer-events: none;
   will-change: transform;
 }
-@media (prefers-reduced-motion: no-preference) {
-  .night-orb.o1 { animation: drift-a 20s ease-in-out infinite; }
-  .night-orb.o2 { animation: drift-b 26s ease-in-out infinite; }
-  .night-orb.o3 { animation: drift-c 30s ease-in-out infinite; }
-  .night-grid-pan { animation: grid-pan 16s linear infinite; }
-}
+.night-orb.o1 { animation: drift-a 20s ease-in-out infinite; }
+.night-orb.o2 { animation: drift-b 26s ease-in-out infinite; }
+.night-orb.o3 { animation: drift-c 30s ease-in-out infinite; }
+.night-grid-pan { animation: grid-pan 16s linear infinite; }
 
 /* Stronger frosted glass for panels that carry reading text. */
 .glass-strong {

@@ -1,6 +1,5 @@
 "use client";
 
-import { useReducedMotion } from "framer-motion";
 import * as m from "framer-motion/m";
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -76,7 +75,6 @@ function arrow(from: DOMRect, to: DOMRect, cycle = 0) {
 export function HeroScribble() {
   // The layer sits inside the hero container and measures its parent.
   const layer = useRef<HTMLDivElement>(null);
-  const reduce = useReducedMotion();
   const [marks, setMarks] = useState<Mark[]>([]);
   const [size, setSize] = useState({ w: 0, h: 0 });
   const [cycle, setCycle] = useState(0);
@@ -85,13 +83,22 @@ export function HeroScribble() {
   const measure = useCallback(() => {
     const box = layer.current?.parentElement;
     if (!box) return;
+
+    // Support both 100% standard view and 67% desktop zoom without coordinate distortion
+    const zoom = parseFloat(getComputedStyle(document.documentElement).zoom) || 1;
     const base = box.getBoundingClientRect();
     const rel = (el: Element | null) => {
       if (!el) return null;
       const r = el.getBoundingClientRect();
       if (!r.width) return null;
-      return new DOMRect(r.x - base.x, r.y - base.y, r.width, r.height);
+      return new DOMRect(
+        (r.x - base.x) / zoom,
+        (r.y - base.y) / zoom,
+        r.width / zoom,
+        r.height / zoom
+      );
     };
+
     const left = rel(box.querySelector("[data-scribble='circle']"));
     const right = rel(box.querySelector("[data-scribble='from']"));
     const cta = rel(box.querySelector("[data-scribble='to']"));
@@ -102,15 +109,18 @@ export function HeroScribble() {
     const arrowWidth = 2.1 + (((cycle + 2) % 5) * 0.08);
 
     if (left)
-      next.push({ key: "circle", d: ellipse(left, cycle), delay: 0, width: circleWidth });
+      next.push({ key: "circle", d: ellipse(left, cycle), delay: 0.1, width: circleWidth });
     if (right && cta) {
       const [body, head] = arrow(right, cta, cycle);
       next.push(
-        { key: "arrow", d: body, delay: 0.85, width: arrowWidth },
-        { key: "head", d: head, delay: 1.7, width: arrowWidth },
+        { key: "arrow", d: body, delay: 0.9, width: arrowWidth },
+        { key: "head", d: head, delay: 1.75, width: arrowWidth },
       );
     }
-    setSize({ w: base.width, h: base.height });
+
+    const unzoomedW = box.clientWidth || Math.round(base.width / zoom);
+    const unzoomedH = box.clientHeight || Math.round(base.height / zoom);
+    setSize({ w: unzoomedW, h: unzoomedH });
     setMarks(next);
   }, [cycle]);
 
@@ -129,10 +139,10 @@ export function HeroScribble() {
       setCycle((c) => c + 1);
     };
 
-    // Auto-loop cycle: periodically redraws fresh annotations every 4.5 seconds
+    // Auto-loop cycle: periodically redraws fresh annotations every 6.5 seconds
     const interval = setInterval(() => {
       setCycle((c) => c + 1);
-    }, 4500);
+    }, 6500);
 
     const triggers = box.querySelectorAll(
       "#hero-title, [data-scribble='circle'], [data-scribble='from'], [data-scribble='to']",
@@ -153,9 +163,8 @@ export function HeroScribble() {
     >
       {size.w > 0 && (
         <svg
-          className="absolute inset-0 overflow-visible text-ink"
-          width={size.w}
-          height={size.h}
+          className="absolute inset-0 h-full w-full overflow-visible text-ink"
+          viewBox={`0 0 ${size.w} ${size.h}`}
           fill="none"
         >
           {marks.map((mk) => (
@@ -166,17 +175,13 @@ export function HeroScribble() {
               strokeWidth={mk.width}
               strokeLinecap="round"
               strokeLinejoin="round"
-              initial={{ pathLength: reduce ? 1 : 0 }}
-              animate={{ pathLength: 1 }}
-              transition={
-                reduce
-                  ? undefined
-                  : {
-                      duration: 1.3,
-                      delay: mk.delay,
-                      ease: [0.16, 1, 0.3, 1],
-                    }
-              }
+              initial={{ pathLength: 0, opacity: 0.8 }}
+              animate={{ pathLength: 1, opacity: 1 }}
+              transition={{
+                duration: 1.35,
+                delay: mk.delay,
+                ease: [0.16, 1, 0.3, 1],
+              }}
             />
           ))}
         </svg>

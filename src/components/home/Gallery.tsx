@@ -87,7 +87,12 @@ export function Gallery() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    const checkMobile = () => {
+      const isMobileDevice =
+        typeof navigator !== "undefined" &&
+        /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      setIsMobile(isMobileDevice || window.innerWidth < 1024);
+    };
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
@@ -290,8 +295,8 @@ export function Gallery() {
                 style={{
                   animationPlayState: isPlaying ? "running" : "paused",
                   animationDuration: isMobile
-                    ? `${Math.max(115, displayItems.length * 9)}s`
-                    : `${Math.max(55, displayItems.length * 5)}s`,
+                    ? `${Math.max(180, displayItems.length * 15)}s`
+                    : `${Math.max(90, displayItems.length * 7.5)}s`,
                 }}
               >
                 {/* Double set of items for seamless infinite loop */}

@@ -199,6 +199,7 @@ export function RecruiterAuditMatrix() {
         <AnimatePresence>
           {open && (
             <m.div
+              data-dark
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -210,6 +211,7 @@ export function RecruiterAuditMatrix() {
               onClick={() => setOpen(false)}
             >
               <m.div
+                data-dark
                 initial={{ opacity: 0, scale: 0.95, y: 16 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 12 }}
@@ -236,6 +238,7 @@ export function RecruiterAuditMatrix() {
               <div className="flex items-center gap-2 shrink-0">
                 <button
                   type="button"
+                  data-cursor="Print"
                   onClick={() => window.print()}
                   className="hidden sm:inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-3.5 py-1.5 font-mono text-[11px] font-medium text-white transition hover:bg-white/10 active:scale-95"
                 >
@@ -248,6 +251,7 @@ export function RecruiterAuditMatrix() {
                 </button>
                 <button
                   type="button"
+                  data-cursor="Close"
                   onClick={() => setOpen(false)}
                   aria-label="Close modal"
                   className="rounded-xl border border-white/20 bg-white/5 px-3 py-1.5 font-mono text-[11px] sm:text-[12px] font-semibold text-white/80 transition hover:bg-white/10 hover:text-white active:scale-95"
@@ -262,6 +266,7 @@ export function RecruiterAuditMatrix() {
               <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 scrollbar-none whitespace-nowrap -mx-1 px-1">
                 <button
                   type="button"
+                  data-cursor="Filter"
                   onClick={() => setFilter("all")}
                   className={`shrink-0 rounded-lg px-2.5 py-1 sm:px-3 sm:py-1.5 font-mono text-[11px] sm:text-[12px] font-medium transition ${
                     filter === "all"
@@ -273,6 +278,7 @@ export function RecruiterAuditMatrix() {
                 </button>
                 <button
                   type="button"
+                  data-cursor="Filter"
                   onClick={() => setFilter("projects")}
                   className={`shrink-0 rounded-lg px-2.5 py-1 sm:px-3 sm:py-1.5 font-mono text-[11px] sm:text-[12px] font-medium transition ${
                     filter === "projects"
@@ -284,6 +290,7 @@ export function RecruiterAuditMatrix() {
                 </button>
                 <button
                   type="button"
+                  data-cursor="Filter"
                   onClick={() => setFilter("competitions")}
                   className={`shrink-0 rounded-lg px-2.5 py-1 sm:px-3 sm:py-1.5 font-mono text-[11px] sm:text-[12px] font-medium transition ${
                     filter === "competitions"
@@ -295,6 +302,7 @@ export function RecruiterAuditMatrix() {
                 </button>
                 <button
                   type="button"
+                  data-cursor="Filter"
                   onClick={() => setFilter("experience")}
                   className={`shrink-0 rounded-lg px-2.5 py-1 sm:px-3 sm:py-1.5 font-mono text-[11px] sm:text-[12px] font-medium transition ${
                     filter === "experience"
@@ -306,6 +314,7 @@ export function RecruiterAuditMatrix() {
                 </button>
                 <button
                   type="button"
+                  data-cursor="Filter"
                   onClick={() => setFilter("research")}
                   className={`shrink-0 rounded-lg px-2.5 py-1 sm:px-3 sm:py-1.5 font-mono text-[11px] sm:text-[12px] font-medium transition ${
                     filter === "research"
@@ -328,6 +337,7 @@ export function RecruiterAuditMatrix() {
                 {search && (
                   <button
                     type="button"
+                    data-cursor="Clear"
                     onClick={() => setSearch("")}
                     className="absolute right-2.5 top-1/2 -translate-y-1/2 text-white/50 hover:text-white font-mono text-[11px]"
                   >
@@ -355,6 +365,7 @@ export function RecruiterAuditMatrix() {
                     {filteredItems.map((item) => (
                       <tr
                         key={item.id}
+                        data-cursor="Review"
                         className="group transition-colors hover:bg-white/[0.04]"
                       >
                         {/* Organization / Company */}
@@ -416,6 +427,7 @@ export function RecruiterAuditMatrix() {
                         <td className="p-3.5 pr-4 align-top text-right whitespace-nowrap">
                           <Link
                             href={item.href}
+                            data-cursor="Review"
                             onClick={() => setOpen(false)}
                             className="inline-flex items-center gap-1 rounded-lg bg-white/10 px-3 py-1.5 font-mono text-[11px] font-semibold text-white transition hover:bg-amber hover:text-[#161616]"
                           >
@@ -492,6 +504,7 @@ export function RecruiterAuditMatrix() {
                       </div>
                       <Link
                         href={item.href}
+                        data-cursor="Review"
                         onClick={() => setOpen(false)}
                         className="shrink-0 inline-flex items-center gap-1 rounded-md bg-amber px-2.5 py-1 font-mono text-[10.5px] font-bold text-[#161616] shadow-xs active:scale-95 transition"
                       >
@@ -511,6 +524,7 @@ export function RecruiterAuditMatrix() {
               </div>
               <button
                 type="button"
+                data-cursor="Close"
                 onClick={() => setOpen(false)}
                 className="text-white/70 hover:text-white underline sm:no-underline"
               >

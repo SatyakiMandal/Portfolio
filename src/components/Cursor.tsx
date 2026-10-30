@@ -1,17 +1,17 @@
 "use client";
 
-import { AnimatePresence, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
+import { AnimatePresence, useMotionValue, useSpring } from "framer-motion";
 import * as m from "framer-motion/m";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 type Burst = { id: number; x: number; y: number };
 
-const DARK_SELECTOR = ".bg-night, .bg-block, .bg-ink, .glass-dark, [data-dark]";
+const DARK_SELECTOR =
+  ".bg-night, .bg-block, .bg-ink, .glass-dark, [data-dark], [data-dark-bg], .bg-black, [class*='bg-[#161616]'], [class*='bg-[#1e1e1e]'], [class*='bg-black']";
 
 export function Cursor() {
   const pathname = usePathname();
-  const reduce = useReducedMotion();
   const [fine, setFine] = useState(false);
   const [visible, setVisible] = useState(false);
   const [interactive, setInteractive] = useState(false);
@@ -38,9 +38,10 @@ export function Cursor() {
   useEffect(() => {
     const mq = window.matchMedia("(pointer: fine) and (hover: hover)");
     const sync = () => {
-      // Custom cursor is enabled strictly on desktop viewports with a mouse/trackpad (>= 1024px).
-      // On mobile and tablets, native touch interaction is preserved with zero cursor interference.
-      const isFineDesktop = mq.matches && window.innerWidth >= 1024;
+      // Custom cursor is enabled on any device with a mouse/trackpad pointer.
+      // Large screens, laptops, and tablets (>= 768px) with a fine pointer receive the cursor.
+      // On touch-only smartphones, native touch interaction is preserved with zero interference.
+      const isFineDesktop = mq.matches && window.innerWidth >= 768;
       setFine(isFineDesktop);
       if (isFineDesktop) {
         document.documentElement.classList.add("has-cursor");
@@ -59,7 +60,7 @@ export function Cursor() {
   }, []);
 
   useEffect(() => {
-    if (!fine || reduce) return;
+    if (!fine) return;
     let burstId = 0;
 
     const move = (e: PointerEvent) => {
@@ -76,7 +77,9 @@ export function Cursor() {
       setOnDark(Boolean(target.closest(DARK_SELECTOR)));
 
       const isClickable = Boolean(
-        target.closest("a, button, summary, [role='button'], input, textarea, select, [data-interactive]")
+        target.closest(
+          "a, button, summary, [role='button'], input, textarea, select, [data-interactive], [data-cursor], tr"
+        )
       );
       setInteractive(isClickable);
     };
@@ -116,9 +119,9 @@ export function Cursor() {
       window.removeEventListener("blur", leave);
       document.removeEventListener("mouseleave", leave);
     };
-  }, [fine, reduce, mouseX, mouseY, visible]);
+  }, [fine, mouseX, mouseY, visible]);
 
-  if (!fine || reduce) return null;
+  if (!fine) return null;
 
   // Visual tokens
   const dotColor = onDark ? "#FFD92E" : "#161616";
@@ -150,8 +153,9 @@ export function Cursor() {
               left: b.x,
               top: b.y,
               borderColor: onDark ? "#FFD92E" : "#1F4D3A",
+              zIndex: 9999999,
             }}
-            className="pointer-events-none fixed z-50 h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full border-2"
+            className="pointer-events-none fixed z-[9999999] h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full border-2"
           />
         ))}
       </AnimatePresence>
@@ -163,8 +167,9 @@ export function Cursor() {
           x: ringX,
           y: ringY,
           willChange: "transform",
+          zIndex: 9999999,
         }}
-        className="pointer-events-none fixed left-0 top-0 z-50 -translate-x-1/2 -translate-y-1/2 transform-gpu"
+        className="pointer-events-none fixed left-0 top-0 z-[9999999] -translate-x-1/2 -translate-y-1/2 transform-gpu"
       >
         <m.div
           animate={{
@@ -186,8 +191,9 @@ export function Cursor() {
           x: dotX,
           y: dotY,
           willChange: "transform",
+          zIndex: 9999999,
         }}
-        className="pointer-events-none fixed left-0 top-0 z-50 -translate-x-1/2 -translate-y-1/2 transform-gpu"
+        className="pointer-events-none fixed left-0 top-0 z-[9999999] -translate-x-1/2 -translate-y-1/2 transform-gpu"
       >
         <m.div
           animate={{

@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  useReducedMotion,
   useScroll,
   useSpring,
   useTransform,
@@ -27,7 +26,6 @@ const years = ["2023 - 2025", "2026"];
 
 function Role({ e, i }: { e: Exp; i: number }) {
   const ref = useRef<HTMLDivElement>(null);
-  const reduce = useReducedMotion();
   const [all, setAll] = useState(false);
   const [view, setView] = useState<"bullets" | "tracks">("bullets");
 
@@ -61,7 +59,7 @@ function Role({ e, i }: { e: Exp; i: number }) {
       >
         <m.span
           className="h-2.5 w-2.5 rounded-full bg-amber shadow-[0_0_8px_rgba(255,215,0,0.8)]"
-          style={{ scale: reduce ? 1 : node }}
+          style={{ scale: node }}
         />
       </span>
       <p className="wide text-[20px] sm:text-[26px] leading-8 font-extrabold text-ink/85 md:sticky md:top-28 md:self-start md:text-[30px]">
@@ -70,7 +68,7 @@ function Role({ e, i }: { e: Exp; i: number }) {
 
       <m.article
         data-dark={dark ? "" : undefined}
-        style={reduce ? undefined : { x, rotate, opacity }}
+        style={{ x, rotate, opacity }}
         className={`rounded-2xl sm:rounded-3xl p-4 sm:p-7 md:p-10 transition-shadow duration-300 shadow-lg hover:shadow-2xl ${tones[i % tones.length]}`}
       >
         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 sm:gap-4">
@@ -217,7 +215,7 @@ function Role({ e, i }: { e: Exp; i: number }) {
                 <m.li
                   key={b}
                   data-cursor={`Impact 0${k + 1}`}
-                  initial={reduce ? false : { opacity: 0, y: 10 }}
+                  initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   whileHover={{ y: -3, scale: 1.01 }}
                   whileTap={{ scale: 0.99 }}
@@ -267,7 +265,7 @@ function Role({ e, i }: { e: Exp; i: number }) {
               <m.div
                 key={track.title}
                 data-cursor={`Track 0${idx + 1}`}
-                initial={reduce ? false : { opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 whileHover={{ y: -3, scale: 1.01 }}
                 viewport={{ once: true }}

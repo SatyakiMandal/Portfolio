@@ -16,8 +16,8 @@ export type Stat = { value: string; label: string; countTo?: number; prefix?: st
 export const stats: Stat[] = [
   { value: "~$4M", label: "media spend reallocated at Epsilon (Walmart account)", countTo: 4, prefix: "~$", suffix: "M" },
   { value: "Rs.9.19Cr", label: "milling-cost optimization in a 2-month internship", countTo: 9.19, prefix: "Rs.", suffix: "Cr", decimals: 2 },
-  { value: "99.87", label: "XAT 2025 percentile", countTo: 99.87, decimals: 2 },
-  { value: "1st Runner-Up", label: "TENET 2026 by Zerodha, 452 registrations" },
+  { value: "$30.5M", label: "annual green premium value modelled for Tata Steel", countTo: 30.5, prefix: "$", suffix: "M", decimals: 1 },
+  { value: "22%", label: "marketing ROI lift across 50+ networks (Walmart account)", countTo: 22, suffix: "%" },
 ];
 
 export type ExperienceTrack = {

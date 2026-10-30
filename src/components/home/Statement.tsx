@@ -19,15 +19,15 @@ const context: Record<string, { title: string; lines: string[]; href: string }> 
     lines: ["Supply Chain Intern, Apr - May 2026, Grade A+", "Byproduct offset model on 87,448 quintals"],
     href: "#experience",
   },
-  "99.87": {
-    title: "XAT 2025",
-    lines: ["99.87 percentile", "PGDM-BM at XLRI Jamshedpur, 2025 - 2027"],
-    href: "#education",
+  "$30.5M": {
+    title: "Tata Steel, Green Steel Pricing",
+    lines: ["Corporate Live Project, 2026", "Blended green premium modelled across 1,000,000 tons"],
+    href: "/work/tata-steel",
   },
-  "1st Runner-Up": {
-    title: "TENET 2026, sponsored by Zerodha",
-    lines: ["National 1st Runner-Up", "452 registrations"],
-    href: "/competitions/tenet-2026",
+  "22%": {
+    title: "Walmart Media Analytics",
+    lines: ["6 dashboards across 50+ networks", "Beat Amazon/Target benchmark CTR by 15%"],
+    href: "#experience",
   },
 };
 

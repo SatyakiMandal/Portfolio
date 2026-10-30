@@ -3,8 +3,10 @@
 import { useEffect, useState } from "react";
 import type { RefObject } from "react";
 
+import { isMotionPaused } from "./motion";
+
 export function prefersReducedMotion() {
-  return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  return isMotionPaused();
 }
 
 export function useInViewOnce(ref: RefObject<HTMLElement | null>, rootMargin = "0px 0px -10% 0px") {

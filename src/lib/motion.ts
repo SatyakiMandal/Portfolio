@@ -34,14 +34,11 @@ export function restoreMotionPreference() {
 export function usePausedMotion() {
   const [paused, setPaused] = useState(false);
   useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update = () => setPaused(isMotionPaused() || mq.matches);
+    const update = () => setPaused(isMotionPaused());
     update();
     window.addEventListener(EVENT, update);
-    mq.addEventListener("change", update);
     return () => {
       window.removeEventListener(EVENT, update);
-      mq.removeEventListener("change", update);
     };
   }, []);
   return paused;
