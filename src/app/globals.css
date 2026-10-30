@@ -68,6 +68,19 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Default panoramic scaling: renders desktop and laptop viewports at the
+   curated 67% scale by default, while preserving 100% natural touch sizing on mobile/tablets. */
+@media (min-width: 1024px) {
+  html {
+    zoom: 67%;
+    max-width: none;
+  }
+  body {
+    max-width: none;
+    width: 100%;
+  }
+}
+
 /* Wide display caps (Archivo at 125 width). */
 .wide {
   font-family: var(--font-display);
