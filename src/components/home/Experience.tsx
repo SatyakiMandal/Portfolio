@@ -1,7 +1,7 @@
 "use client";
 
 import {
-  useScroll,
+  useMotionValue,
   useSpring,
   useTransform,
 } from "framer-motion";
@@ -24,6 +24,88 @@ const brandEmblems: Record<string, { key: BrandKey; label: string }[]> = {
 const tones = ["glass-card-dark text-on-night", "glass-card-amber text-[#161616]"];
 const years = ["2023 - 2025", "2026"];
 
+// Custom viewport-relative scroll progress hook:
+// Immune to CSS zoom, nested offsetParents, or layout shifts across both mobile and desktop.
+function useViewportScrollProgress(
+  ref: React.RefObject<HTMLDivElement | null>,
+  startRatio = 1,   // 1 = top of element enters bottom of viewport
+  endRatio = 0.5    // 0.5 = top of element reaches vertical center of viewport
+) {
+  const progress = useMotionValue(0);
+
+  useEffect(() => {
+    let rafId: number | null = null;
+    const update = () => {
+      rafId = null;
+      if (!ref.current) return;
+      const rect = ref.current.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const startY = vh * startRatio;
+      const endY = vh * endRatio;
+      const current = (startY - rect.top) / (startY - endY);
+      const clamped = Math.max(0, Math.min(1, current));
+      progress.set(clamped);
+    };
+
+    const onScrollOrResize = () => {
+      if (rafId === null) {
+        rafId = window.requestAnimationFrame(update);
+      }
+    };
+
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize, { passive: true });
+    update();
+
+    return () => {
+      window.removeEventListener("scroll", onScrollOrResize);
+      window.removeEventListener("resize", onScrollOrResize);
+      if (rafId !== null) window.cancelAnimationFrame(rafId);
+    };
+  }, [ref, progress, startRatio, endRatio]);
+
+  return progress;
+}
+
+function useTimelineFillProgress(ref: React.RefObject<HTMLDivElement | null>) {
+  const progress = useMotionValue(0);
+
+  useEffect(() => {
+    let rafId: number | null = null;
+    const update = () => {
+      rafId = null;
+      if (!ref.current) return;
+      const rect = ref.current.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const startY = vh * 0.75;
+      const endY = vh * 0.6;
+      const totalSpan = rect.height + (startY - endY);
+      const traveled = startY - rect.top;
+      const current = traveled / totalSpan;
+      const clamped = Math.max(0, Math.min(1, current));
+      progress.set(clamped);
+    };
+
+    const onScrollOrResize = () => {
+      if (rafId === null) {
+        rafId = window.requestAnimationFrame(update);
+      }
+    };
+
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize, { passive: true });
+    update();
+
+    return () => {
+      window.removeEventListener("scroll", onScrollOrResize);
+      window.removeEventListener("resize", onScrollOrResize);
+      if (rafId !== null) window.cancelAnimationFrame(rafId);
+    };
+  }, [ref, progress]);
+
+  return progress;
+}
+
 function Role({ e, i }: { e: Exp; i: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const [all, setAll] = useState(false);
@@ -38,11 +120,8 @@ function Role({ e, i }: { e: Exp; i: number }) {
   }, []);
 
   // Scroll-driven signature card effect: dynamic tilt, alternating slide-in, and spine node illumination
-  // Completes quickly into upright alignment so cards never stay stuck at an angle when scrolling pauses
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start 96%", "start 68%"],
-  });
+  // Completes into upright alignment as the card reaches the center of the viewport
+  const scrollYProgress = useViewportScrollProgress(ref, 1, 0.5);
 
   const maxOffset = isMobile ? 18 : 65;
   const maxRotate = isMobile ? 2 : 3;
@@ -357,10 +436,7 @@ function Role({ e, i }: { e: Exp; i: number }) {
 
 export function Timeline() {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start 75%", "end 60%"],
-  });
+  const scrollYProgress = useTimelineFillProgress(ref);
   const fill = useSpring(scrollYProgress, { stiffness: 120, damping: 24 });
   return (
     <div ref={ref} className="relative space-y-10 sm:space-y-16 md:space-y-24">
