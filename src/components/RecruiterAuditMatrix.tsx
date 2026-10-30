@@ -206,7 +206,7 @@ export function RecruiterAuditMatrix() {
               role="dialog"
               aria-modal="true"
               aria-labelledby={titleId}
-              className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/85 backdrop-blur-md p-3 sm:p-6 overflow-y-auto no-print"
+              className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/85 backdrop-blur-md p-2 sm:p-4 md:p-6 overflow-y-auto no-print"
               onClick={() => setOpen(false)}
             >
               <m.div
@@ -214,55 +214,56 @@ export function RecruiterAuditMatrix() {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 12 }}
                 transition={{ duration: 0.26, ease: [0.16, 1, 0.3, 1] }}
-                className="relative z-[100000] w-full max-w-[1240px] rounded-3xl bg-[#161616] text-[#F4F1EC] shadow-[0_30px_90px_rgba(0,0,0,0.8)] ring-1 ring-white/15 p-5 sm:p-8 max-h-[92vh] flex flex-col"
+                className="relative z-[100000] w-full max-w-[1240px] rounded-2xl sm:rounded-3xl bg-[#161616] text-[#F4F1EC] shadow-[0_30px_90px_rgba(0,0,0,0.8)] ring-1 ring-white/15 p-3.5 sm:p-6 md:p-8 max-h-[94vh] flex flex-col"
                 onClick={(e) => e.stopPropagation()}
               >
             {/* Modal Controls Header */}
-            <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-5">
-              <div>
-                <div className="flex items-center gap-3">
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-amber/20 px-3 py-1 font-mono text-[11px] font-bold text-amber">
-                    <span className="h-2 w-2 rounded-full bg-amber animate-pulse" />
-                    60-Second Executive Audit
+            <div className="flex items-start justify-between gap-3 border-b border-white/10 pb-3 sm:pb-5">
+              <div className="min-w-0 flex-1">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-amber/20 px-2.5 py-0.5 sm:px-3 sm:py-1 font-mono text-[10px] sm:text-[11px] font-bold text-amber">
+                    <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-amber animate-pulse" />
+                    60-Sec Executive Audit
                   </span>
-                  <span className="font-mono text-[11px] text-[#A2AFA6]">
-                    {allItems.length} Strategy, Analytics &amp; Research Engagements
+                  <span className="font-mono text-[10px] sm:text-[11px] text-[#A2AFA6]">
+                    {allItems.length} Strategy &amp; Analytics Cases
                   </span>
                 </div>
-                <h2 id={titleId} className="mt-1 font-display text-[22px] sm:text-[26px] font-bold text-white tracking-tight">
+                <h2 id={titleId} className="mt-1 font-display text-[17px] sm:text-[22px] md:text-[26px] font-bold text-white tracking-tight leading-snug">
                   Recruiter &amp; Partner Strategy Portfolio Matrix
                 </h2>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 shrink-0">
                 <button
                   type="button"
                   onClick={() => window.print()}
-                  className="hidden sm:inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2 font-mono text-[12px] font-medium text-white transition hover:bg-white/10 active:scale-95"
+                  className="hidden sm:inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-3.5 py-1.5 font-mono text-[11px] font-medium text-white transition hover:bg-white/10 active:scale-95"
                 >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <polyline points="6 9 6 2 18 2 18 9" />
                     <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
                     <rect x="6" y="14" width="12" height="8" />
                   </svg>
-                  <span>Print View</span>
+                  <span>Print</span>
                 </button>
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
-                  className="rounded-xl border border-white/20 px-4 py-2 font-mono text-[12px] font-semibold text-white/80 transition hover:bg-white/10 hover:text-white active:scale-95"
+                  aria-label="Close modal"
+                  className="rounded-xl border border-white/20 bg-white/5 px-3 py-1.5 font-mono text-[11px] sm:text-[12px] font-semibold text-white/80 transition hover:bg-white/10 hover:text-white active:scale-95"
                 >
-                  Close (Esc)
+                  Close <span className="hidden sm:inline">(Esc)</span>
                 </button>
               </div>
             </div>
 
             {/* Filters & Search Row */}
-            <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
-              <div className="flex flex-wrap items-center gap-2">
+            <div className="mt-3 sm:mt-4 flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between border-b border-white/10 pb-3 sm:pb-4">
+              <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 scrollbar-none whitespace-nowrap -mx-1 px-1">
                 <button
                   type="button"
                   onClick={() => setFilter("all")}
-                  className={`rounded-lg px-3.5 py-1.5 font-mono text-[12px] font-medium transition ${
+                  className={`shrink-0 rounded-lg px-2.5 py-1 sm:px-3 sm:py-1.5 font-mono text-[11px] sm:text-[12px] font-medium transition ${
                     filter === "all"
                       ? "bg-amber text-[#161616] font-bold shadow-xs"
                       : "bg-white/5 text-white/70 hover:bg-white/10 hover:text-white"
@@ -273,56 +274,56 @@ export function RecruiterAuditMatrix() {
                 <button
                   type="button"
                   onClick={() => setFilter("projects")}
-                  className={`rounded-lg px-3.5 py-1.5 font-mono text-[12px] font-medium transition ${
+                  className={`shrink-0 rounded-lg px-2.5 py-1 sm:px-3 sm:py-1.5 font-mono text-[11px] sm:text-[12px] font-medium transition ${
                     filter === "projects"
                       ? "bg-amber text-[#161616] font-bold shadow-xs"
                       : "bg-white/5 text-white/70 hover:bg-white/10 hover:text-white"
                   }`}
                 >
-                  Client &amp; Live Projects (8)
+                  Projects (8)
                 </button>
                 <button
                   type="button"
                   onClick={() => setFilter("competitions")}
-                  className={`rounded-lg px-3.5 py-1.5 font-mono text-[12px] font-medium transition ${
+                  className={`shrink-0 rounded-lg px-2.5 py-1 sm:px-3 sm:py-1.5 font-mono text-[11px] sm:text-[12px] font-medium transition ${
                     filter === "competitions"
                       ? "bg-amber text-[#161616] font-bold shadow-xs"
                       : "bg-white/5 text-white/70 hover:bg-white/10 hover:text-white"
                   }`}
                 >
-                  National Competitions (7)
+                  Competitions (7)
                 </button>
                 <button
                   type="button"
                   onClick={() => setFilter("experience")}
-                  className={`rounded-lg px-3.5 py-1.5 font-mono text-[12px] font-medium transition ${
+                  className={`shrink-0 rounded-lg px-2.5 py-1 sm:px-3 sm:py-1.5 font-mono text-[11px] sm:text-[12px] font-medium transition ${
                     filter === "experience"
                       ? "bg-amber text-[#161616] font-bold shadow-xs"
                       : "bg-white/5 text-white/70 hover:bg-white/10 hover:text-white"
                   }`}
                 >
-                  Work Experience (2)
+                  Experience (2)
                 </button>
                 <button
                   type="button"
                   onClick={() => setFilter("research")}
-                  className={`rounded-lg px-3.5 py-1.5 font-mono text-[12px] font-medium transition ${
+                  className={`shrink-0 rounded-lg px-2.5 py-1 sm:px-3 sm:py-1.5 font-mono text-[11px] sm:text-[12px] font-medium transition ${
                     filter === "research"
                       ? "bg-amber text-[#161616] font-bold shadow-xs"
                       : "bg-white/5 text-white/70 hover:bg-white/10 hover:text-white"
                   }`}
                 >
-                  Research &amp; Pubs (4)
+                  Research (4)
                 </button>
               </div>
 
-              <div className="relative w-full sm:w-64">
+              <div className="relative w-full sm:w-60 md:w-64 shrink-0">
                 <input
                   type="text"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  placeholder="Search metric, client, or topic"
-                  className="w-full rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 font-mono text-[12px] text-white placeholder-white/40 focus:border-amber focus:outline-none"
+                  placeholder="Search metric, client, topic..."
+                  className="w-full rounded-lg border border-white/15 bg-white/5 px-3 py-1 sm:py-1.5 font-mono text-[11px] sm:text-[12px] text-white placeholder-white/40 focus:border-amber focus:outline-none"
                 />
                 {search && (
                   <button
@@ -336,104 +337,186 @@ export function RecruiterAuditMatrix() {
               </div>
             </div>
 
-            {/* Scrollable Matrix Table */}
-            <div className="mt-4 flex-1 overflow-auto rounded-2xl border border-white/10 bg-black/40">
-              <table className="w-full text-left border-collapse">
-                <thead className="sticky top-0 bg-[#1e1e1e] text-[#A2AFA6] font-mono text-[11px] uppercase tracking-wider border-b border-white/15 z-10">
-                  <tr>
-                    <th scope="col" className="p-3.5 pl-4">Company &amp; Engagement</th>
-                    <th scope="col" className="p-3.5">Headline Impact Metric</th>
-                    <th scope="col" className="p-3.5">Strategic Challenge &amp; Solution</th>
-                    <th scope="col" className="p-3.5">Domain</th>
-                    <th scope="col" className="p-3.5 pr-4 text-right">Case Link</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-white/10 font-sans text-[13px]">
-                  {filteredItems.map((item) => (
-                    <tr
-                      key={item.id}
-                      className="group transition-colors hover:bg-white/[0.04]"
-                    >
-                      {/* Organization / Company */}
-                      <td className="p-3.5 pl-4 align-top">
-                        <div className="flex items-start gap-2.5">
-                          <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-white/10 p-1">
-                            <BrandGlyph brand={item.brandKey} className="h-4 w-4 object-contain" />
-                          </span>
-                          <div>
-                            <span className="font-display text-[14.5px] font-bold text-white group-hover:text-amber transition-colors">
-                              {item.sponsorOrOrg}
+            {/* Scrollable Matrix Table & Mobile Cards */}
+            <div className="mt-3 sm:mt-4 flex-1 overflow-y-auto rounded-xl sm:rounded-2xl border border-white/10 bg-black/40">
+              {/* Desktop / Tablet Table View (md and up) */}
+              <div className="hidden md:block">
+                <table className="w-full text-left border-collapse">
+                  <thead className="sticky top-0 bg-[#1e1e1e] text-[#A2AFA6] font-mono text-[11px] uppercase tracking-wider border-b border-white/15 z-10">
+                    <tr>
+                      <th scope="col" className="p-3.5 pl-4 min-w-[210px]">Company &amp; Engagement</th>
+                      <th scope="col" className="p-3.5 min-w-[150px]">Headline Impact Metric</th>
+                      <th scope="col" className="p-3.5">Strategic Challenge &amp; Solution</th>
+                      <th scope="col" className="p-3.5 min-w-[140px]">Domain</th>
+                      <th scope="col" className="p-3.5 pr-4 text-right">Case Link</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-white/10 font-sans text-[13px]">
+                    {filteredItems.map((item) => (
+                      <tr
+                        key={item.id}
+                        className="group transition-colors hover:bg-white/[0.04]"
+                      >
+                        {/* Organization / Company */}
+                        <td className="p-3.5 pl-4 align-top">
+                          <div className="flex items-start gap-2.5">
+                            <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-white/10 p-1">
+                              <BrandGlyph brand={item.brandKey} className="h-4 w-4 object-contain" />
                             </span>
-                            <div className="mt-0.5 flex items-center gap-1.5 font-mono text-[10.5px] text-white/60">
-                              <span>{item.year}</span>
-                              <span>·</span>
-                              <span className="text-amber/90">{item.badge}</span>
+                            <div>
+                              <span className="font-display text-[14.5px] font-bold text-white group-hover:text-amber transition-colors">
+                                {item.sponsorOrOrg}
+                              </span>
+                              <div className="mt-0.5 flex flex-wrap items-center gap-1.5 font-mono text-[10.5px] text-white/60">
+                                <span className="whitespace-nowrap">{item.year}</span>
+                                <span>·</span>
+                                <span className="text-amber/90">{item.badge}</span>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </td>
+                        </td>
 
-                      {/* Top Metric */}
-                      <td className="p-3.5 align-top">
-                        <div className="min-w-[130px]">
-                          <span className="font-display text-[18px] sm:text-[20px] font-extrabold text-amber tabular leading-none">
-                            {item.topMetric.value}
-                          </span>
-                          <p className="mt-1 font-mono text-[10.5px] text-white/70 leading-snug whitespace-normal break-words">
-                            {item.topMetric.label}
-                          </p>
-                        </div>
-                      </td>
-
-                      {/* Strategic Challenge & Solution */}
-                      <td className="p-3.5 align-top max-w-[420px]">
-                        <p className="font-medium text-white/90 leading-relaxed whitespace-normal break-words">
-                          {item.questionOrChallenge}
-                        </p>
-                        <p className="mt-1.5 text-[12px] text-white/75 italic whitespace-normal break-words">
-                          &rarr; {item.outcomeOrSolution}
-                        </p>
-                      </td>
-
-                      {/* Domain Chips */}
-                      <td className="p-3.5 align-top">
-                        <div className="flex flex-wrap gap-1">
-                          {item.scopeChips.map((c, i) => (
-                            <span
-                              key={i}
-                              className="rounded bg-white/10 px-2 py-0.5 font-mono text-[10px] text-white/80"
-                            >
-                              {c}
+                        {/* Top Metric */}
+                        <td className="p-3.5 align-top">
+                          <div className="min-w-[130px]">
+                            <span className="font-display text-[18px] sm:text-[20px] font-extrabold text-amber tabular leading-none">
+                              {item.topMetric.value}
                             </span>
-                          ))}
-                        </div>
-                      </td>
+                            <p className="mt-1 font-mono text-[10.5px] text-white/70 leading-snug whitespace-normal break-words">
+                              {item.topMetric.label}
+                            </p>
+                          </div>
+                        </td>
 
-                      {/* Action Link */}
-                      <td className="p-3.5 pr-4 align-top text-right whitespace-nowrap">
-                        <Link
-                          href={item.href}
-                          onClick={() => setOpen(false)}
-                          className="inline-flex items-center gap-1 rounded-lg bg-white/10 px-3 py-1.5 font-mono text-[11px] font-semibold text-white transition hover:bg-amber hover:text-[#161616]"
-                        >
-                          <span>Review</span>
-                          <span>&rarr;</span>
-                        </Link>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                        {/* Strategic Challenge & Solution */}
+                        <td className="p-3.5 align-top max-w-[420px]">
+                          <p className="font-medium text-white/90 leading-relaxed whitespace-normal break-words">
+                            {item.questionOrChallenge}
+                          </p>
+                          <p className="mt-1.5 text-[12px] text-white/75 italic whitespace-normal break-words">
+                            &rarr; {item.outcomeOrSolution}
+                          </p>
+                        </td>
+
+                        {/* Domain Chips */}
+                        <td className="p-3.5 align-top">
+                          <div className="flex flex-wrap gap-1">
+                            {item.scopeChips.map((c, i) => (
+                              <span
+                                key={i}
+                                className="rounded bg-white/10 px-2 py-0.5 font-mono text-[10px] text-white/80"
+                              >
+                                {c}
+                              </span>
+                            ))}
+                          </div>
+                        </td>
+
+                        {/* Action Link */}
+                        <td className="p-3.5 pr-4 align-top text-right whitespace-nowrap">
+                          <Link
+                            href={item.href}
+                            onClick={() => setOpen(false)}
+                            className="inline-flex items-center gap-1 rounded-lg bg-white/10 px-3 py-1.5 font-mono text-[11px] font-semibold text-white transition hover:bg-amber hover:text-[#161616]"
+                          >
+                            <span>Review</span>
+                            <span>&rarr;</span>
+                          </Link>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Mobile Responsive Card Feed (< md) */}
+              <div className="md:hidden divide-y divide-white/10">
+                {filteredItems.map((item) => (
+                  <div key={item.id} className="p-3.5 flex flex-col gap-2.5 hover:bg-white/[0.03] transition-colors">
+                    {/* Card Top: Org, Year & Badge */}
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex items-center gap-2 min-w-0">
+                        <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-white/10 p-1">
+                          <BrandGlyph brand={item.brandKey} className="h-4 w-4 object-contain" />
+                        </span>
+                        <div className="min-w-0">
+                          <span className="font-display text-[14px] font-bold text-white leading-tight block">
+                            {item.sponsorOrOrg}
+                          </span>
+                          <span className="font-mono text-[10px] text-white/55">
+                            {item.year}
+                          </span>
+                        </div>
+                      </div>
+                      <span className="shrink-0 rounded-full border border-amber/30 bg-amber/10 px-2 py-0.5 font-mono text-[9.5px] font-semibold text-amber">
+                        {item.badge}
+                      </span>
+                    </div>
+
+                    {/* Metric Callout Tile */}
+                    <div className="rounded-lg bg-white/[0.04] p-2.5 border border-white/5 flex items-baseline gap-2">
+                      <span className="font-display text-[19px] font-black text-amber tabular leading-none shrink-0">
+                        {item.topMetric.value}
+                      </span>
+                      <span className="font-mono text-[10.5px] text-white/70 leading-snug">
+                        {item.topMetric.label}
+                      </span>
+                    </div>
+
+                    {/* Strategic Context */}
+                    <p className="text-[12px] text-white/85 leading-relaxed">
+                      {item.questionOrChallenge}
+                    </p>
+                    {item.outcomeOrSolution && (
+                      <p className="text-[11.5px] text-white/70 italic leading-snug">
+                        &rarr; {item.outcomeOrSolution}
+                      </p>
+                    )}
+
+                    {/* Bottom Bar: Chips + Direct Link */}
+                    <div className="flex items-center justify-between gap-2 pt-1">
+                      <div className="flex flex-wrap gap-1 min-w-0 flex-1">
+                        {item.scopeChips.slice(0, 3).map((c, i) => (
+                          <span
+                            key={i}
+                            className="rounded bg-white/10 px-1.5 py-0.5 font-mono text-[9px] text-white/75 truncate"
+                          >
+                            {c}
+                          </span>
+                        ))}
+                        {item.scopeChips.length > 3 && (
+                          <span className="font-mono text-[9px] text-white/40 self-center">
+                            +{item.scopeChips.length - 3}
+                          </span>
+                        )}
+                      </div>
+                      <Link
+                        href={item.href}
+                        onClick={() => setOpen(false)}
+                        className="shrink-0 inline-flex items-center gap-1 rounded-md bg-amber px-2.5 py-1 font-mono text-[10.5px] font-bold text-[#161616] shadow-xs active:scale-95 transition"
+                      >
+                        <span>Review</span>
+                        <span>&rarr;</span>
+                      </Link>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
             {/* Footer Summary Bar */}
-            <div className="mt-4 flex flex-wrap items-center justify-between gap-3 font-mono text-[11px] text-white/60 pt-2 border-t border-white/10">
+            <div className="mt-3 sm:mt-4 flex items-center justify-between gap-2 font-mono text-[10px] sm:text-[11px] text-white/60 pt-2 border-t border-white/10">
               <div>
-                Showing <span className="text-amber font-bold">{filteredItems.length}</span> of {allItems.length} strategy engagements
+                Showing <span className="text-amber font-bold">{filteredItems.length}</span> of {allItems.length}
               </div>
-              <div>
-                Press <kbd className="rounded bg-white/15 px-1.5 py-0.5 text-white">Esc</kbd> to return to page
-              </div>
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                className="text-white/70 hover:text-white underline sm:no-underline"
+              >
+                <span className="sm:hidden">Close window</span>
+                <span className="hidden sm:inline">Press <kbd className="rounded bg-white/15 px-1.5 py-0.5 text-white">Esc</kbd> to return</span>
+              </button>
             </div>
           </m.div>
         </m.div>

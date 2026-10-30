@@ -1,8 +1,13 @@
 "use client";
 
-import { useReducedMotion } from "framer-motion";
+import {
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import * as m from "framer-motion/m";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { experience, type Experience as Exp } from "@/content/profile";
 import { BrandBadge, type BrandKey } from "@/components/BrandLogo";
 import { IconDatabase, IconFactory, IconTrendingUp, IconWorkflow } from "@/components/Icons";
@@ -21,9 +26,21 @@ const tones = ["glass-card-dark text-on-night", "glass-card-amber text-[#161616]
 const years = ["2023 - 2025", "2026"];
 
 function Role({ e, i }: { e: Exp; i: number }) {
+  const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
   const [all, setAll] = useState(false);
   const [view, setView] = useState<"bullets" | "tracks">("bullets");
+
+  // Scroll-driven signature card effect: dynamic tilt, alternating slide-in, and spine node illumination
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "start 55%"],
+  });
+  const x = useTransform(scrollYProgress, [0, 1], [i % 2 ? -80 : 80, 0]);
+  const rotate = useTransform(scrollYProgress, [0, 1], [i % 2 ? -3 : 3, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [0.35, 1]);
+  const node = useTransform(scrollYProgress, [0.65, 1], [0, 1]);
+
   const shown = all ? e.bullets : e.bullets.slice(0, 4);
   const listId = `exp-${e.company.split(" ")[0].toLowerCase()}`;
   const brands = brandEmblems[e.company] ?? [];
@@ -34,21 +51,26 @@ function Role({ e, i }: { e: Exp; i: number }) {
 
   return (
     <div
+      ref={ref}
       className="relative grid gap-3 pl-6 sm:pl-10 md:grid-cols-[180px_1fr] md:gap-10 md:pl-14"
     >
-      {/* Node on the spine: permanently active, solid amber, and crisp */}
+      {/* Node on the spine fills with vibrant amber as the panel arrives */}
       <span
         aria-hidden="true"
         className="absolute left-[6px] top-3 flex h-5 w-5 items-center justify-center rounded-full border-2 border-ink bg-paper md:left-[11px]"
       >
-        <span className="h-2.5 w-2.5 rounded-full bg-amber shadow-[0_0_8px_rgba(255,215,0,0.8)]" />
+        <m.span
+          className="h-2.5 w-2.5 rounded-full bg-amber shadow-[0_0_8px_rgba(255,215,0,0.8)]"
+          style={{ scale: reduce ? 1 : node }}
+        />
       </span>
       <p className="wide text-[20px] sm:text-[26px] leading-8 font-extrabold text-ink/85 md:sticky md:top-28 md:self-start md:text-[30px]">
         {years[i]}
       </p>
 
-      <article
+      <m.article
         data-dark={dark ? "" : undefined}
+        style={reduce ? undefined : { x, rotate, opacity }}
         className={`rounded-2xl sm:rounded-3xl p-4 sm:p-7 md:p-10 transition-shadow duration-300 shadow-lg hover:shadow-2xl ${tones[i % tones.length]}`}
       >
         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 sm:gap-4">
@@ -314,21 +336,28 @@ function Role({ e, i }: { e: Exp; i: number }) {
             ))}
           </div>
         )}
-      </article>
+      </m.article>
     </div>
   );
 }
 
 export function Timeline() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start 75%", "end 60%"],
+  });
+  const fill = useSpring(scrollYProgress, { stiffness: 120, damping: 24 });
   return (
-    <div className="relative space-y-10 sm:space-y-16 md:space-y-24">
+    <div ref={ref} className="relative space-y-10 sm:space-y-16 md:space-y-24">
       <span
         aria-hidden="true"
         className="absolute bottom-0 left-[15px] top-3 w-[2.5px] rounded-full bg-line md:left-[19px]"
       />
-      <span
+      <m.span
         aria-hidden="true"
-        className="absolute bottom-0 left-[15px] top-3 w-[2.5px] rounded-full bg-amber/80 md:left-[19px]"
+        className="absolute bottom-0 left-[15px] top-3 w-[2.5px] origin-top rounded-full bg-amber md:left-[19px]"
+        style={{ scaleY: fill }}
       />
       {experience.map((e, i) => (
         <Role key={e.company} e={e} i={i} />

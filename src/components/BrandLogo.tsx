@@ -488,7 +488,9 @@ export function BrandLogoLockup({
         <img
           src="/logos/walmart.png"
           alt="Walmart"
-          className={`${isBadge ? "h-[16px] max-w-[88px]" : "h-[24px] max-w-[130px]"} w-auto object-contain object-left`}
+          className={`${
+            isBadge ? "h-[16px] max-w-[88px] object-left" : "max-h-[20px] sm:max-h-[24px] max-w-full object-center"
+          } w-auto object-contain`}
         />
       );
 
@@ -497,7 +499,9 @@ export function BrandLogoLockup({
         <img
           src="/logos/epsilon.png"
           alt="Epsilon"
-          className={`${isBadge ? "h-[15px] max-w-[90px]" : "h-[23px] max-w-[136px]"} w-auto object-contain object-left`}
+          className={`${
+            isBadge ? "h-[15px] max-w-[90px] object-left" : "max-h-[19px] sm:max-h-[23px] max-w-full object-center"
+          } w-auto object-contain`}
         />
       );
 
@@ -506,7 +510,9 @@ export function BrandLogoLockup({
         <img
           src="/logos/tata-steel.png"
           alt="Tata Steel"
-          className={`${isBadge ? "h-[14px] max-w-[102px]" : "h-[21px] max-w-[146px]"} w-auto object-contain object-left`}
+          className={`${
+            isBadge ? "h-[14px] max-w-[102px] object-left" : "max-h-[18px] sm:max-h-[22px] max-w-full object-center"
+          } w-auto object-contain`}
         />
       );
 
@@ -515,22 +521,28 @@ export function BrandLogoLockup({
         <img
           src="/logos/tata-consumer-horiz.png"
           alt="Tata Consumer Products"
-          className={`${isBadge ? "h-[17px] max-w-[114px]" : "h-[24px] max-w-[152px]"} w-auto object-contain object-left`}
+          className={`${
+            isBadge ? "h-[17px] max-w-[114px] object-left" : "max-h-[20px] sm:max-h-[24px] max-w-full object-center"
+          } w-auto object-contain`}
         />
       );
 
     case "hul":
       return (
-        <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
+        <span className={`inline-flex items-center gap-1 sm:gap-1.5 ${isBadge ? "whitespace-nowrap" : "w-full max-w-full justify-center overflow-hidden"}`}>
           <img
             src="/logos/hul-horiz.png"
             alt="Hindustan Unilever"
-            className={`${isBadge ? "h-[16px] max-w-[70px]" : "h-[22px] max-w-[95px]"} w-auto object-contain object-left`}
+            className={`${
+              isBadge ? "h-[16px] max-w-[70px] object-left" : "max-h-[18px] sm:max-h-[22px] max-w-[58%] object-center shrink-0"
+            } w-auto object-contain`}
           />
           <img
             src="/logos/marks/red-label.png"
             alt="Brooke Bond Red Label"
-            className={`${isBadge ? "h-[18px] max-w-[36px]" : "h-[24px] max-w-[48px]"} w-auto object-contain object-left`}
+            className={`${
+              isBadge ? "h-[18px] max-w-[36px] object-left" : "max-h-[20px] sm:max-h-[24px] max-w-[36%] object-center shrink-0"
+            } w-auto object-contain`}
           />
         </span>
       );
@@ -540,7 +552,9 @@ export function BrandLogoLockup({
         <img
           src="/logos/campus-horiz.png"
           alt="Campus Activewear"
-          className={`${isBadge ? "h-[15px] max-w-[108px]" : "h-[21px] max-w-[148px]"} w-auto object-contain object-left`}
+          className={`${
+            isBadge ? "h-[15px] max-w-[108px] object-left" : "max-h-[18px] sm:max-h-[22px] max-w-full object-center"
+          } w-auto object-contain`}
         />
       );
 
@@ -549,7 +563,9 @@ export function BrandLogoLockup({
         <img
           src="/logos/ajooni-horiz.png"
           alt="Ajooni Biotech Ltd."
-          className={`${isBadge ? "h-[17px] max-w-[114px]" : "h-[25px] max-w-[150px]"} w-auto object-contain object-left`}
+          className={`${
+            isBadge ? "h-[17px] max-w-[114px] object-left" : "max-h-[20px] sm:max-h-[24px] max-w-full object-center"
+          } w-auto object-contain`}
         />
       );
 
@@ -558,21 +574,23 @@ export function BrandLogoLockup({
         <img
           src="/logos/1001-stories.png"
           alt="1001 Stories"
-          className={`${isBadge ? "h-[15px] max-w-[110px]" : "h-[22px] max-w-[150px]"} w-auto object-contain object-left`}
+          className={`${
+            isBadge ? "h-[15px] max-w-[110px] object-left" : "max-h-[19px] sm:max-h-[23px] max-w-full object-center"
+          } w-auto object-contain`}
         />
       );
 
     case "arthdex":
       return (
-        <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
+        <span className={`inline-flex items-center gap-1 sm:gap-1.5 ${isBadge ? "whitespace-nowrap" : "max-w-full justify-center overflow-hidden"}`}>
           <img
             src="/logos/arthdex.png"
             alt="Arthdex"
-            className={`${isBadge ? "h-[18px]" : "h-[25px]"} w-auto object-contain`}
+            className={`${isBadge ? "h-[18px]" : "max-h-[19px] sm:max-h-[23px]"} w-auto object-contain shrink-0`}
           />
           <span
-            className={`font-display font-extrabold tracking-[-0.03em] text-[#0F3D6E] ${
-              isBadge ? "text-[13px]" : "text-[16px]"
+            className={`font-display font-extrabold tracking-[-0.03em] text-[#0F3D6E] truncate ${
+              isBadge ? "text-[13px]" : "text-[14px] sm:text-[16px]"
             }`}
           >
             Arthdex
@@ -585,7 +603,9 @@ export function BrandLogoLockup({
         <img
           src="/logos/zerodha.png"
           alt="Zerodha"
-          className={`${isBadge ? "h-[14px] max-w-[102px]" : "h-[20px] max-w-[142px]"} w-auto object-contain object-left`}
+          className={`${
+            isBadge ? "h-[14px] max-w-[102px] object-left" : "max-h-[18px] sm:max-h-[22px] max-w-full object-center"
+          } w-auto object-contain`}
         />
       );
 
@@ -594,7 +614,9 @@ export function BrandLogoLockup({
         <img
           src="/logos/maruti.png"
           alt="Maruti Suzuki"
-          className={`${isBadge ? "h-[13px] max-w-[116px]" : "h-[18px] max-w-[152px]"} w-auto object-contain object-left`}
+          className={`${
+            isBadge ? "h-[13px] max-w-[116px] object-left" : "max-h-[16px] sm:max-h-[20px] max-w-full object-center"
+          } w-auto object-contain`}
         />
       );
 
@@ -603,22 +625,26 @@ export function BrandLogoLockup({
         <img
           src="/logos/galderma.png"
           alt="Galderma Est. 1981"
-          className={`${isBadge ? "h-[16px] max-w-[102px]" : "h-[24px] max-w-[142px]"} w-auto object-contain object-left`}
+          className={`${
+            isBadge ? "h-[16px] max-w-[102px] object-left" : "max-h-[20px] sm:max-h-[24px] max-w-full object-center"
+          } w-auto object-contain`}
         />
       );
 
     case "mochatrade":
       return (
-        <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
+        <span className={`inline-flex items-center gap-1 sm:gap-1.5 ${isBadge ? "whitespace-nowrap" : "w-full max-w-full justify-center overflow-hidden"}`}>
           <img
             src="/logos/mochatrade.png"
             alt="Mochatrade"
-            className={`${isBadge ? "h-[15px] max-w-[90px]" : "h-[19px] max-w-[122px]"} w-auto object-contain object-left`}
+            className={`${
+              isBadge ? "h-[15px] max-w-[90px] object-left" : "max-h-[17px] sm:max-h-[20px] max-w-[78%] object-center shrink-0"
+            } w-auto object-contain`}
           />
           <img
             src="/logos/marks/yc.png"
             alt="YC"
-            className={`${isBadge ? "h-[13px]" : "h-[15px]"} w-auto object-contain`}
+            className={`${isBadge ? "h-[13px]" : "max-h-[13px] sm:max-h-[15px]"} w-auto object-contain shrink-0`}
           />
         </span>
       );
@@ -628,7 +654,9 @@ export function BrandLogoLockup({
         <img
           src="/logos/xlri.png"
           alt="XLRI Xavier School of Management"
-          className={`${isBadge ? "h-[20px] max-w-[102px]" : "h-[30px] max-w-[142px]"} w-auto object-contain object-left`}
+          className={`${
+            isBadge ? "h-[20px] max-w-[102px] object-left" : "max-h-[24px] sm:max-h-[28px] max-w-full object-center"
+          } w-auto object-contain`}
         />
       );
 
@@ -637,7 +665,9 @@ export function BrandLogoLockup({
         <img
           src="/logos/springer-horiz.png"
           alt="Springer"
-          className={`${isBadge ? "h-[17px] max-w-[98px]" : "h-[26px] max-w-[136px]"} w-auto object-contain object-left`}
+          className={`${
+            isBadge ? "h-[17px] max-w-[98px] object-left" : "max-h-[20px] sm:max-h-[24px] max-w-full object-center"
+          } w-auto object-contain`}
         />
       );
 
@@ -646,7 +676,9 @@ export function BrandLogoLockup({
         <img
           src="/logos/hero.png"
           alt="Hero MotoCorp"
-          className={`${isBadge ? "h-[15px] max-w-[98px]" : "h-[23px] max-w-[138px]"} w-auto object-contain object-left`}
+          className={`${
+            isBadge ? "h-[15px] max-w-[98px] object-left" : "max-h-[19px] sm:max-h-[23px] max-w-full object-center"
+          } w-auto object-contain`}
         />
       );
 
@@ -655,7 +687,9 @@ export function BrandLogoLockup({
         <img
           src="/logos/tvs-credit.png"
           alt="TVS Credit"
-          className={`${isBadge ? "h-[16px] max-w-[108px]" : "h-[23px] max-w-[146px]"} w-auto object-contain object-left`}
+          className={`${
+            isBadge ? "h-[16px] max-w-[108px] object-left" : "max-h-[19px] sm:max-h-[23px] max-w-full object-center"
+          } w-auto object-contain`}
         />
       );
 
@@ -664,7 +698,9 @@ export function BrandLogoLockup({
         <img
           src="/logos/the-ken.png"
           alt="The Ken"
-          className={`${isBadge ? "h-[18px] max-w-[94px]" : "h-[26px] max-w-[130px]"} w-auto object-contain object-left`}
+          className={`${
+            isBadge ? "h-[18px] max-w-[94px] object-left" : "max-h-[20px] sm:max-h-[24px] max-w-full object-center"
+          } w-auto object-contain`}
         />
       );
 
@@ -673,7 +709,9 @@ export function BrandLogoLockup({
         <img
           src="/logos/shree-gajanan.png"
           alt="Shree Gajanan Industries"
-          className={`${isBadge ? "h-[21px] max-w-[108px]" : "h-[30px] max-w-[146px]"} w-auto object-contain object-left`}
+          className={`${
+            isBadge ? "h-[21px] max-w-[108px] object-left" : "max-h-[24px] sm:max-h-[28px] max-w-full object-center"
+          } w-auto object-contain`}
         />
       );
 
@@ -682,7 +720,9 @@ export function BrandLogoLockup({
         <img
           src="/logos/iimb.png"
           alt="IIM Bangalore"
-          className={`${isBadge ? "h-[22px] max-w-[100px]" : "h-[30px] max-w-[138px]"} w-auto object-contain object-left`}
+          className={`${
+            isBadge ? "h-[22px] max-w-[100px] object-left" : "max-h-[24px] sm:max-h-[28px] max-w-full object-center"
+          } w-auto object-contain`}
         />
       );
 
@@ -691,7 +731,9 @@ export function BrandLogoLockup({
         <img
           src="/logos/nitd.png"
           alt="NIT Durgapur"
-          className={`${isBadge ? "h-[22px] max-w-[98px]" : "h-[30px] max-w-[136px]"} w-auto object-contain object-left`}
+          className={`${
+            isBadge ? "h-[22px] max-w-[98px] object-left" : "max-h-[24px] sm:max-h-[28px] max-w-full object-center"
+          } w-auto object-contain`}
         />
       );
 
@@ -700,7 +742,9 @@ export function BrandLogoLockup({
         <img
           src="/logos/iims.png"
           alt="IIM Sirmaur"
-          className={`${isBadge ? "h-[22px] max-w-[98px]" : "h-[30px] max-w-[136px]"} w-auto object-contain object-left`}
+          className={`${
+            isBadge ? "h-[22px] max-w-[98px] object-left" : "max-h-[24px] sm:max-h-[28px] max-w-full object-center"
+          } w-auto object-contain`}
         />
       );
 
@@ -709,7 +753,9 @@ export function BrandLogoLockup({
         <img
           src="/logos/vit.png"
           alt="VIT Chennai"
-          className={`${isBadge ? "h-[16px] max-w-[106px]" : "h-[23px] max-w-[144px]"} w-auto object-contain object-left`}
+          className={`${
+            isBadge ? "h-[16px] max-w-[106px] object-left" : "max-h-[19px] sm:max-h-[23px] max-w-full object-center"
+          } w-auto object-contain`}
         />
       );
 
@@ -718,7 +764,9 @@ export function BrandLogoLockup({
         <img
           src="/logos/isb.png"
           alt="Indian School of Business"
-          className={`${isBadge ? "h-[18px] max-w-[98px]" : "h-[25px] max-w-[134px]"} w-auto object-contain object-left`}
+          className={`${
+            isBadge ? "h-[18px] max-w-[98px] object-left" : "max-h-[20px] sm:max-h-[24px] max-w-full object-center"
+          } w-auto object-contain`}
         />
       );
 
@@ -727,7 +775,9 @@ export function BrandLogoLockup({
         <img
           src="/logos/dps.png"
           alt="Delhi Public School Ruby Park"
-          className={`${isBadge ? "h-[22px] max-w-[98px]" : "h-[30px] max-w-[136px]"} w-auto object-contain object-left`}
+          className={`${
+            isBadge ? "h-[22px] max-w-[98px] object-left" : "max-h-[24px] sm:max-h-[28px] max-w-full object-center"
+          } w-auto object-contain`}
         />
       );
 
@@ -736,7 +786,9 @@ export function BrandLogoLockup({
         <img
           src="/logos/st-patricks.png"
           alt="St. Patrick's Higher Secondary School"
-          className={`${isBadge ? "h-[22px] max-w-[98px]" : "h-[30px] max-w-[136px]"} w-auto object-contain object-left`}
+          className={`${
+            isBadge ? "h-[22px] max-w-[98px] object-left" : "max-h-[24px] sm:max-h-[28px] max-w-full object-center"
+          } w-auto object-contain`}
         />
       );
 
@@ -902,17 +954,17 @@ export function BrandShowcase() {
           </p>
         </div>
 
-        <ul className="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-7">
+        <ul className="grid grid-cols-3 gap-2 sm:gap-2.5 sm:grid-cols-4 md:grid-cols-7">
           {SHOWCASE_ORDER.map((key) => {
             const b = BRANDS[key];
             return (
-              <li key={key}>
+              <li key={key} className="min-w-0">
                 <Link
                   href={b.href}
                   title={`${b.name} (${b.context})`}
-                  className="group flex h-12 sm:h-14 items-center justify-center rounded-xl glass-card px-2 sm:px-3.5 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#161616]/35"
+                  className="group flex h-11 sm:h-14 w-full max-w-full overflow-hidden items-center justify-center rounded-xl glass-card px-2 sm:px-3.5 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#161616]/35"
                 >
-                  <div className="flex items-center justify-center transition-transform duration-200 group-hover:scale-[1.04]">
+                  <div className="flex w-full max-w-full items-center justify-center overflow-hidden transition-transform duration-200 group-hover:scale-[1.03]">
                     <BrandLogoLockup brand={key} />
                   </div>
                 </Link>
