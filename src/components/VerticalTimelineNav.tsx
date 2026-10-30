@@ -129,10 +129,10 @@ export function VerticalTimelineNav() {
     const updatePositionAndTheme = () => {
       const scrollY = window.scrollY;
 
-      // Visibility threshold: Hero landing page requires scrolling past >420px;
-      // Individual case pages fade in earlier (>220px) past the header
-      const threshold = pathname === "/" ? 420 : 220;
-      setIsVisible(scrollY > threshold);
+      // Visibility threshold: On homepage, fade in smoothly once scrolling past initial masthead (>80px);
+      // On individual case & competition pages, visible immediately (threshold = 0)
+      const threshold = pathname === "/" ? 80 : 0;
+      setIsVisible(scrollY >= threshold);
 
       // Determine active milestone based on viewport position
       if (currentMilestones.length > 0) {
@@ -200,7 +200,7 @@ export function VerticalTimelineNav() {
   return (
     <nav
       aria-label="Vertical story navigation"
-      className={`fixed left-6 xl:left-8 2xl:left-12 top-1/2 -translate-y-1/2 z-30 hidden 2xl:block select-none transition-all duration-500 ease-out pointer-events-auto ${
+      className={`fixed left-4 xl:left-8 2xl:left-12 top-1/2 -translate-y-1/2 z-30 select-none transition-all duration-500 ease-out pointer-events-auto hidden lg:block ${
         isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-6 pointer-events-none"
       }`}
     >
@@ -232,7 +232,8 @@ export function VerticalTimelineNav() {
                 data-milestone-id={m.id}
                 type="button"
                 onClick={() => scrollTo(m.id)}
-                className="group flex items-center text-left focus:outline-none cursor-pointer"
+                className="group flex items-center text-left focus:outline-none cursor-pointer py-1 -my-1"
+                aria-label={`${m.num} ${m.label}`}
               >
                 {/* Node Tick along the vertical line */}
                 <span
@@ -247,10 +248,10 @@ export function VerticalTimelineNav() {
 
                 {/* Milestone Number & Name (Per-Item Theme Inversion) */}
                 <span
-                  className={`ml-3.5 flex items-baseline gap-2 transition-all duration-200 ${
+                  className={`ml-3.5 items-baseline gap-2 transition-all duration-200 ${
                     active
-                      ? "translate-x-1 font-semibold"
-                      : "group-hover:translate-x-0.5"
+                      ? "flex translate-x-1 font-semibold"
+                      : "hidden md:flex group-hover:translate-x-0.5"
                   }`}
                 >
                   <span

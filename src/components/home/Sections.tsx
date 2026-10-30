@@ -175,31 +175,31 @@ export function Research() {
       <Tilt className="h-full">
         <article
           data-cursor="Paper"
-          className="flex h-full flex-col justify-between rounded-2xl glass-card p-8 transition-transform duration-300 hover:-translate-y-1.5 md:p-9"
+          className="flex h-full flex-col justify-between rounded-2xl glass-card p-5 sm:p-7 md:p-9 transition-transform duration-300 hover:-translate-y-1.5"
         >
           <div>
             <div className="flex flex-wrap items-center justify-between gap-2">
-              <span className="inline-flex items-center gap-1.5 font-mono text-[12px] text-muted">
+              <span className="inline-flex items-center gap-1.5 font-mono text-[11.5px] sm:text-[12px] text-muted">
                 <IconBookOpen size={14} className="text-forest" />
                 <span>{lyrics.kind}</span>
               </span>
               <BrandBadge brand="springer" interactive={false} />
             </div>
-            <h3 className="mt-4 font-display text-[24px] leading-8 font-semibold tracking-[-0.025em] text-ink md:text-[26px]">
+            <h3 className="mt-3.5 font-display text-[22px] leading-7 font-semibold tracking-[-0.025em] text-ink sm:text-[24px] sm:leading-8 md:text-[26px]">
               {lyrics.title}
             </h3>
-            <div className="mt-6 flex flex-wrap items-baseline gap-3">
-              <p className="font-display text-[52px] leading-none font-bold tracking-[-0.04em] text-figure tabular md:text-[60px]">
+            <div className="mt-5 flex flex-wrap items-baseline gap-2.5 sm:gap-3">
+              <p className="font-display text-[42px] leading-none font-bold tracking-[-0.04em] text-figure tabular sm:text-[52px] md:text-[60px]">
                 {lyrics.metric?.value ?? "400+"}
               </p>
-              <span className="font-mono text-[12px] text-muted">{lyrics.metric?.label ?? "accesses & 2 citations"}</span>
+              <span className="font-mono text-[11px] sm:text-[12px] text-muted">{lyrics.metric?.label ?? "accesses & 2 citations"}</span>
             </div>
-            <ul className="mt-6 space-y-2.5 text-[15px] leading-6 text-ink/90">
+            <ul className="mt-5 space-y-2 sm:space-y-2.5 text-[14px] sm:text-[15px] leading-relaxed text-ink/90">
               {lyrics.bullets.map((b) => (
                 <li
                   key={b}
                   data-cursor="Finding"
-                  className="rounded-xl bg-paper/75 p-3 transition-all duration-200 hover:translate-x-1 hover:bg-paper hover:shadow-xs"
+                  className="rounded-xl bg-paper/75 p-2.5 sm:p-3 transition-all duration-200 hover:translate-x-1 hover:bg-paper hover:shadow-xs"
                 >
                   {b}
                 </li>
@@ -207,14 +207,14 @@ export function Research() {
             </ul>
           </div>
           {lyrics.link && (
-            <div className="mt-6 border-t border-line/60 pt-4">
+            <div className="mt-5 border-t border-line/60 pt-3.5">
               <a
                 href={lyrics.link}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1.5 font-mono text-[12px] font-semibold text-primary transition-colors hover:underline"
+                className="inline-flex items-center gap-1.5 font-mono text-[11.5px] sm:text-[12px] font-semibold text-primary transition-colors hover:underline break-words"
               >
-                <span>Read Springer Publication (DOI: 10.1007/978-981-99-1051-9_24)</span>
+                <span>Read Springer Publication</span>
                 <IconExternalLink size={13} className="shrink-0" />
               </a>
             </div>
@@ -226,37 +226,37 @@ export function Research() {
       <Tilt className="h-full">
         <article
           data-cursor="Medical AI"
-          className="flex h-full flex-col justify-between rounded-2xl glass-card p-8 transition-transform duration-300 hover:-translate-y-1.5 md:p-9"
+          className="flex h-full flex-col justify-between rounded-2xl glass-card p-5 sm:p-7 md:p-9 transition-transform duration-300 hover:-translate-y-1.5"
         >
           <div>
             <div className="flex flex-wrap items-center justify-between gap-2">
-              <span className="inline-flex items-center gap-1.5 font-mono text-[12px] text-muted">
+              <span className="inline-flex items-center gap-1.5 font-mono text-[11.5px] sm:text-[12px] text-muted">
                 <IconMicroscope size={14} className="text-forest" />
                 <span>{lungCancer.kind}</span>
               </span>
               <BrandBadge brand="vit" label="VIT Chennai" interactive={false} />
             </div>
-            <h3 className="mt-4 font-display text-[24px] leading-8 font-semibold tracking-[-0.025em] text-ink md:text-[26px]">
+            <h3 className="mt-3.5 font-display text-[22px] leading-7 font-semibold tracking-[-0.025em] text-ink sm:text-[24px] sm:leading-8 md:text-[26px]">
               {lungCancer.title}
             </h3>
-            <div className="mt-6 flex flex-wrap items-baseline gap-3">
-              <p className="font-display text-[52px] leading-none font-bold tracking-[-0.04em] text-primary tabular md:text-[60px]">
+            <div className="mt-5 flex flex-wrap items-baseline gap-2.5 sm:gap-3">
+              <p className="font-display text-[42px] leading-none font-bold tracking-[-0.04em] text-primary tabular sm:text-[52px] md:text-[60px]">
                 {lungCancer.metric?.value ?? "99.97%"}
               </p>
-              <span className="font-mono text-[12px] text-muted">{lungCancer.metric?.label ?? "test accuracy"}</span>
+              <span className="font-mono text-[11px] sm:text-[12px] text-muted">{lungCancer.metric?.label ?? "test accuracy"}</span>
             </div>
-            <ul className="mt-6 space-y-2.5 text-[15px] leading-6 text-muted">
+            <ul className="mt-5 space-y-2 sm:space-y-2.5 text-[14px] sm:text-[15px] leading-relaxed text-muted">
               {lungCancer.bullets.map((b) => (
                 <li
                   key={b}
-                  className="rounded-xl bg-paper/60 p-3 transition-all duration-200 hover:translate-x-1 hover:bg-paper hover:text-ink"
+                  className="rounded-xl bg-paper/60 p-2.5 sm:p-3 transition-all duration-200 hover:translate-x-1 hover:bg-paper hover:text-ink"
                 >
                   {b}
                 </li>
               ))}
             </ul>
           </div>
-          <div className="mt-6 flex items-center justify-between border-t border-line/60 pt-4 font-mono text-[11px] text-muted">
+          <div className="mt-5 flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-2 border-t border-line/60 pt-3.5 font-mono text-[10.5px] sm:text-[11px] text-muted">
             <span className="inline-flex items-center gap-1">
               <IconCheckCircle size={11} className="text-forest" />
               <span>Ensemble: Top 5 CNNs + L1 Meta-Learner</span>
@@ -270,37 +270,37 @@ export function Research() {
       <Tilt className="h-full">
         <article
           data-cursor="Capstone AI"
-          className="flex h-full flex-col justify-between rounded-2xl glass-card p-8 transition-transform duration-300 hover:-translate-y-1.5 md:p-9"
+          className="flex h-full flex-col justify-between rounded-2xl glass-card p-5 sm:p-7 md:p-9 transition-transform duration-300 hover:-translate-y-1.5"
         >
           <div>
             <div className="flex flex-wrap items-center justify-between gap-2">
-              <span className="inline-flex items-center gap-1.5 font-mono text-[12px] text-muted">
+              <span className="inline-flex items-center gap-1.5 font-mono text-[11.5px] sm:text-[12px] text-muted">
                 <IconDna size={14} className="text-forest" />
                 <span>{skinCancer.kind}</span>
               </span>
               <BrandBadge brand="vit" label="VIT Chennai · ISIC" interactive={false} />
             </div>
-            <h3 className="mt-4 font-display text-[24px] leading-8 font-semibold tracking-[-0.025em] text-ink md:text-[26px]">
+            <h3 className="mt-3.5 font-display text-[22px] leading-7 font-semibold tracking-[-0.025em] text-ink sm:text-[24px] sm:leading-8 md:text-[26px]">
               {skinCancer.title}
             </h3>
-            <div className="mt-6 flex flex-wrap items-baseline gap-3">
-              <p className="font-display text-[52px] leading-none font-bold tracking-[-0.04em] text-primary tabular md:text-[60px]">
+            <div className="mt-5 flex flex-wrap items-baseline gap-2.5 sm:gap-3">
+              <p className="font-display text-[42px] leading-none font-bold tracking-[-0.04em] text-primary tabular sm:text-[52px] md:text-[60px]">
                 {skinCancer.metric?.value ?? "95.37%"}
               </p>
-              <span className="font-mono text-[12px] text-muted">{skinCancer.metric?.label ?? "AUC-ROC"}</span>
+              <span className="font-mono text-[11px] sm:text-[12px] text-muted">{skinCancer.metric?.label ?? "AUC-ROC"}</span>
             </div>
-            <ul className="mt-6 space-y-2.5 text-[15px] leading-6 text-muted">
+            <ul className="mt-5 space-y-2 sm:space-y-2.5 text-[14px] sm:text-[15px] leading-relaxed text-muted">
               {skinCancer.bullets.map((b) => (
                 <li
                   key={b}
-                  className="rounded-xl bg-paper/60 p-3 transition-all duration-200 hover:translate-x-1 hover:bg-paper hover:text-ink"
+                  className="rounded-xl bg-paper/60 p-2.5 sm:p-3 transition-all duration-200 hover:translate-x-1 hover:bg-paper hover:text-ink"
                 >
                   {b}
                 </li>
               ))}
             </ul>
           </div>
-          <div className="mt-6 flex items-center justify-between border-t border-line/60 pt-4 font-mono text-[11px] text-muted">
+          <div className="mt-5 flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-2 border-t border-line/60 pt-3.5 font-mono text-[10.5px] sm:text-[11px] text-muted">
             <span>ISIC 2017 · Dull Razor &amp; Chan-Vese</span>
             <span>Top 6 CNNs + KNN Meta-Learner</span>
           </div>
@@ -312,37 +312,37 @@ export function Research() {
         <article
           data-dark
           data-cursor="Case"
-          className="flex h-full flex-col justify-between rounded-2xl glass-card-dark p-8 text-on-block transition-transform duration-300 hover:-translate-y-1.5 md:p-9"
+          className="flex h-full flex-col justify-between rounded-2xl glass-card-dark p-5 sm:p-7 md:p-9 text-on-block transition-transform duration-300 hover:-translate-y-1.5"
         >
           <div>
             <div className="flex flex-wrap items-center justify-between gap-2">
-              <span className="inline-flex items-center gap-1.5 font-mono text-[12px] text-on-block/70">
+              <span className="inline-flex items-center gap-1.5 font-mono text-[11.5px] sm:text-[12px] text-on-block/70">
                 <IconFactory size={14} className="text-amber" />
                 <span>{ricemill.kind}</span>
               </span>
               <BrandBadge brand="xlri" tone="dark" interactive={false} />
             </div>
-            <h3 className="mt-4 font-display text-[24px] leading-8 font-semibold tracking-[-0.02em] text-on-block md:text-[26px]">
+            <h3 className="mt-3.5 font-display text-[22px] leading-7 font-semibold tracking-[-0.02em] text-on-block sm:text-[24px] sm:leading-8 md:text-[26px]">
               {ricemill.title}
             </h3>
-            <div className="mt-6 flex flex-wrap items-baseline gap-3">
-              <p className="font-display text-[52px] leading-none font-bold tracking-[-0.04em] text-amber tabular md:text-[60px]">
+            <div className="mt-5 flex flex-wrap items-baseline gap-2.5 sm:gap-3">
+              <p className="font-display text-[42px] leading-none font-bold tracking-[-0.04em] text-amber tabular sm:text-[52px] md:text-[60px]">
                 {ricemill.metric?.value ?? "Rs.2.3Cr"}
               </p>
-              <span className="font-mono text-[12px] text-on-block/70">{ricemill.metric?.label ?? "annual margin recovery"}</span>
+              <span className="font-mono text-[11px] sm:text-[12px] text-on-block/70">{ricemill.metric?.label ?? "annual margin recovery"}</span>
             </div>
-            <ul className="mt-6 space-y-2.5 text-[15px] leading-6 text-on-block/85">
+            <ul className="mt-5 space-y-2 sm:space-y-2.5 text-[14px] sm:text-[15px] leading-relaxed text-on-block/85">
               {ricemill.bullets.map((b) => (
                 <li
                   key={b}
-                  className="rounded-xl bg-white/[0.06] p-3 transition-all duration-200 hover:translate-x-1 hover:bg-white/[0.10]"
+                  className="rounded-xl bg-white/[0.06] p-2.5 sm:p-3 transition-all duration-200 hover:translate-x-1 hover:bg-white/[0.10]"
                 >
                   {b}
                 </li>
               ))}
             </ul>
           </div>
-          <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-4 font-mono text-[11px] text-on-block/70">
+          <div className="mt-5 flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-2 border-t border-white/10 pt-3.5 font-mono text-[10.5px] sm:text-[11px] text-on-block/70">
             <span className="inline-flex items-center gap-1">
               <IconScale size={11} className="text-amber" />
               <span>In Peer Review · Operational Audit</span>

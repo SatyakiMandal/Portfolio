@@ -49,7 +49,7 @@ function Role({ e, i }: { e: Exp; i: number }) {
   return (
     <div
       ref={ref}
-      className="relative grid gap-6 pl-10 md:grid-cols-[180px_1fr] md:gap-10 md:pl-14"
+      className="relative grid gap-4 pl-7 sm:pl-10 md:grid-cols-[180px_1fr] md:gap-10 md:pl-14"
     >
       {/* node on the spine fills as the panel arrives */}
       <span
@@ -61,16 +61,16 @@ function Role({ e, i }: { e: Exp; i: number }) {
           style={{ scale: reduce ? 1 : node }}
         />
       </span>
-      <p className="wide text-[28px] leading-8 font-extrabold text-ink/85 md:sticky md:top-28 md:self-start md:text-[30px]">
+      <p className="wide text-[24px] sm:text-[28px] leading-8 font-extrabold text-ink/85 md:sticky md:top-28 md:self-start md:text-[30px]">
         {years[i]}
       </p>
 
       <m.article
         data-dark={dark ? "" : undefined}
         style={reduce ? undefined : { x, rotate, opacity }}
-        className={`rounded-3xl p-7 md:p-10 ${tones[i % tones.length]}`}
+        className={`rounded-3xl p-5 sm:p-7 md:p-10 ${tones[i % tones.length]}`}
       >
-        <div className="flex flex-wrap items-start justify-between gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 sm:gap-4">
           <div>
             <div className="flex flex-wrap items-center gap-2">
               {brands.map((b) => (
@@ -83,14 +83,14 @@ function Role({ e, i }: { e: Exp; i: number }) {
                 />
               ))}
               <span
-                className={`font-mono text-[13px] tabular ${dark ? "text-on-night/70" : "text-[#161616]/70"}`}
+                className={`font-mono text-[12px] sm:text-[13px] tabular ${dark ? "text-on-night/70" : "text-[#161616]/70"}`}
               >
                 {e.dates}
               </span>
             </div>
             {e.scope && (
               <div
-                className={`mt-3 inline-flex items-center gap-2 rounded-full px-3 py-1 font-mono text-[11px] font-medium ${
+                className={`mt-2.5 inline-flex items-center gap-2 rounded-full px-3 py-1 font-mono text-[10.5px] sm:text-[11px] font-medium ${
                   dark
                     ? "border border-white/10 bg-white/[0.07] text-amber/90"
                     : "border border-[#161616]/10 bg-[#161616]/[0.08] text-[#161616]/85"
@@ -100,26 +100,26 @@ function Role({ e, i }: { e: Exp; i: number }) {
                 <span>{e.scope}</span>
               </div>
             )}
-            <h3 className="mt-3 font-display text-[28px] leading-8 font-semibold tracking-[-0.025em] md:text-[34px] md:leading-10">
+            <h3 className="mt-2.5 font-display text-[24px] leading-7 font-semibold tracking-[-0.025em] sm:text-[28px] sm:leading-8 md:text-[34px] md:leading-10">
               {e.company}
             </h3>
-            <p className={dark ? "text-on-night/75" : "text-[#161616]/75"}>
+            <p className={`text-[14px] sm:text-[16px] ${dark ? "text-on-night/75" : "text-[#161616]/75"}`}>
               {e.role}
             </p>
           </div>
           <m.div
             whileHover={{ scale: 1.05, y: -3 }}
-            className="text-right"
+            className="text-left sm:text-right"
           >
             <span
-              className={`block font-display text-[56px] leading-none font-bold tracking-[-0.04em] tabular md:text-[72px] ${
+              className={`block font-display text-[42px] leading-none font-bold tracking-[-0.04em] tabular sm:text-[56px] md:text-[72px] ${
                 dark ? "text-amber" : "text-[#161616]"
               }`}
             >
               {leadValue}
             </span>
             <span
-              className={`mt-1 block max-w-[24ch] text-[13px] leading-[18px] ${
+              className={`mt-1 block max-w-[24ch] text-[12px] sm:text-[13px] leading-[17px] ${
                 dark ? "text-on-night/70" : "text-[#161616]/70"
               }`}
             >
@@ -129,7 +129,7 @@ function Role({ e, i }: { e: Exp; i: number }) {
         </div>
 
         {chips.length > 0 && (
-          <dl className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
+          <dl className="mt-5 sm:mt-6 grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-4">
             {chips.map((c) => (
               <m.div
                 key={c.k}
@@ -137,17 +137,17 @@ function Role({ e, i }: { e: Exp; i: number }) {
                 whileHover={{ y: -4, scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 transition={{ type: "spring", stiffness: 340, damping: 20 }}
-                className={`rounded-2xl p-4 transition-colors ${
+                className={`rounded-xl sm:rounded-2xl p-2.5 sm:p-4 transition-colors ${
                   dark
                     ? "bg-white/[0.05] ring-1 ring-white/10 hover:ring-amber/60"
                     : "bg-[#161616]/[0.06] ring-1 ring-[#161616]/10 hover:bg-[#161616]/12"
                 }`}
               >
-                <dt className={`font-mono text-[11px] ${dark ? "text-on-night/65" : "text-[#161616]/65"}`}>
+                <dt className={`font-mono text-[10px] sm:text-[11px] ${dark ? "text-on-night/65" : "text-[#161616]/65"}`}>
                   {c.k}
                 </dt>
                 <dd
-                  className={`mt-0.5 font-display text-[20px] font-bold leading-6 tabular md:text-[24px] ${
+                  className={`mt-0.5 font-display text-[18px] sm:text-[20px] font-bold leading-6 tabular md:text-[24px] ${
                     dark ? "text-amber" : "text-[#161616]"
                   }`}
                 >

@@ -902,7 +902,7 @@ export function BrandShowcase() {
           </p>
         </div>
 
-        <ul className="grid grid-cols-2 gap-2.5 sm:grid-cols-4 md:grid-cols-7">
+        <ul className="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-7">
           {SHOWCASE_ORDER.map((key) => {
             const b = BRANDS[key];
             return (
@@ -910,7 +910,7 @@ export function BrandShowcase() {
                 <Link
                   href={b.href}
                   title={`${b.name} (${b.context})`}
-                  className="group flex h-14 items-center justify-center rounded-xl glass-card px-3.5 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#161616]/35"
+                  className="group flex h-12 sm:h-14 items-center justify-center rounded-xl glass-card px-2 sm:px-3.5 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#161616]/35"
                 >
                   <div className="flex items-center justify-center transition-transform duration-200 group-hover:scale-[1.04]">
                     <BrandLogoLockup brand={key} />

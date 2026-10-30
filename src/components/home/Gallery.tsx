@@ -84,6 +84,14 @@ export function Gallery() {
   const [isPlaying, setIsPlaying] = useState(true);
   const [isZoomed, setIsZoomed] = useState(false);
   const [expanded, setExpanded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const idPrefix = useId();
 
@@ -278,10 +286,12 @@ export function Gallery() {
             {/* Continuous Motorized Marquee Reel Track (Hardware Accelerated) */}
             <div className="relative overflow-hidden py-3">
               <div
-                className="film-roll-track group-hover/reel:[animation-play-state:paused]"
+                className="film-roll-track group-hover/reel:[animation-play-state:paused] active:[animation-play-state:paused]"
                 style={{
                   animationPlayState: isPlaying ? "running" : "paused",
-                  animationDuration: `${Math.max(45, displayItems.length * 5)}s`,
+                  animationDuration: isMobile
+                    ? `${Math.max(115, displayItems.length * 9)}s`
+                    : `${Math.max(55, displayItems.length * 5)}s`,
                 }}
               >
                 {/* Double set of items for seamless infinite loop */}

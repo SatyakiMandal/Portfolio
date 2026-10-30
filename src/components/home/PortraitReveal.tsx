@@ -19,7 +19,7 @@ const skills: Skill[] = [
       { value: "$30.5/ton", text: "Tata Steel green premium across 3 segments, modelled", href: "/work/tata-steel" },
       { value: "Rs.20", text: "Optimal Red Label sachet price; below Rs.12 buyers doubt quality", href: "/work/hul-red-label" },
     ],
-    pos: "left-[6%] top-[18%] md:left-[12%] md:top-[16%]", depth: 26, drift: [14, -18], dur: 9,
+    pos: "left-[2%] top-[14%] sm:left-[6%] sm:top-[18%] md:left-[12%] md:top-[16%]", depth: 26, drift: [14, -18], dur: 9,
   },
   {
     id: "market", name: "Market sizing", icon: ChartPieSlice, line: "Sizing the prize before choosing where to play.",
@@ -27,7 +27,7 @@ const skills: Skill[] = [
       { value: "Rs.27,800Cr", text: "10% branded share of a Rs.2.78L Cr staples market (derived), Tata Consumer", href: "/work/tata-consumer-products" },
       { value: "$20.67Bn to $47.53Bn", text: "Footwear market reconciled across analyst sources, Campus Activewear", href: "/work/campus-activewear" },
     ],
-    pos: "left-[4%] top-[58%] md:left-[18%] md:top-[54%]", depth: 18, drift: [-12, 16], dur: 11,
+    pos: "left-[1%] top-[56%] sm:left-[4%] sm:top-[58%] md:left-[18%] md:top-[54%]", depth: 18, drift: [-12, 16], dur: 11,
   },
   {
     id: "strategy", name: "Strategy", icon: Strategy, line: "Diagnosing why growth stalls, then building the plan to restart it.",
@@ -35,7 +35,7 @@ const skills: Skill[] = [
       { value: "11% vs 21%", text: "Campus growth against its category, the start of a 5-year roadmap", href: "/work/campus-activewear" },
       { value: "Rs.50Cr", text: "XLRI alumni fund redesigned after tracing 5 governance failures to 1 root cause", href: "/work/xlri-alumni-policy" },
     ],
-    pos: "left-[22%] top-[84%] md:left-[30%] md:top-[80%]", depth: 32, drift: [18, -10], dur: 13,
+    pos: "left-[8%] top-[84%] sm:left-[22%] sm:top-[84%] md:left-[30%] md:top-[80%]", depth: 32, drift: [18, -10], dur: 13,
   },
   {
     id: "gtm", name: "Go-to-market", icon: RocketLaunch, line: "Picking the channel and the message that move the first buyers.",
@@ -43,7 +43,7 @@ const skills: Skill[] = [
       { value: "56.1%", text: "Vending channel used for tiered sampling, Hindustan Unilever Red Label", href: "/work/hul-red-label" },
       { value: "18.2M", text: "Target urban households behind a >60% e-commerce and modern trade mix", href: "/work/tata-consumer-products" },
     ],
-    pos: "right-[6%] top-[14%] md:right-[13%] md:top-[18%]", depth: 22, drift: [-16, 12], dur: 10,
+    pos: "right-[2%] top-[12%] sm:right-[6%] sm:top-[14%] md:right-[13%] md:top-[18%]", depth: 22, drift: [-16, 12], dur: 10,
   },
   {
     id: "finance", name: "Corporate finance", icon: Coins, line: "Finding where value is created or lost, and what would reverse it.",
@@ -51,7 +51,7 @@ const skills: Skill[] = [
       { value: "24.47%", text: "Ajooni Biotech WACC behind a 20+ pp ROIC-WACC gap", href: "/work/ajooni-biotech" },
       { value: "24.5% vs 7.9%", text: "Core ROCE against group ROCE, Tata Consumer valuation audit", href: "/work/tata-consumer-products" },
     ],
-    pos: "right-[4%] top-[52%] md:right-[17%] md:top-[50%]", depth: 30, drift: [12, 18], dur: 12,
+    pos: "right-[1%] top-[50%] sm:right-[4%] sm:top-[52%] md:right-[17%] md:top-[50%]", depth: 30, drift: [12, 18], dur: 12,
   },
   {
     id: "data", name: "Data and product", icon: Database, line: "Turning data into dashboards, models and products people use.",
@@ -59,7 +59,7 @@ const skills: Skill[] = [
       { value: "~$4M", text: "Media spend reallocation on the Walmart account at Epsilon", href: "/#experience" },
       { value: "2,592", text: "Companies covered by Arthdex, the research platform I built", href: "/work/arthdex" },
     ],
-    pos: "right-[20%] top-[82%] md:right-[29%] md:top-[78%]", depth: 20, drift: [-14, -14], dur: 14,
+    pos: "right-[8%] top-[82%] sm:right-[20%] sm:top-[82%] md:right-[29%] md:top-[78%]", depth: 20, drift: [-14, -14], dur: 14,
   },
 ];
 
@@ -83,10 +83,11 @@ function FloatingIcon({ s, open, onOpen, mx, my }: { s: Skill; open: boolean; on
           whileHover={{ scale: 1.22, rotate: 10 }}
           whileTap={{ scale: 0.92 }}
           transition={{ type: "spring", stiffness: 360, damping: 18 }}
-          className={`group relative flex h-16 w-16 items-center justify-center rounded-full md:h-20 md:w-20 ${open ? "bg-amber text-[#161616] ring-2 ring-ink" : "bg-ink text-paper shadow-[0_14px_30px_-12px_rgb(22_22_22/0.6)]"}`}
+          className={`group relative flex h-12 w-12 sm:h-16 sm:w-16 md:h-20 md:w-20 items-center justify-center rounded-full ${open ? "bg-amber text-[#161616] ring-2 ring-ink" : "bg-ink text-paper shadow-[0_14px_30px_-12px_rgb(22_22_22/0.6)]"}`}
         >
           <span aria-hidden="true" className="absolute inset-0 rounded-full ring-2 ring-amber/0 transition-[box-shadow,transform] duration-500 group-hover:scale-150 group-hover:ring-amber/60" />
-          <Icon size={30} weight="duotone" aria-hidden="true" />
+          <Icon size={22} className="md:hidden" weight="duotone" aria-hidden="true" />
+          <Icon size={30} className="hidden md:inline-block" weight="duotone" aria-hidden="true" />
           <span className="pointer-events-none absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap rounded-full bg-ink px-3 py-1 text-[12px] font-medium text-paper opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100">
             {s.name}
           </span>

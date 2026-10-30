@@ -146,7 +146,7 @@ export function WorkGrid() {
                         className="group block h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber"
                       >
                         <article
-                          className={`relative flex h-full flex-col justify-between overflow-hidden rounded-3xl p-6 sm:p-8 transition-[box-shadow,background-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-2xl ${tone}`}
+                          className={`relative flex h-full flex-col justify-between overflow-hidden rounded-3xl p-5 sm:p-7 md:p-8 transition-[box-shadow,background-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-2xl ${tone}`}
                         >
                           {/* Corner ambient glow */}
                           <div
@@ -216,18 +216,18 @@ export function WorkGrid() {
 
                             {/* Anchor Metric & Supporting Key Numbers Strip */}
                             <div
-                              className={`my-5 rounded-2xl p-4 sm:p-5 ring-1 ${
+                              className={`my-3.5 sm:my-5 rounded-2xl p-3.5 sm:p-5 ring-1 ${
                                 isNight
                                   ? "bg-white/[0.06] ring-white/15"
                                   : "bg-current/5 ring-current/10"
                               }`}
                             >
-                              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-current/10 pb-3">
+                              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1.5 sm:gap-2 border-b border-current/10 pb-2.5 sm:pb-3">
                                 <div>
                                   <span className="block font-mono text-[10px] uppercase tracking-wider opacity-80 font-medium">
                                     Anchor Metric
                                   </span>
-                                  <span className="font-display text-[clamp(32px,4.5vw,46px)] font-extrabold leading-none tracking-tight tabular">
+                                  <span className="font-display text-[clamp(28px,6vw,46px)] font-extrabold leading-none tracking-tight tabular">
                                     <ScrambleText triggerKey={domain}>{c.figure}</ScrambleText>
                                   </span>
                                 </div>
@@ -237,20 +237,20 @@ export function WorkGrid() {
                               </div>
 
                               {/* Supporting Data Grid: 3 verified figures from the case */}
-                              <div className="mt-3 grid grid-cols-3 gap-2">
+                              <div className="mt-2.5 sm:mt-3 grid grid-cols-3 gap-1.5 sm:gap-2">
                                 {c.keyNumbers.slice(1, 4).map((kn, idx) => (
                                   <div
                                     key={idx}
-                                    className={`rounded-xl p-2.5 ${
+                                    className={`rounded-lg sm:rounded-xl p-2 sm:p-2.5 ${
                                       isNight
                                         ? "bg-white/[0.08] border border-white/10"
                                         : "bg-current/5"
                                     }`}
                                   >
-                                    <span className="block font-display text-[14px] sm:text-[16px] font-bold leading-tight tabular">
+                                    <span className="block font-display text-[13px] sm:text-[16px] font-bold leading-tight tabular">
                                       {kn.value}
                                     </span>
-                                    <span className="mt-0.5 block font-mono text-[10px] leading-tight opacity-75 whitespace-normal break-words" title={kn.label}>
+                                    <span className="mt-0.5 block font-mono text-[9.5px] sm:text-[10px] leading-tight opacity-75 whitespace-normal break-words" title={kn.label}>
                                       {kn.label}
                                     </span>
                                   </div>
@@ -261,12 +261,12 @@ export function WorkGrid() {
                             {/* Verified Key Takeaway */}
                             {c.takeaway && (
                               <div
-                                className={`mb-4 border-l-2 pl-3 ${
+                                className={`mb-3 sm:mb-4 border-l-2 pl-2.5 sm:pl-3 ${
                                   isNight ? "border-amber" : isAmber ? "border-[#161616]" : "border-amber-dark"
                                 }`}
                               >
                                 <p
-                                  className={`font-mono text-[10px] uppercase tracking-wider font-bold ${
+                                  className={`font-mono text-[9.5px] sm:text-[10px] uppercase tracking-wider font-bold ${
                                     isNight ? "text-amber" : isAmber ? "text-[#161616]" : "text-amber-dark"
                                   }`}
                                 >

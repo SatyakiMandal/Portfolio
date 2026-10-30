@@ -63,8 +63,11 @@ export function Cursor() {
     let burstId = 0;
 
     const move = (e: PointerEvent) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
+      const zoom = parseFloat(getComputedStyle(document.documentElement).zoom) || 1;
+      const actualX = e.clientX / zoom;
+      const actualY = e.clientY / zoom;
+      mouseX.set(actualX);
+      mouseY.set(actualY);
       if (!visible) setVisible(true);
 
       const target = e.target as Element | null;
@@ -79,9 +82,12 @@ export function Cursor() {
     };
 
     const down = (e: PointerEvent) => {
+      const zoom = parseFloat(getComputedStyle(document.documentElement).zoom) || 1;
+      const actualX = e.clientX / zoom;
+      const actualY = e.clientY / zoom;
       setPressed(true);
       const id = ++burstId;
-      setBursts((prev) => [...prev.slice(-3), { id, x: e.clientX, y: e.clientY }]);
+      setBursts((prev) => [...prev.slice(-3), { id, x: actualX, y: actualY }]);
       window.setTimeout(() => {
         setBursts((prev) => prev.filter((b) => b.id !== id));
       }, 400);
