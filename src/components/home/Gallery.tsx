@@ -41,19 +41,19 @@ function FilmSprockets({ count = 40 }: { count?: number }) {
   return (
     <div
       aria-hidden="true"
-      className="flex w-full items-center justify-between overflow-hidden border-y border-white/15 bg-[#070b09] px-3 py-2 select-none"
+      className="flex w-full items-center justify-between overflow-hidden border-y border-white/15 bg-[#070b09] px-2 sm:px-3 py-1.5 sm:py-2 select-none"
     >
-      <div className="flex w-full items-center justify-between gap-3 overflow-hidden">
+      <div className="flex w-full items-center justify-between gap-2 sm:gap-3 overflow-hidden">
         {Array.from({ length: count }).map((_, i) => {
           const frameNum = String(Math.floor(i / 2) + 1).padStart(2, "0");
           return (
-            <div key={i} className="flex items-center gap-2.5 shrink-0">
+            <div key={i} className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
               {/* Authentic punched-out rectangular sprocket hole with depth & cream illumination */}
-              <span className="h-3.5 w-5.5 rounded-[2.5px] bg-[#FAF8F5] border border-stone-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.7),0_1px_2px_rgba(255,255,255,0.2)]" />
+              <span className="h-3 w-4.5 sm:h-3.5 sm:w-5.5 rounded-[2px] sm:rounded-[2.5px] bg-[#FAF8F5] border border-stone-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.7),0_1px_2px_rgba(255,255,255,0.2)]" />
               
               {/* Bold Golden Latent Edge Numbering & Film Typography */}
               {i % 2 === 0 ? (
-                <span className="font-mono text-[11px] font-bold tracking-widest text-[#FFD700] select-none drop-shadow-[0_0_6px_rgba(255,215,0,0.65)]">
+                <span className="font-mono text-[9.5px] sm:text-[11px] font-bold tracking-widest text-[#FFD700] select-none drop-shadow-[0_0_6px_rgba(255,215,0,0.65)]">
                   ▲ {frameNum}A
                 </span>
               ) : i % 4 === 1 ? (
@@ -148,7 +148,7 @@ export function Gallery() {
     <section
       id="gallery"
       aria-labelledby="gallery-title"
-      className="relative overflow-hidden py-10 md:py-16"
+      className="relative overflow-hidden py-10 pb-24 md:py-16 md:pb-16"
     >
       <SectionAmbient variant="waves" />
 
@@ -264,24 +264,26 @@ export function Gallery() {
 
         {/* VIEW MODE 1: Hardware-Accelerated 35mm Motorized Film Roll Reel */}
         {viewMode === "reel" && (
-          <div className="group/reel relative mt-8 overflow-hidden rounded-3xl border border-stone-800 bg-[#0c100e] text-on-night shadow-2xl">
-            {/* Top Film Stock Ribbon Header with Dual Turning Spools */}
-            <div className="flex items-center justify-between border-b border-white/10 bg-black/70 px-5 py-2.5 font-mono text-[10px] tracking-widest text-amber uppercase">
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2.5">
-                  <MechanicalFilmSpool spinning={isPlaying} size={18} />
-                  <span className="font-bold text-amber">KODAK 400TX &middot; 35MM MOTOR DRIVE</span>
+          <div className="group/reel relative mt-8 overflow-hidden rounded-2xl sm:rounded-3xl border border-stone-800 bg-[#0c100e] text-on-night shadow-2xl">
+            {/* Top Film Stock Ribbon Header with Dual Turning Spools (Single-line mobile responsive) */}
+            <div className="flex items-center justify-between border-b border-white/10 bg-black/70 px-3 sm:px-5 py-2 sm:py-2.5 font-mono text-[9px] sm:text-[10px] tracking-wider sm:tracking-widest text-amber uppercase select-none">
+              <div className="flex items-center gap-1.5 sm:gap-4 min-w-0">
+                <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+                  <MechanicalFilmSpool spinning={isPlaying} size={15} />
+                  <span className="font-bold text-amber">
+                    KODAK 400TX <span className="hidden sm:inline">&middot; 35MM MOTOR DRIVE</span>
+                  </span>
                 </div>
-                <span className="hidden sm:inline text-white/45">
+                <span className="hidden md:inline text-white/45">
                   &middot; EMULSION NO. 4021 &middot; ISO 400 &middot; DX ENCODED
                 </span>
               </div>
-              <div className="flex items-center gap-3">
-                <span className="text-white/50">ARCHIVAL ROLL</span>
-                <span className="rounded bg-amber/20 px-2 py-0.5 font-bold text-amber tabular">
-                  {displayItems.length} EXPOSURES
+              <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+                <span className="hidden sm:inline text-white/50">ARCHIVAL ROLL</span>
+                <span className="rounded bg-amber/20 px-2 py-0.5 font-bold text-amber tabular text-[9px] sm:text-[10px]">
+                  {displayItems.length} EXP
                 </span>
-                <MechanicalFilmSpool spinning={isPlaying} size={18} />
+                <MechanicalFilmSpool spinning={isPlaying} size={15} />
               </div>
             </div>
 
@@ -289,9 +291,9 @@ export function Gallery() {
             <FilmSprockets count={32} />
 
             {/* Continuous Motorized Marquee Reel Track (Hardware Accelerated) */}
-            <div className="relative overflow-hidden py-3">
+            <div className="relative overflow-hidden py-2 sm:py-3">
               <div
-                className="film-roll-track group-hover/reel:[animation-play-state:paused] active:[animation-play-state:paused]"
+                className="film-roll-track"
                 style={{
                   animationPlayState: isPlaying ? "running" : "paused",
                   animationDuration: isMobile
@@ -301,58 +303,58 @@ export function Gallery() {
               >
                 {/* Double set of items for seamless infinite loop */}
                 {[0, 1].map((setIndex) => (
-                  <div key={setIndex} className="flex gap-6 pr-6 shrink-0">
+                  <div key={setIndex} className="flex gap-3.5 sm:gap-6 pr-3.5 sm:pr-6 shrink-0">
                     {displayItems.map((item, idx) => (
                       <div
                         key={`${setIndex}-${item.id}`}
-                        className="group relative w-[240px] sm:w-[285px] md:w-[315px] shrink-0 cursor-pointer select-none"
+                        className="group relative w-[200px] sm:w-[270px] md:w-[315px] shrink-0 cursor-pointer select-none"
                         onClick={() => {
                           setActiveItem(item);
                           setIsZoomed(false);
                         }}
                       >
-                        <div className="relative h-[320px] sm:h-[380px] md:h-[420px] w-full overflow-hidden rounded-xl border border-white/15 bg-black transition-all duration-300 ease-out group-hover:scale-[1.02] group-hover:border-amber/80 group-hover:shadow-[0_16px_36px_-12px_rgba(255,217,46,0.35)]">
+                        <div className="relative h-[270px] sm:h-[360px] md:h-[420px] w-full overflow-hidden rounded-xl border border-white/15 bg-black transition-all duration-300 ease-out group-hover:scale-[1.02] group-hover:border-amber/80 group-hover:shadow-[0_16px_36px_-12px_rgba(255,217,46,0.35)]">
                           <Image
                             src={item.src}
                             alt={item.title}
                             fill
                             unoptimized
-                            sizes="(min-width: 768px) 315px, 240px"
+                            sizes="(min-width: 768px) 315px, 200px"
                             className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none"
                             loading={idx < 6 ? "eager" : "lazy"}
                           />
 
                           {/* Analog Contact Print Frame Tag Overlay */}
-                          <div className="pointer-events-none absolute inset-x-0 top-0 flex items-center justify-between p-3 font-mono text-[11px] z-10">
-                            <span className="rounded-md border border-[#FFD700]/60 bg-black/85 px-2 py-0.5 font-bold text-[#FFD700] shadow-[0_2px_8px_rgba(0,0,0,0.8)] drop-shadow-[0_0_4px_rgba(255,215,0,0.4)]">
+                          <div className="pointer-events-none absolute inset-x-0 top-0 flex items-center justify-between p-2 sm:p-3 font-mono text-[9px] sm:text-[11px] z-10">
+                            <span className="rounded-md border border-[#FFD700]/60 bg-black/85 px-1.5 sm:px-2 py-0.5 font-bold text-[#FFD700] shadow-[0_2px_8px_rgba(0,0,0,0.8)] drop-shadow-[0_0_4px_rgba(255,215,0,0.4)]">
                               FRAME {item.frameNumber}
                             </span>
-                            <span className="rounded-md border border-white/20 bg-black/80 px-2 py-0.5 text-[10px] font-semibold text-white/90">
+                            <span className="rounded-md border border-white/20 bg-black/80 px-1.5 sm:px-2 py-0.5 text-[8.5px] sm:text-[10px] font-semibold text-white/90">
                               {item.year}
                             </span>
                           </div>
 
                           {/* Bottom Metadata Reveal on Hover */}
-                          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black via-black/85 to-transparent p-4 opacity-90 transition-opacity duration-300 group-hover:opacity-100">
-                            <p className="font-mono text-[10px] font-bold text-[#FFD700] tracking-wide">{item.filmStock}</p>
-                            <h3 className="line-clamp-1 font-display text-[15px] font-semibold text-white">
+                          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black via-black/85 to-transparent p-2.5 sm:p-4 opacity-90 transition-opacity duration-300 group-hover:opacity-100">
+                            <p className="font-mono text-[9px] sm:text-[10px] font-bold text-[#FFD700] tracking-wide">{item.filmStock}</p>
+                            <h3 className="line-clamp-1 font-display text-[13px] sm:text-[15px] font-semibold text-white">
                               {item.title}
                             </h3>
-                            <p className="line-clamp-1 font-mono text-[10px] text-white/80">
+                            <p className="line-clamp-1 font-mono text-[9px] sm:text-[10px] text-white/80">
                               {item.camera} &middot; {item.exif.split("·")[0]}
                             </p>
-                            <p className="mt-1 line-clamp-1 text-[11px] text-white/70">
+                            <p className="mt-0.5 sm:mt-1 line-clamp-1 text-[9.5px] sm:text-[11px] text-white/70">
                               📍 {item.location}
                             </p>
                           </div>
                         </div>
 
                         {/* Frame Edge Index below each negative: High-Contrast Gold Monospace */}
-                        <div className="mt-2.5 flex items-center justify-between px-2 font-mono text-[11px] font-bold">
-                          <span className="flex items-center gap-1.5 text-[#FFD700] drop-shadow-[0_0_5px_rgba(255,215,0,0.65)]">
+                        <div className="mt-2 sm:mt-2.5 flex items-center justify-between px-1.5 sm:px-2 font-mono text-[9.5px] sm:text-[11px] font-bold">
+                          <span className="flex items-center gap-1 sm:gap-1.5 text-[#FFD700] drop-shadow-[0_0_5px_rgba(255,215,0,0.65)]">
                             <span className="text-[#FFD700]">▲</span> FRAME {item.frameNumber}
                           </span>
-                          <span className="rounded-full bg-[#FFD700]/15 px-2.5 py-0.5 text-[10px] font-bold text-[#FFD700] border border-[#FFD700]/40 transition-all duration-200 group-hover:bg-[#FFD700] group-hover:text-[#161616] group-hover:shadow-[0_0_10px_rgba(255,215,0,0.4)]">
+                          <span className="rounded-full bg-[#FFD700]/15 px-2 sm:px-2.5 py-0.5 text-[8.5px] sm:text-[10px] font-bold text-[#FFD700] border border-[#FFD700]/40 transition-all duration-200 group-hover:bg-[#FFD700] group-hover:text-[#161616] group-hover:shadow-[0_0_10px_rgba(255,215,0,0.4)]">
                             DARKROOM ↗
                           </span>
                         </div>
@@ -366,10 +368,17 @@ export function Gallery() {
             {/* Bottom Sprocket Ribbon */}
             <FilmSprockets count={40} />
 
-            {/* Bottom Edge Code Bar */}
-            <div className="flex items-center justify-between border-t border-white/10 bg-black/60 px-5 py-2 font-mono text-[9px] tracking-widest text-white/40 uppercase">
-              <span>EASTMAN KODAK CO. &middot; LATENT KEYCODE &middot; {displayItems.length} ACTIVE EXPOSURES</span>
-              <span className="text-amber/80">HOVER TO PAUSE &middot; CLICK ANY FRAME FOR DARKROOM ENLARGEMENT</span>
+            {/* Bottom Edge Code Bar (Stacked cleanly on mobile, side-by-side on desktop) */}
+            <div className="border-t border-white/10 bg-black/60 px-3 sm:px-5 py-2 font-mono text-[8.5px] sm:text-[9px] tracking-wider sm:tracking-widest text-white/40 uppercase select-none">
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-1 text-center sm:text-left">
+                <span className="text-white/50">
+                  EASTMAN KODAK CO. &middot; {displayItems.length} ACTIVE EXPOSURES
+                </span>
+                <span className="text-amber/85 font-semibold">
+                  <span className="sm:hidden">TAP ANY FRAME FOR DARKROOM</span>
+                  <span className="hidden sm:inline">HOVER TO PAUSE &middot; CLICK ANY FRAME FOR DARKROOM ENLARGEMENT</span>
+                </span>
+              </div>
             </div>
           </div>
         )}

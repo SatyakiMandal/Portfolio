@@ -259,6 +259,12 @@ html.motion-paused .marquee {
   animation: film-roll-marquee 70s linear infinite;
   will-change: transform;
 }
+/* Only pause on hover when pointer supports true hover (prevents sticky mobile touch freeze) */
+@media (hover: hover) and (pointer: fine) {
+  .group\/reel:hover .film-roll-track {
+    animation-play-state: paused !important;
+  }
+}
 @keyframes film-roll-marquee {
   0% {
     transform: translate3d(0, 0, 0);

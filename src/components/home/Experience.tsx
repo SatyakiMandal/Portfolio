@@ -6,7 +6,7 @@ import {
   useTransform,
 } from "framer-motion";
 import * as m from "framer-motion/m";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { experience, type Experience as Exp } from "@/content/profile";
 import { BrandBadge, type BrandKey } from "@/components/BrandLogo";
 import { IconDatabase, IconFactory, IconTrendingUp, IconWorkflow } from "@/components/Icons";
@@ -28,16 +28,32 @@ function Role({ e, i }: { e: Exp; i: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const [all, setAll] = useState(false);
   const [view, setView] = useState<"bullets" | "tracks">("bullets");
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   // Scroll-driven signature card effect: dynamic tilt, alternating slide-in, and spine node illumination
+  // Completes quickly into upright alignment so cards never stay stuck at an angle when scrolling pauses
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "start 55%"],
+    offset: ["start 96%", "start 68%"],
   });
-  const x = useTransform(scrollYProgress, [0, 1], [i % 2 ? -80 : 80, 0]);
-  const rotate = useTransform(scrollYProgress, [0, 1], [i % 2 ? -3 : 3, 0]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [0.35, 1]);
+
+  const maxOffset = isMobile ? 18 : 65;
+  const maxRotate = isMobile ? 2 : 3;
+  const x = useTransform(scrollYProgress, [0, 1], [i % 2 ? -maxOffset : maxOffset, 0]);
+  const rotate = useTransform(scrollYProgress, [0, 1], [i % 2 ? -maxRotate : maxRotate, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.45], [0.4, 1]);
   const node = useTransform(scrollYProgress, [0.65, 1], [0, 1]);
+
+  const smoothX = useSpring(x, { stiffness: 150, damping: 24, mass: 0.6 });
+  const smoothRotate = useSpring(rotate, { stiffness: 150, damping: 24, mass: 0.6 });
+  const smoothOpacity = useSpring(opacity, { stiffness: 150, damping: 24 });
 
   const shown = all ? e.bullets : e.bullets.slice(0, 4);
   const listId = `exp-${e.company.split(" ")[0].toLowerCase()}`;
@@ -68,7 +84,7 @@ function Role({ e, i }: { e: Exp; i: number }) {
 
       <m.article
         data-dark={dark ? "" : undefined}
-        style={{ x, rotate, opacity }}
+        style={{ x: smoothX, rotate: smoothRotate, opacity: smoothOpacity }}
         className={`rounded-2xl sm:rounded-3xl p-4 sm:p-7 md:p-10 transition-shadow duration-300 shadow-lg hover:shadow-2xl ${tones[i % tones.length]}`}
       >
         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 sm:gap-4">

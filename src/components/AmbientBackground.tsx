@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { usePausedMotion } from "@/lib/motion";
 
 type Particle = {
@@ -216,12 +217,14 @@ function useCanvasLoop(createFn: () => Renderer, fixed = false) {
     let io: IntersectionObserver | null = null;
 
     const handleWindowResize = () => {
-      updateDimensions(window.innerWidth, window.innerHeight);
+      const zoom = parseFloat(getComputedStyle(document.documentElement).zoom) || 1;
+      updateDimensions(window.innerWidth / zoom, window.innerHeight / zoom);
     };
 
     if (fixed) {
       window.addEventListener("resize", handleWindowResize);
-      updateDimensions(window.innerWidth, window.innerHeight);
+      const zoom = parseFloat(getComputedStyle(document.documentElement).zoom) || 1;
+      updateDimensions(window.innerWidth / zoom, window.innerHeight / zoom);
     } else {
       ro = new ResizeObserver((entries) => {
         const box = entries[0].contentRect;
@@ -254,25 +257,31 @@ function useCanvasLoop(createFn: () => Renderer, fixed = false) {
 
     const onMove = (e: PointerEvent) => {
       if (!intersecting) return;
-      let x = e.clientX;
-      let y = e.clientY;
+      const zoom = parseFloat(getComputedStyle(document.documentElement).zoom) || 1;
+      let x = e.clientX / zoom;
+      let y = e.clientY / zoom;
 
       if (!fixed) {
         if (rectDirty) {
           rect = canvas.getBoundingClientRect();
           rectDirty = false;
         }
+        const canvasLeft = rect.left / zoom;
+        const canvasTop = rect.top / zoom;
+        const canvasRight = rect.right / zoom;
+        const canvasBottom = rect.bottom / zoom;
+
         if (
-          e.clientX < rect.left ||
-          e.clientX > rect.right ||
-          e.clientY < rect.top ||
-          e.clientY > rect.bottom
+          x < canvasLeft ||
+          x > canvasRight ||
+          y < canvasTop ||
+          y > canvasBottom
         ) {
           pointer.active = false;
           return;
         }
-        x = e.clientX - rect.left;
-        y = e.clientY - rect.top;
+        x = x - canvasLeft;
+        y = y - canvasTop;
       }
 
       const dx = x - pointer.x;
@@ -708,6 +717,7 @@ function Canvas({
 
 // Global living ambient backdrop: fixed viewport particle canvas, continuous technical paper grid, and drifting orbs
 export function GlobalLivingBackdrop() {
+  const pathname = usePathname();
   const [isTopSection, setIsTopSection] = useState(true);
 
   useEffect(() => {
@@ -761,8 +771,12 @@ export function GlobalLivingBackdrop() {
         style={{ opacity: isTopSection ? 1 : 0.25 }}
       />
 
-      {/* Viewport-fixed constant particle canvas: 50% on the top section of each page, reduced to 20% across all other sections */}
-      <Canvas create={createLight} fixed opacity={isTopSection ? 0.50 : 0.20} />
+      {/* Viewport-fixed constant particle canvas: on the home page, HeroCanvas has its own dedicated flywheel particles so we avoid duplicate overlapping systems on Hero */}
+      <Canvas
+        create={createLight}
+        fixed
+        opacity={pathname === "/" ? (isTopSection ? 0 : 0.20) : (isTopSection ? 0.50 : 0.20)}
+      />
     </div>
   );
 }
