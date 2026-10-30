@@ -22,7 +22,7 @@ export function Section({
     <section
       id={id}
       aria-labelledby={id ? `${id}-title` : undefined}
-      className={`relative overflow-hidden py-10 md:py-16 ${className}`}
+      className={`relative overflow-hidden py-7 sm:py-10 md:py-16 ${className}`}
     >
       {ambient && <SectionAmbient variant={id === "recognition" || id === "experience" ? "orbits" : "waves"} />}
       <Container>{children}</Container>
@@ -33,17 +33,17 @@ export function Section({
 // Consulting-style action title: the heading states the takeaway, no label above it.
 export function ActionTitle({ id, children, lead }: { id: string; children: React.ReactNode; lead?: string }) {
   return (
-    <div className="mb-6 max-w-4xl 2xl:max-w-5xl md:mb-8">
+    <div className="mb-4 sm:mb-6 max-w-4xl 2xl:max-w-5xl md:mb-8">
       <h2
         id={`${id}-title`}
         data-grow
         data-cursor="Section"
-        className="w-fit rounded-2xl px-2 py-1 -mx-2 font-display text-[34px] leading-[38px] font-semibold tracking-[-0.025em] transition-transform duration-300 hover:translate-x-1 md:text-[52px] md:leading-[56px]"
+        className="w-fit rounded-2xl px-2 py-0.5 -mx-2 font-display text-[26px] leading-[30px] sm:text-[34px] sm:leading-[38px] md:text-[52px] md:leading-[56px] font-semibold tracking-[-0.025em] transition-transform duration-300 hover:translate-x-1"
       >
         {children}
       </h2>
       {lead && (
-        <p className="mt-5 max-w-[60ch] 2xl:max-w-[75ch] text-lg leading-8 text-muted transition-colors duration-300 hover:text-ink">
+        <p className="mt-2.5 sm:mt-4 max-w-[60ch] 2xl:max-w-[75ch] text-[13.5px] sm:text-lg leading-relaxed sm:leading-8 text-muted transition-colors duration-300 hover:text-ink">
           {lead}
         </p>
       )}

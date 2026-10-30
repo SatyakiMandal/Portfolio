@@ -79,12 +79,12 @@ export function WorkGrid() {
 
   return (
     <div>
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <p className="font-mono text-[12px] uppercase tracking-[0.1em] text-muted">
+      <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4">
+        <p className="font-mono text-[11px] sm:text-[12px] uppercase tracking-[0.1em] text-muted">
           Filter by practice area ({visibleProjects.length} of {projectCards.length} live projects)
         </p>
 
-        <div role="group" aria-label="Filter projects by domain" className="flex flex-wrap items-center gap-1.5">
+        <div role="group" aria-label="Filter projects by domain" className="flex flex-wrap items-center gap-1 sm:gap-1.5">
           {(["All", ...filters] as const).map((f) => {
             const active = domain === f;
             const count = f === "All" ? projectCards.length : projectCards.filter((c) => c.filters?.includes(f)).length;
@@ -97,7 +97,7 @@ export function WorkGrid() {
                 whileHover={{ y: -2, scale: 1.04 }}
                 whileTap={{ scale: 0.94 }}
                 onClick={() => setDomain(f)}
-                className={`inline-flex min-h-9 items-center gap-1.5 rounded-full px-3.5 font-mono text-[12px] transition-colors duration-200 ${
+                className={`inline-flex min-h-7 sm:min-h-9 items-center gap-1 sm:gap-1.5 rounded-full px-2.5 sm:px-3.5 font-mono text-[11px] sm:text-[12px] transition-colors duration-200 cursor-pointer ${
                   active
                     ? "bg-amber font-semibold text-[#161616] shadow-xs ring-1 ring-ink/20"
                     : "border border-line bg-surface/60 text-muted hover:border-ink/40 hover:text-ink"
@@ -111,7 +111,7 @@ export function WorkGrid() {
         </div>
       </div>
 
-      <div className="mt-10">
+      <div className="mt-6 sm:mt-10">
         <AnimatePresence mode="wait">
           <m.div
             key={domain}
@@ -146,7 +146,7 @@ export function WorkGrid() {
                         className="group block h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber"
                       >
                         <article
-                          className={`relative flex h-full flex-col justify-between overflow-hidden rounded-3xl p-5 sm:p-7 md:p-8 transition-[box-shadow,background-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-2xl ${tone}`}
+                          className={`relative flex h-full flex-col justify-between overflow-hidden rounded-2xl sm:rounded-3xl p-4 sm:p-7 md:p-8 transition-[box-shadow,background-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-2xl ${tone}`}
                         >
                           {/* Corner ambient glow */}
                           <div
@@ -163,8 +163,8 @@ export function WorkGrid() {
                           <div className="relative z-10 flex flex-1 flex-col justify-between">
                             {/* Top Meta Bar */}
                             <div>
-                              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-current/10 pb-4">
-                                <div className="flex flex-wrap items-center gap-2.5">
+                              <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-3 border-b border-current/10 pb-2.5 sm:pb-4">
+                                <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
                                   {c.brand && (
                                     <BrandBadge
                                       brand={c.brand.key}
@@ -173,14 +173,14 @@ export function WorkGrid() {
                                       interactive={false}
                                     />
                                   )}
-                                  <span className="font-mono text-[12px] opacity-75">{c.meta}</span>
+                                  <span className="font-mono text-[11px] sm:text-[12px] opacity-75">{c.meta}</span>
                                 </div>
 
-                                <div className="flex flex-wrap items-center gap-1.5">
+                                <div className="flex flex-wrap items-center gap-1 sm:gap-1.5">
                                   {c.chips?.map((ch) => (
                                     <span
                                       key={ch}
-                                      className={`rounded-full px-2.5 py-0.5 font-mono text-[11px] leading-5 ${
+                                      className={`rounded-full px-2 sm:px-2.5 py-0.5 font-mono text-[10px] sm:text-[11px] leading-5 ${
                                         isNight
                                           ? "border border-white/20 bg-white/10 text-on-night"
                                           : isAmber
@@ -193,7 +193,7 @@ export function WorkGrid() {
                                   ))}
                                   {c.badge && (
                                     <span
-                                      className={`rounded-full px-2.5 py-0.5 font-mono text-[11px] font-semibold leading-5 ${
+                                      className={`rounded-full px-2 sm:px-2.5 py-0.5 font-mono text-[10px] sm:text-[11px] font-semibold leading-5 ${
                                         isAmber ? "bg-[#161616] text-amber" : "bg-amber text-[#161616]"
                                       }`}
                                     >
@@ -204,11 +204,11 @@ export function WorkGrid() {
                               </div>
 
                               {/* Title & Core Question */}
-                              <div className="mt-5">
-                                <h3 className="font-display text-[22px] sm:text-[25px] font-bold leading-tight tracking-[-0.02em] group-hover:underline decoration-amber decoration-2 underline-offset-4">
+                              <div className="mt-3.5 sm:mt-5">
+                                <h3 className="font-display text-[19px] sm:text-[25px] font-bold leading-tight tracking-[-0.02em] group-hover:underline decoration-amber decoration-2 underline-offset-4">
                                   {c.title}
                                 </h3>
-                                <p className="mt-2 text-[14px] leading-relaxed opacity-85 whitespace-normal break-words">
+                                <p className="mt-1.5 text-[12.5px] sm:text-[14px] leading-snug sm:leading-relaxed opacity-85 whitespace-normal break-words">
                                   {c.line}
                                 </p>
                               </div>
@@ -216,41 +216,41 @@ export function WorkGrid() {
 
                             {/* Anchor Metric & Supporting Key Numbers Strip */}
                             <div
-                              className={`my-3.5 sm:my-5 rounded-2xl p-3.5 sm:p-5 ring-1 ${
+                              className={`my-3 sm:my-5 rounded-xl sm:rounded-2xl p-3 sm:p-5 ring-1 ${
                                 isNight
                                   ? "bg-white/[0.06] ring-white/15"
                                   : "bg-current/5 ring-current/10"
                               }`}
                             >
-                              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1.5 sm:gap-2 border-b border-current/10 pb-2.5 sm:pb-3">
+                              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1.5 sm:gap-2 border-b border-current/10 pb-2 sm:pb-3">
                                 <div>
-                                  <span className="block font-mono text-[10px] uppercase tracking-wider opacity-80 font-medium">
+                                  <span className="block font-mono text-[9px] sm:text-[10px] uppercase tracking-wider opacity-80 font-medium">
                                     Anchor Metric
                                   </span>
-                                  <span className="font-display text-[clamp(28px,6vw,46px)] font-extrabold leading-none tracking-tight tabular">
+                                  <span className="font-display text-[clamp(24px,5.5vw,46px)] font-extrabold leading-none tracking-tight tabular">
                                     <ScrambleText triggerKey={domain}>{c.figure}</ScrambleText>
                                   </span>
                                 </div>
-                                <span className="font-mono text-[11px] sm:text-[12px] leading-tight opacity-75 sm:text-right max-w-[28ch]">
+                                <span className="font-mono text-[10.5px] sm:text-[12px] leading-tight opacity-75 sm:text-right max-w-[28ch]">
                                   {c.figureLabel}
                                 </span>
                               </div>
 
                               {/* Supporting Data Grid: 3 verified figures from the case */}
-                              <div className="mt-2.5 sm:mt-3 grid grid-cols-3 gap-1.5 sm:gap-2">
+                              <div className="mt-2 sm:mt-3 grid grid-cols-3 gap-1 sm:gap-2">
                                 {c.keyNumbers.slice(1, 4).map((kn, idx) => (
                                   <div
                                     key={idx}
-                                    className={`rounded-lg sm:rounded-xl p-2 sm:p-2.5 ${
+                                    className={`rounded-md sm:rounded-xl p-1.5 sm:p-2.5 ${
                                       isNight
                                         ? "bg-white/[0.08] border border-white/10"
                                         : "bg-current/5"
                                     }`}
                                   >
-                                    <span className="block font-display text-[13px] sm:text-[16px] font-bold leading-tight tabular">
+                                    <span className="block font-display text-[12.5px] sm:text-[16px] font-bold leading-tight tabular">
                                       {kn.value}
                                     </span>
-                                    <span className="mt-0.5 block font-mono text-[9.5px] sm:text-[10px] leading-tight opacity-75 whitespace-normal break-words" title={kn.label}>
+                                    <span className="mt-0.5 block font-mono text-[9px] sm:text-[10px] leading-tight opacity-75 whitespace-normal break-words" title={kn.label}>
                                       {kn.label}
                                     </span>
                                   </div>
@@ -261,26 +261,26 @@ export function WorkGrid() {
                             {/* Verified Key Takeaway */}
                             {c.takeaway && (
                               <div
-                                className={`mb-3 sm:mb-4 border-l-2 pl-2.5 sm:pl-3 ${
+                                className={`mb-2.5 sm:mb-4 border-l-2 pl-2 sm:pl-3 ${
                                   isNight ? "border-amber" : isAmber ? "border-[#161616]" : "border-amber-dark"
                                 }`}
                               >
                                 <p
-                                  className={`font-mono text-[9.5px] sm:text-[10px] uppercase tracking-wider font-bold ${
+                                  className={`font-mono text-[9px] sm:text-[10px] uppercase tracking-wider font-bold ${
                                     isNight ? "text-amber" : isAmber ? "text-[#161616]" : "text-amber-dark"
                                   }`}
                                 >
                                   Key Finding
                                 </p>
-                                <p className="mt-0.5 text-[12px] sm:text-[13px] leading-snug opacity-95 whitespace-normal break-words">
+                                <p className="mt-0.5 text-[11.5px] sm:text-[13px] leading-snug opacity-95 whitespace-normal break-words">
                                   {c.takeaway}
                                 </p>
                               </div>
                             )}
 
                             {/* Footer Link */}
-                            <div className="flex items-center justify-between border-t border-current/10 pt-4">
-                              <span className="inline-flex items-center gap-1.5 font-mono text-[12px] font-semibold tracking-wide">
+                            <div className="flex items-center justify-between border-t border-current/10 pt-2.5 sm:pt-4">
+                              <span className="inline-flex items-center gap-1.5 font-mono text-[11.5px] sm:text-[12px] font-semibold tracking-wide">
                                 Read full case & model
                               </span>
                               <span

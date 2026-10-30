@@ -130,7 +130,7 @@ export function Hero() {
 
           <h1
             id="hero-title"
-            className="wide mx-auto flex flex-col items-center justify-center text-center text-[clamp(48px,9.6vw,148px)] leading-[0.82] font-extrabold tracking-[-0.03em] text-ink"
+            className="wide mx-auto flex flex-col items-center justify-center text-center text-[clamp(42px,9vw,148px)] leading-[0.82] font-extrabold tracking-[-0.03em] text-ink"
           >
             <span className="sr-only">Satyaki Mandal</span>
             <InteractiveWord word="Satyaki" offset={80} />
@@ -151,7 +151,7 @@ export function Hero() {
 
         <p
           data-cursor="Summary"
-          className="fade-up mt-6 max-w-[34ch] text-center text-lg leading-8 text-muted transition-colors duration-300 hover:text-ink lg:hidden"
+          className="fade-up mt-3.5 sm:mt-6 max-w-[34ch] text-center text-[15px] sm:text-lg leading-snug sm:leading-8 text-muted transition-colors duration-300 hover:text-ink lg:hidden"
           style={{ animationDelay: "500ms" }}
         >
           Strategy, pricing and go-to-market. PGDM at XLRI Jamshedpur, ex-Epsilon.
@@ -162,14 +162,14 @@ export function Hero() {
           data-scribble="to"
           data-magnetic
           data-cursor="Scroll"
-          className="fade-up mt-9 inline-flex min-h-12 items-center rounded-full bg-ink px-7 text-[15px] font-medium text-paper transition-all duration-200 hover:scale-[1.04] hover:bg-amber hover:text-[#161616] active:scale-[0.98]"
+          className="fade-up mt-5 sm:mt-9 inline-flex min-h-10 sm:min-h-12 items-center rounded-full bg-ink px-6 sm:px-7 text-[14px] sm:text-[15px] font-medium text-paper transition-all duration-200 hover:scale-[1.04] hover:bg-amber hover:text-[#161616] active:scale-[0.98]"
           style={{ animationDelay: "650ms" }}
         >
           See the work
         </a>
       </div>
 
-      <div className="fade-up relative pb-20 pt-4" style={{ animationDelay: "800ms" }}>
+      <div className="fade-up relative pb-10 sm:pb-20 pt-2 sm:pt-4" style={{ animationDelay: "800ms" }}>
         <HeroCarousel />
       </div>
     </section>

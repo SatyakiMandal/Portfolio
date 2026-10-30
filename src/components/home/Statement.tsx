@@ -42,7 +42,7 @@ export function Statement() {
       id="statement"
       aria-labelledby="statement-title"
       data-dark
-      className="relative overflow-hidden bg-night py-14 text-on-night md:py-20"
+      className="relative overflow-hidden bg-night py-8 sm:py-14 text-on-night md:py-20"
     >
       {/* Full-canvas continuous animated background (waves, constellation nodes, central/mid orbital rings, cursor spotlight) */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -53,7 +53,7 @@ export function Statement() {
         <DarkKineticCanvas />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-[1280px] 2xl:max-w-[1520px] px-5 md:px-10">
+      <div className="relative z-10 mx-auto max-w-[1280px] 2xl:max-w-[1520px] px-4 sm:px-5 md:px-10">
         <m.h2
           id="statement-title"
           data-cursor="Redraw"
@@ -61,7 +61,7 @@ export function Statement() {
           whileHover={{ scale: 1.01 }}
           whileTap={{ scale: 0.99 }}
           transition={{ type: "spring", stiffness: 260, damping: 20 }}
-          className="mx-auto max-w-[18ch] cursor-pointer select-none text-center font-display text-[36px] leading-[42px] font-semibold tracking-[-0.025em] md:text-[68px] md:leading-[74px]"
+          className="mx-auto max-w-[18ch] cursor-pointer select-none text-center font-display text-[26px] leading-[32px] sm:text-[36px] sm:leading-[42px] font-semibold tracking-[-0.025em] md:text-[68px] md:leading-[74px]"
         >
           <span className="inline-block transition-transform duration-300 hover:-translate-y-1 hover:text-amber/90">
             Two years turning
@@ -84,7 +84,7 @@ export function Statement() {
         <svg
           aria-hidden="true"
           viewBox="0 0 900 96"
-          className="mx-auto mt-3 h-16 w-full max-w-3xl text-amber md:mt-5 md:h-24"
+          className="mx-auto mt-2 h-10 sm:h-16 w-full max-w-3xl text-amber md:mt-5 md:h-24"
           fill="none"
         >
           <m.path
@@ -117,7 +117,7 @@ export function Statement() {
           />
         </svg>
 
-        <div className="mt-10 grid grid-cols-2 gap-4 md:mt-14 md:grid-cols-4 md:gap-6">
+        <div className="mt-6 grid grid-cols-2 gap-2.5 sm:gap-4 md:mt-14 md:grid-cols-4 md:gap-6">
           {stats.map((s, idx) => {
             const info = context[s.value];
             return (
@@ -130,7 +130,7 @@ export function Statement() {
                 whileHover={{ y: -8, scale: 1.025 }}
                 whileTap={{ scale: 0.97 }}
                 transition={{ type: "spring", stiffness: 320, damping: 22 }}
-                className="glass-card-dark group relative flex flex-col-reverse justify-between gap-3 overflow-hidden rounded-2xl p-5 md:p-6"
+                className="glass-card-dark group relative flex flex-col-reverse justify-between gap-2 sm:gap-3 overflow-hidden rounded-xl sm:rounded-2xl p-3 sm:p-5 md:p-6"
               >
                 {/* Live motion sparkline bar at the top of each dark stat card */}
                 <div className="pointer-events-none absolute inset-x-0 top-0 h-1 overflow-hidden bg-white/5">
@@ -146,14 +146,14 @@ export function Statement() {
                   />
                 </div>
 
-                <span className="block text-[14px] leading-5 text-on-night/80 transition-colors group-hover:text-on-night">
+                <span className="block text-[12px] sm:text-[14px] leading-tight sm:leading-5 text-on-night/80 transition-colors group-hover:text-on-night">
                   {s.label}
                 </span>
                 <span
                   className={`block font-display font-bold tracking-[-0.03em] transition-colors group-hover:text-amber ${
                     s.countTo === undefined
-                      ? "text-[24px] leading-7 sm:text-[28px] sm:leading-8 md:text-[34px] md:leading-10"
-                      : "text-[32px] leading-none sm:text-[40px] md:text-[52px]"
+                      ? "text-[20px] leading-tight sm:text-[28px] sm:leading-8 md:text-[34px] md:leading-10"
+                      : "text-[26px] leading-none sm:text-[40px] md:text-[52px]"
                   }`}
                 >
                   <StatCounter stat={s} />

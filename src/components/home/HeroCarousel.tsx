@@ -58,36 +58,36 @@ function CardBody({ c }: { c: Card }) {
   }
   if (c.tone === "signature") {
     return (
-      <span className="flex h-full flex-col justify-between p-5 text-[#161616]">
-        <span className="font-mono text-[10px] uppercase tracking-[0.08em]">{c.kicker}</span>
-        <span className={`${script.className} -rotate-6 text-center text-[78px] leading-none`}>{c.title}</span>
-        <span className="text-[13px] font-medium">{c.cta} &rarr;</span>
+      <span className="flex h-full flex-col justify-between p-3.5 sm:p-5 text-[#161616]">
+        <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.08em]">{c.kicker}</span>
+        <span className={`${script.className} -rotate-6 text-center text-[58px] sm:text-[78px] leading-none`}>{c.title}</span>
+        <span className="text-[12px] sm:text-[13px] font-medium">{c.cta} &rarr;</span>
       </span>
     );
   }
   return (
-    <span className="flex h-full flex-col justify-between p-5">
+    <span className="flex h-full flex-col justify-between p-3.5 sm:p-5">
       <span>
         <span className="flex items-center justify-between gap-2">
-          <span className={`font-mono text-[10px] uppercase tracking-[0.08em] ${sub}`}>{c.kicker}</span>
+          <span className={`font-mono text-[9.5px] sm:text-[10px] uppercase tracking-[0.08em] ${sub}`}>{c.kicker}</span>
         </span>
         {c.brand && (
-          <span className="mt-2 block">
+          <span className="mt-1.5 sm:mt-2 block">
             <BrandBadge brand={c.brand.key} label={c.brand.label} tone={dark ? "dark" : "light"} />
           </span>
         )}
-        <span className="mt-2 block text-[15px] font-semibold leading-5">{c.title}</span>
+        <span className="mt-1.5 sm:mt-2 block text-[13.5px] sm:text-[15px] font-semibold leading-5">{c.title}</span>
       </span>
       <span>
-        {c.value && <span className="block font-display text-[32px] leading-[34px] font-bold tracking-[-0.03em]">{c.value}</span>}
+        {c.value && <span className="block font-display text-[24px] leading-tight sm:text-[32px] sm:leading-[34px] font-bold tracking-[-0.03em]">{c.value}</span>}
         {c.quote && (
-          <span className="block text-[16px] leading-5">
-            <span className="font-display text-[26px] leading-none text-amber">&ldquo;</span>
+          <span className="block text-[13.5px] sm:text-[16px] leading-snug sm:leading-5">
+            <span className="font-display text-[22px] sm:text-[26px] leading-none text-amber">&ldquo;</span>
             {c.quote}
           </span>
         )}
-        {c.detail && <span className={`mt-1.5 block text-[12px] leading-[17px] ${sub}`}>{c.detail}</span>}
-        <span className={`mt-2.5 block text-[13px] font-medium ${dark ? "text-amber" : ""}`}>{c.cta} &rarr;</span>
+        {c.detail && <span className={`mt-1 block text-[11px] sm:text-[12px] leading-snug sm:leading-[17px] ${sub}`}>{c.detail}</span>}
+        <span className={`mt-2 block text-[12px] sm:text-[13px] font-medium ${dark ? "text-amber" : ""}`}>{c.cta} &rarr;</span>
       </span>
     </span>
   );
@@ -114,7 +114,7 @@ export function HeroCarousel() {
             tabIndex={copy ? -1 : undefined}
             data-dark={dark ? "" : undefined}
             data-cursor={c.cta.split(" ")[0]}
-            className={`group/card relative block h-[310px] w-[244px] overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-2.5 hover:scale-[1.03] active:scale-[0.98] md:h-[326px] md:w-[264px] ${tone}`}
+            className={`group/card relative block h-[260px] w-[205px] sm:h-[300px] sm:w-[240px] md:h-[326px] md:w-[264px] overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-2.5 hover:scale-[1.03] active:scale-[0.98] ${tone}`}
           >
             <CardBody c={c} />
           </Link>
@@ -123,10 +123,10 @@ export function HeroCarousel() {
     });
 
   return (
-    <nav aria-label="Highlights" className="marquee group relative w-full overflow-hidden py-8 [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
+    <nav aria-label="Highlights" className="marquee group relative w-full overflow-hidden py-4 sm:py-8 [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
       <div className="marquee-track flex w-max group-hover:[animation-play-state:paused] group-focus-within:[animation-play-state:paused]">
-        <ul className="flex gap-6 pr-6 md:gap-8 md:pr-8">{set(0)}</ul>
-        <ul aria-hidden="true" className="flex gap-6 pr-6 md:gap-8 md:pr-8">
+        <ul className="flex gap-4 pr-4 sm:gap-6 sm:pr-6 md:gap-8 md:pr-8">{set(0)}</ul>
+        <ul aria-hidden="true" className="flex gap-4 pr-4 sm:gap-6 sm:pr-6 md:gap-8 md:pr-8">
           {set(1)}
         </ul>
       </div>

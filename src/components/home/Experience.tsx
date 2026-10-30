@@ -1,13 +1,8 @@
 "use client";
 
-import {
-  useReducedMotion,
-  useScroll,
-  useSpring,
-  useTransform,
-} from "framer-motion";
+import { useReducedMotion } from "framer-motion";
 import * as m from "framer-motion/m";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { experience, type Experience as Exp } from "@/content/profile";
 import { BrandBadge, type BrandKey } from "@/components/BrandLogo";
 import { IconDatabase, IconFactory, IconTrendingUp, IconWorkflow } from "@/components/Icons";
@@ -26,18 +21,9 @@ const tones = ["glass-card-dark text-on-night", "glass-card-amber text-[#161616]
 const years = ["2023 - 2025", "2026"];
 
 function Role({ e, i }: { e: Exp; i: number }) {
-  const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
   const [all, setAll] = useState(false);
   const [view, setView] = useState<"bullets" | "tracks">("bullets");
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "center center"],
-  });
-  const x = useTransform(scrollYProgress, [0, 1], [i % 2 ? -90 : 90, 0]);
-  const rotate = useTransform(scrollYProgress, [0, 1], [i % 2 ? -3 : 3, 0]);
-  const opacity = useTransform(scrollYProgress, [0, 0.6], [0.25, 1]);
-  const node = useTransform(scrollYProgress, [0.85, 1], [0, 1]);
   const shown = all ? e.bullets : e.bullets.slice(0, 4);
   const listId = `exp-${e.company.split(" ")[0].toLowerCase()}`;
   const brands = brandEmblems[e.company] ?? [];
@@ -48,31 +34,26 @@ function Role({ e, i }: { e: Exp; i: number }) {
 
   return (
     <div
-      ref={ref}
-      className="relative grid gap-4 pl-7 sm:pl-10 md:grid-cols-[180px_1fr] md:gap-10 md:pl-14"
+      className="relative grid gap-3 pl-6 sm:pl-10 md:grid-cols-[180px_1fr] md:gap-10 md:pl-14"
     >
-      {/* node on the spine fills as the panel arrives */}
+      {/* Node on the spine: permanently active, solid amber, and crisp */}
       <span
         aria-hidden="true"
-        className="absolute left-[7px] top-3 flex h-5 w-5 items-center justify-center rounded-full border-2 border-ink bg-paper md:left-[11px]"
+        className="absolute left-[6px] top-3 flex h-5 w-5 items-center justify-center rounded-full border-2 border-ink bg-paper md:left-[11px]"
       >
-        <m.span
-          className="h-2.5 w-2.5 rounded-full bg-amber"
-          style={{ scale: reduce ? 1 : node }}
-        />
+        <span className="h-2.5 w-2.5 rounded-full bg-amber shadow-[0_0_8px_rgba(255,215,0,0.8)]" />
       </span>
-      <p className="wide text-[24px] sm:text-[28px] leading-8 font-extrabold text-ink/85 md:sticky md:top-28 md:self-start md:text-[30px]">
+      <p className="wide text-[20px] sm:text-[26px] leading-8 font-extrabold text-ink/85 md:sticky md:top-28 md:self-start md:text-[30px]">
         {years[i]}
       </p>
 
-      <m.article
+      <article
         data-dark={dark ? "" : undefined}
-        style={reduce ? undefined : { x, rotate, opacity }}
-        className={`rounded-3xl p-5 sm:p-7 md:p-10 ${tones[i % tones.length]}`}
+        className={`rounded-2xl sm:rounded-3xl p-4 sm:p-7 md:p-10 transition-shadow duration-300 shadow-lg hover:shadow-2xl ${tones[i % tones.length]}`}
       >
         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 sm:gap-4">
           <div>
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
               {brands.map((b) => (
                 <BrandBadge
                   key={b.label}
@@ -83,53 +64,50 @@ function Role({ e, i }: { e: Exp; i: number }) {
                 />
               ))}
               <span
-                className={`font-mono text-[12px] sm:text-[13px] tabular ${dark ? "text-on-night/70" : "text-[#161616]/70"}`}
+                className={`font-mono text-[11px] sm:text-[13px] tabular ${dark ? "text-on-night/70" : "text-[#161616]/70"}`}
               >
                 {e.dates}
               </span>
             </div>
             {e.scope && (
               <div
-                className={`mt-2.5 inline-flex items-center gap-2 rounded-full px-3 py-1 font-mono text-[10.5px] sm:text-[11px] font-medium ${
+                className={`mt-2 inline-flex items-center gap-1.5 rounded-full px-2.5 sm:px-3 py-0.5 sm:py-1 font-mono text-[9.5px] sm:text-[11px] font-medium ${
                   dark
                     ? "border border-white/10 bg-white/[0.07] text-amber/90"
                     : "border border-[#161616]/10 bg-[#161616]/[0.08] text-[#161616]/85"
                 }`}
               >
-                {dark ? <IconDatabase size={12} className="text-amber shrink-0" /> : <IconFactory size={12} className="text-[#161616] shrink-0" />}
+                {dark ? <IconDatabase size={11} className="text-amber shrink-0" /> : <IconFactory size={11} className="text-[#161616] shrink-0" />}
                 <span>{e.scope}</span>
               </div>
             )}
-            <h3 className="mt-2.5 font-display text-[24px] leading-7 font-semibold tracking-[-0.025em] sm:text-[28px] sm:leading-8 md:text-[34px] md:leading-10">
+            <h3 className="mt-2 font-display text-[20px] leading-tight font-semibold tracking-[-0.025em] sm:text-[28px] sm:leading-8 md:text-[34px] md:leading-10">
               {e.company}
             </h3>
-            <p className={`text-[14px] sm:text-[16px] ${dark ? "text-on-night/75" : "text-[#161616]/75"}`}>
+            <p className={`text-[13px] sm:text-[16px] ${dark ? "text-on-night/75" : "text-[#161616]/75"}`}>
               {e.role}
             </p>
           </div>
-          <m.div
-            whileHover={{ scale: 1.05, y: -3 }}
-            className="text-left sm:text-right"
-          >
+          <div className="text-left sm:text-right">
             <span
-              className={`block font-display text-[42px] leading-none font-bold tracking-[-0.04em] tabular sm:text-[56px] md:text-[72px] ${
+              className={`block font-display text-[32px] leading-none font-bold tracking-[-0.04em] tabular sm:text-[56px] md:text-[72px] ${
                 dark ? "text-amber" : "text-[#161616]"
               }`}
             >
               {leadValue}
             </span>
             <span
-              className={`mt-1 block max-w-[24ch] text-[12px] sm:text-[13px] leading-[17px] ${
+              className={`mt-1 block max-w-[24ch] text-[11px] sm:text-[13px] leading-[15px] sm:leading-[17px] ${
                 dark ? "text-on-night/70" : "text-[#161616]/70"
               }`}
             >
               {leadLabel}
             </span>
-          </m.div>
+          </div>
         </div>
 
         {chips.length > 0 && (
-          <dl className="mt-5 sm:mt-6 grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-4">
+          <dl className="mt-4 sm:mt-6 grid grid-cols-2 gap-1.5 sm:gap-3 lg:grid-cols-4">
             {chips.map((c) => (
               <m.div
                 key={c.k}
@@ -137,17 +115,17 @@ function Role({ e, i }: { e: Exp; i: number }) {
                 whileHover={{ y: -4, scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 transition={{ type: "spring", stiffness: 340, damping: 20 }}
-                className={`rounded-xl sm:rounded-2xl p-2.5 sm:p-4 transition-colors ${
+                className={`rounded-lg sm:rounded-2xl p-2 sm:p-4 transition-colors ${
                   dark
                     ? "bg-white/[0.05] ring-1 ring-white/10 hover:ring-amber/60"
                     : "bg-[#161616]/[0.06] ring-1 ring-[#161616]/10 hover:bg-[#161616]/12"
                 }`}
               >
-                <dt className={`font-mono text-[10px] sm:text-[11px] ${dark ? "text-on-night/65" : "text-[#161616]/65"}`}>
+                <dt className={`font-mono text-[9.5px] sm:text-[11px] ${dark ? "text-on-night/65" : "text-[#161616]/65"}`}>
                   {c.k}
                 </dt>
                 <dd
-                  className={`mt-0.5 font-display text-[18px] sm:text-[20px] font-bold leading-6 tabular md:text-[24px] ${
+                  className={`mt-0.5 font-display text-[15px] sm:text-[20px] font-bold leading-5 sm:leading-6 tabular md:text-[24px] ${
                     dark ? "text-amber" : "text-[#161616]"
                   }`}
                 >
@@ -160,19 +138,19 @@ function Role({ e, i }: { e: Exp; i: number }) {
 
         {/* Interactive View Toggle */}
         <div
-          className={`mt-8 flex flex-wrap items-center justify-between gap-3 border-t pt-6 ${
+          className={`mt-5 sm:mt-8 flex flex-wrap items-center justify-between gap-2 border-t pt-4 sm:pt-6 ${
             dark ? "border-white/10" : "border-[#161616]/10"
           }`}
         >
           <div
-            className={`flex items-center gap-1.5 rounded-full p-1 ${
+            className={`flex items-center gap-1 rounded-full p-0.5 sm:p-1 ${
               dark ? "bg-white/[0.06]" : "bg-[#161616]/[0.07]"
             }`}
           >
             <button
               type="button"
               onClick={() => setView("bullets")}
-              className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-1 text-[12px] font-mono font-semibold transition-all ${
+              className={`inline-flex items-center gap-1 rounded-full px-2.5 sm:px-3.5 py-1 text-[11px] sm:text-[12px] font-mono font-semibold transition-all cursor-pointer ${
                 view === "bullets"
                   ? dark
                     ? "bg-amber text-[#161616] shadow-xs"
@@ -189,7 +167,7 @@ function Role({ e, i }: { e: Exp; i: number }) {
               <button
                 type="button"
                 onClick={() => setView("tracks")}
-                className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-1 text-[12px] font-mono font-semibold transition-all ${
+                className={`inline-flex items-center gap-1 rounded-full px-2.5 sm:px-3.5 py-1 text-[11px] sm:text-[12px] font-mono font-semibold transition-all cursor-pointer ${
                   view === "tracks"
                     ? dark
                       ? "bg-amber text-[#161616] shadow-xs"
@@ -200,37 +178,37 @@ function Role({ e, i }: { e: Exp; i: number }) {
                 }`}
               >
                 <IconWorkflow size={12} className="shrink-0" />
-                <span>Workstream Deep Dives ({e.tracks.length})</span>
+                <span>Workstreams ({e.tracks.length})</span>
               </button>
             )}
           </div>
-          <span className={`font-mono text-[11px] ${dark ? "text-on-night/60" : "text-[#161616]/60"}`}>
-            {view === "bullets" ? "Quantified business results" : "Operational & analytical workstreams"}
+          <span className={`font-mono text-[10px] sm:text-[11px] ${dark ? "text-on-night/60" : "text-[#161616]/60"}`}>
+            {view === "bullets" ? "Quantified business results" : "Operational workstreams"}
           </span>
         </div>
 
         {/* View Mode: Bullets */}
         {view === "bullets" && (
           <>
-            <ul id={listId} className="mt-6 grid gap-x-6 gap-y-3.5 md:grid-cols-2">
+            <ul id={listId} className="mt-4 sm:mt-6 grid gap-2 sm:gap-x-6 sm:gap-y-3.5 md:grid-cols-2">
               {shown.map((b, k) => (
                 <m.li
                   key={b}
                   data-cursor={`Impact 0${k + 1}`}
-                  initial={reduce ? false : { opacity: 0, y: 12 }}
+                  initial={reduce ? false : { opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  whileHover={{ y: -4, scale: 1.015 }}
-                  whileTap={{ scale: 0.985 }}
+                  whileHover={{ y: -3, scale: 1.01 }}
+                  whileTap={{ scale: 0.99 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.35 }}
-                  className={`grid grid-cols-[28px_1fr] items-start gap-2.5 rounded-2xl p-4 text-[15px] leading-6 transition-colors ${
+                  transition={{ duration: 0.25 }}
+                  className={`grid grid-cols-[22px_1fr] sm:grid-cols-[28px_1fr] items-start gap-2 rounded-xl sm:rounded-2xl p-2.5 sm:p-4 text-[12.5px] sm:text-[15px] leading-snug sm:leading-6 transition-colors ${
                     dark
                       ? "bg-white/[0.06] ring-1 ring-white/5 hover:bg-white/[0.11] hover:ring-amber/40"
                       : "bg-[#161616]/[0.06] ring-1 ring-[#161616]/5 hover:bg-[#161616]/[0.12]"
                   }`}
                 >
                   <span
-                    className={`mt-0.5 font-mono text-[11px] font-bold tabular ${
+                    className={`mt-0.5 font-mono text-[10px] sm:text-[11px] font-bold tabular ${
                       dark ? "text-amber" : "text-[#161616]/70"
                     }`}
                   >
@@ -248,9 +226,9 @@ function Role({ e, i }: { e: Exp; i: number }) {
                 onClick={() => setAll((a) => !a)}
                 data-magnetic
                 data-cursor={all ? "Less" : "More"}
-                whileHover={{ scale: 1.04, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                className={`mt-6 inline-flex min-h-11 items-center rounded-full px-5 text-[14px] font-semibold ${
+                whileHover={{ scale: 1.03, y: -2 }}
+                whileTap={{ scale: 0.96 }}
+                className={`mt-4 sm:mt-6 inline-flex min-h-9 sm:min-h-11 items-center rounded-full px-4 sm:px-5 text-[12px] sm:text-[14px] font-semibold cursor-pointer ${
                   dark ? "bg-amber text-[#161616]" : "bg-[#161616] text-paper"
                 }`}
               >
@@ -262,17 +240,17 @@ function Role({ e, i }: { e: Exp; i: number }) {
 
         {/* View Mode: Workstream Tracks */}
         {view === "tracks" && e.tracks && (
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
+          <div className="mt-4 sm:mt-6 grid gap-2.5 sm:gap-4 md:grid-cols-2">
             {e.tracks.map((track, idx) => (
               <m.div
                 key={track.title}
                 data-cursor={`Track 0${idx + 1}`}
-                initial={reduce ? false : { opacity: 0, y: 12 }}
+                initial={reduce ? false : { opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 whileHover={{ y: -3, scale: 1.01 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.3 }}
-                className={`flex flex-col justify-between rounded-2xl p-5 transition-colors ${
+                transition={{ duration: 0.25 }}
+                className={`flex flex-col justify-between rounded-xl sm:rounded-2xl p-3 sm:p-5 transition-colors ${
                   dark
                     ? "bg-white/[0.06] ring-1 ring-white/5 hover:bg-white/[0.10] hover:ring-amber/40"
                     : "bg-[#161616]/[0.06] ring-1 ring-[#161616]/5 hover:bg-[#161616]/[0.10]"
@@ -281,14 +259,14 @@ function Role({ e, i }: { e: Exp; i: number }) {
                 <div>
                   <div className="flex items-center gap-2">
                     <span
-                      className={`font-mono text-[11px] font-bold tabular ${
+                      className={`font-mono text-[10px] sm:text-[11px] font-bold tabular ${
                         dark ? "text-amber" : "text-[#161616]/75"
                       }`}
                     >
                       0{idx + 1}
                     </span>
                     <h4
-                      className={`font-display text-[16px] font-semibold tracking-tight ${
+                      className={`font-display text-[14px] sm:text-[16px] font-semibold tracking-tight ${
                         dark ? "text-white" : "text-[#161616]"
                       }`}
                     >
@@ -296,7 +274,7 @@ function Role({ e, i }: { e: Exp; i: number }) {
                     </h4>
                   </div>
                   <p
-                    className={`mt-2.5 text-[14px] leading-6 ${
+                    className={`mt-1.5 sm:mt-2.5 text-[12px] sm:text-[14px] leading-snug sm:leading-6 ${
                       dark ? "text-on-night/85" : "text-[#161616]/85"
                     }`}
                   >
@@ -311,12 +289,12 @@ function Role({ e, i }: { e: Exp; i: number }) {
         {/* Tech Stack Ribbon */}
         {e.skills && e.skills.length > 0 && (
           <div
-            className={`mt-8 flex flex-wrap items-center gap-2 border-t pt-5 ${
+            className={`mt-5 sm:mt-8 flex flex-wrap items-center gap-1.5 sm:gap-2 border-t pt-3 sm:pt-5 ${
               dark ? "border-white/10" : "border-[#161616]/10"
             }`}
           >
             <span
-              className={`font-mono text-[11px] font-semibold tracking-wide uppercase ${
+              className={`font-mono text-[10px] sm:text-[11px] font-semibold tracking-wide uppercase ${
                 dark ? "text-on-night/60" : "text-[#161616]/60"
               }`}
             >
@@ -325,7 +303,7 @@ function Role({ e, i }: { e: Exp; i: number }) {
             {e.skills.map((skill) => (
               <span
                 key={skill}
-                className={`rounded-lg px-2.5 py-1 font-mono text-[11px] font-semibold transition-colors ${
+                className={`rounded-lg px-2 sm:px-2.5 py-0.5 sm:py-1 font-mono text-[9.5px] sm:text-[11px] font-semibold transition-colors ${
                   dark
                     ? "border border-white/10 bg-white/[0.08] text-on-night/90 hover:bg-white/[0.14] hover:text-amber"
                     : "border border-[#161616]/10 bg-[#161616]/[0.08] text-[#161616]/90 hover:bg-[#161616]/[0.14]"
@@ -336,30 +314,21 @@ function Role({ e, i }: { e: Exp; i: number }) {
             ))}
           </div>
         )}
-      </m.article>
+      </article>
     </div>
   );
 }
 
-// Scroll-driven timeline: a spine fills with yellow as you move through it, and each role
-// slides in from alternating sides with its year pinned beside it.
 export function Timeline() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start 70%", "end 60%"],
-  });
-  const fill = useSpring(scrollYProgress, { stiffness: 120, damping: 24 });
   return (
-    <div ref={ref} className="relative space-y-16 md:space-y-24">
+    <div className="relative space-y-10 sm:space-y-16 md:space-y-24">
       <span
         aria-hidden="true"
-        className="absolute bottom-0 left-4 top-3 w-[3px] rounded-full bg-line md:left-[19px]"
+        className="absolute bottom-0 left-[15px] top-3 w-[2.5px] rounded-full bg-line md:left-[19px]"
       />
-      <m.span
+      <span
         aria-hidden="true"
-        className="absolute bottom-0 left-4 top-3 w-[3px] origin-top rounded-full bg-amber md:left-[19px]"
-        style={{ scaleY: fill }}
+        className="absolute bottom-0 left-[15px] top-3 w-[2.5px] rounded-full bg-amber/80 md:left-[19px]"
       />
       {experience.map((e, i) => (
         <Role key={e.company} e={e} i={i} />

@@ -166,11 +166,11 @@ export function PortraitReveal() {
         id={titleId}
         data-grow
         data-cursor="Pillars"
-        className="relative z-10 mx-auto w-fit max-w-[1280px] rounded-2xl px-5 py-1 font-display text-[28px] leading-8 font-semibold tracking-[-0.02em] transition-transform duration-300 hover:translate-x-1 md:px-10 md:text-[40px] md:leading-[44px]"
+        className="relative z-10 mx-auto w-fit max-w-[1280px] rounded-2xl px-4 sm:px-5 py-1 font-display text-[22px] leading-tight sm:text-[28px] sm:leading-8 font-semibold tracking-[-0.02em] transition-transform duration-300 hover:translate-x-1 md:px-10 md:text-[40px] md:leading-[44px]"
       >
         Six things I work on. <span className="text-muted">Click one for the proof.</span>
       </h2>
-      <div ref={stage} className="relative z-10 mx-auto mt-6 h-[min(150vw,700px)] max-w-[1440px] md:h-[720px]">
+      <div ref={stage} className="relative z-10 mx-auto mt-4 sm:mt-6 h-[min(125vw,540px)] sm:h-[min(150vw,700px)] max-w-[1440px] md:h-[720px]">
         <m.div style={{ y: blockY }} className="stepped absolute inset-x-[4%] bottom-0 top-[22%] bg-amber md:inset-x-[14%]" />
         <m.div style={{ y: photoY }} className="absolute inset-x-0 bottom-0 mx-auto h-[86%] w-[min(78vw,470px)]">
           <Image
