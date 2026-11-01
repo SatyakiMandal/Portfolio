@@ -63,14 +63,14 @@ export const experience: Experience[] = [
       "JIRA",
     ],
     bullets: [
-      "Raised 2024 conversion ~14% on a ~$18M budget, delivering $5M+ in revenue uplift across 2 Super Bowl campaigns",
-      "Lifted ROI 22% & beat Amazon/Target CTR by 15% via 6 dashboards spanning 50+ networks & 7 genres",
-      "Enabled a ~$4M media spend reallocation, helping recover ~3.5pp category share & avoid a $1.2M loss",
-      "Led customer segmentation isolating 5 high-value segments worth 18% of revenue, lifting baskets 7%",
-      "Automated 8 recurring report pipelines on Databricks, reducing effort ~40% & turnaround time ~30%",
-      "Accelerated decisions 20% across $12M+ media plans by enabling KPI self-serve for 20+ stakeholders",
-      "Grew conversion 15% & lowered CPA ~11% via look-alike models on 50+ features, 24% sharper targeting",
+      "Propelled 2024 conversion ~14% on a ~$18M budget across 2 Super Bowl campaigns earning $5M+ revenue",
+      "Amplified ROI 22% & beat Amazon/Target CTR by 15% via 6 dashboards spanning 50+ networks & 7 genres",
+      "Powered a ~$4M media spend reallocation, helping recover ~3.5pp category share & avoid a $1.2M loss",
+      "Spearheaded segmentation isolating 5 high-value segments worth 18% of revenue, lifting baskets 7%",
+      "Streamlined $12M+ media plans for 20% faster decisions, enabling KPI self-serve for 20+ stakeholders",
       "Optimized ~12% of ad spend & improved reallocation accuracy 35% across 120M+ monthly impressions",
+      "Safeguarded >99.5% reporting accuracy while saving 200+ hours & avoiding 100+ rework hours a year",
+      "Unified 3 teams via bi-weekly Walmart demos, reducing data issues 60% & lifting sync efficiency 25%",
     ],
     tracks: [
       {
@@ -123,12 +123,12 @@ export const experience: Experience[] = [
       "BOM Maintenance",
     ],
     bullets: [
-      "Optimized costs by Rs.9.19Cr via a byproduct offset model on 87,448 quintals at a Rs.260Cr rice mill",
-      "Maximized margins by Rs.2.3Cr a year, closing a 7% cost gap via adjusted-weight pricing on 35+ lots",
-      "Drove 100% daily dashboard use by 6 C-suite leaders via 5+ BI dashboards for a Rs.260Cr enterprise",
-      "Streamlined production planning via SQL cleanup, fixing 120+ weekly failures, spillovers down 75%",
-      "Achieved a 0.00 quintal variance on 74,962 quintals across 555 vehicles via a dual-master data audit",
-      "Boosted milling throughput 37.5%, +30 quintals/hr from 80 to 110, via takt times across 3 shifts",
+      "Engineered a Rs.9.19Cr cost reduction via byproduct offsets on 87,448 quintals at a Rs.260Cr firm",
+      "Maximized margins by Rs.2.3Cr a year, closing a Rs.63K gap in Rs.9L daily procurement via repricing",
+      "Captured Rs.7.17L in freight fees & prevented overpayment on 3,078 quintals across 15 varieties",
+      "Enhanced revenue ~Rs.20K a day by lifting paddy-to-rice yield from 49% to 51% with shift-wise tracking",
+      "Revamped production planning via SQL data cleanup, fixing 120+ weekly failures, with spillovers down 75%",
+      "Streamlined manual reporting to free 90 hours a week via 5+ dashboards & a Rs.25.5L+ daily P&L system",
     ],
     tracks: [
       {
