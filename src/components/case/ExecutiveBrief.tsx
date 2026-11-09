@@ -351,6 +351,25 @@ function MemoContent({
               <p className="mt-1.5 text-[10.5px] font-medium leading-tight text-[#78350f]">
                 {framework.takeaway}
               </p>
+              {framework.tradeoffs && framework.tradeoffs.length > 0 && (
+                <div className="mt-2 space-y-1.5 border-t border-[#fde68a] pt-2">
+                  <div className="font-mono text-[9px] font-bold uppercase tracking-wider text-[#b45309]">
+                    Strategic Trade-offs &amp; Evaluated Alternatives
+                  </div>
+                  {framework.tradeoffs.map((t, idx) => (
+                    <div key={idx} className="rounded bg-white/90 p-1.5 border border-[#fde68a] text-[9.5px] leading-tight text-[#451a03] space-y-0.5">
+                      <div className="font-bold text-[#161616]">{t.dilemma}</div>
+                      <div className="flex flex-wrap gap-x-2 text-[8.5px]">
+                        <span className="text-emerald-700 font-semibold">✓ Chosen: {t.chosen.name}</span>
+                        <span className="text-[#888888]">vs.</span>
+                        <span className="text-rose-700/80 line-through">✗ Rejected: {t.rejected.name}</span>
+                      </div>
+                      <div className="text-[8.5px] text-[#78350f]">{t.rationale}</div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
               <div className="mt-2 space-y-1.5">
                 {framework.principles.map((pr, idx) => {
                   const name = typeof pr === "string" ? pr : pr.name;

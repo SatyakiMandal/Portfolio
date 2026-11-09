@@ -9,7 +9,7 @@ import * as m from "framer-motion/m";
 import { useEffect, useRef, useState } from "react";
 import { experience, type Experience as Exp } from "@/content/profile";
 import { BrandBadge, type BrandKey } from "@/components/BrandLogo";
-import { IconDatabase, IconFactory, IconTrendingUp, IconWorkflow } from "@/components/Icons";
+import { IconDatabase, IconFactory, IconScale, IconTrendingUp, IconWorkflow } from "@/components/Icons";
 
 const brandEmblems: Record<string, { key: BrandKey; label: string }[]> = {
   Epsilon: [
@@ -109,7 +109,7 @@ function useTimelineFillProgress(ref: React.RefObject<HTMLDivElement | null>) {
 function Role({ e, i }: { e: Exp; i: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const [all, setAll] = useState(false);
-  const [view, setView] = useState<"bullets" | "tracks">("bullets");
+  const [view, setView] = useState<"bullets" | "tracks" | "tradeoffs">("bullets");
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -296,9 +296,31 @@ function Role({ e, i }: { e: Exp; i: number }) {
                 <span>Workstreams ({e.tracks.length})</span>
               </button>
             )}
+            {e.tradeoffs && e.tradeoffs.length > 0 && (
+              <button
+                type="button"
+                onClick={() => setView("tradeoffs")}
+                className={`inline-flex items-center gap-1 rounded-full px-2.5 sm:px-3.5 py-1 text-[11px] sm:text-[12px] font-mono font-semibold transition-all cursor-pointer ${
+                  view === "tradeoffs"
+                    ? dark
+                      ? "bg-amber text-[#161616] shadow-xs"
+                      : "bg-[#161616] text-paper shadow-xs"
+                    : dark
+                      ? "text-on-night/70 hover:text-on-night"
+                      : "text-[#161616]/70 hover:text-[#161616]"
+                }`}
+              >
+                <IconScale size={12} className="shrink-0" />
+                <span>Trade-offs ({e.tradeoffs.length})</span>
+              </button>
+            )}
           </div>
           <span className={`font-mono text-[10px] sm:text-[11px] ${dark ? "text-on-night/60" : "text-[#161616]/60"}`}>
-            {view === "bullets" ? "Quantified business results" : "Operational workstreams"}
+            {view === "bullets"
+              ? "Quantified business results"
+              : view === "tracks"
+                ? "Operational workstreams"
+                : "Strategic decisions & alternatives"}
           </span>
         </div>
 
@@ -395,6 +417,142 @@ function Role({ e, i }: { e: Exp; i: number }) {
                   >
                     {track.detail}
                   </p>
+                </div>
+              </m.div>
+            ))}
+          </div>
+        )}
+
+        {/* View Mode: Strategic Trade-offs */}
+        {view === "tradeoffs" && e.tradeoffs && (
+          <div className="mt-4 sm:mt-6 space-y-4">
+            {e.tradeoffs.map((t, idx) => (
+              <m.div
+                key={t.dilemma}
+                data-cursor="Trade-off"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.25 }}
+                className={`rounded-xl sm:rounded-2xl p-4 sm:p-6 space-y-4 ${
+                  dark
+                    ? "bg-white/[0.05] ring-1 ring-white/10"
+                    : "bg-[#161616]/[0.05] ring-1 ring-[#161616]/10"
+                }`}
+              >
+                <div className="flex items-start gap-2.5">
+                  <span
+                    className={`inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full font-mono text-[11px] font-bold mt-0.5 ${
+                      dark ? "bg-amber text-[#161616]" : "bg-[#161616] text-paper"
+                    }`}
+                  >
+                    T${idx + 1}
+                  </span>
+                  <div>
+                    <span
+                      className={`font-mono text-[10px] uppercase tracking-wider font-bold block ${
+                        dark ? "text-on-night/60" : "text-[#161616]/60"
+                      }`}
+                    >
+                      The Strategic Tension &amp; Alternative Evaluated
+                    </span>
+                    <h4 className="font-display text-[15px] sm:text-[17px] font-bold tracking-tight">
+                      {t.dilemma}
+                    </h4>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div
+                    className={`rounded-lg sm:rounded-xl p-3 sm:p-4 space-y-1 ${
+                      dark
+                        ? "border border-emerald-400/30 bg-emerald-500/[0.08]"
+                        : "border border-emerald-600/30 bg-emerald-500/[0.07]"
+                    }`}
+                  >
+                    <div className="flex items-center gap-1.5">
+                      <span className="inline-flex h-3.5 w-3.5 items-center justify-center rounded-full bg-emerald-600 text-white text-[9px] font-bold">
+                        ✓
+                      </span>
+                      <span
+                        className={`font-mono text-[9.5px] font-bold uppercase tracking-wider ${
+                          dark ? "text-emerald-300" : "text-emerald-800"
+                        }`}
+                      >
+                        Selected Path
+                      </span>
+                    </div>
+                    <p className="font-display text-[13.5px] font-bold leading-snug">
+                      {t.chosen.name}
+                    </p>
+                    <p
+                      className={`text-[12px] leading-relaxed ${
+                        dark ? "text-on-night/85" : "text-[#161616]/85"
+                      }`}
+                    >
+                      {t.chosen.detail}
+                    </p>
+                  </div>
+
+                  <div
+                    className={`rounded-lg sm:rounded-xl p-3 sm:p-4 space-y-1 opacity-90 ${
+                      dark
+                        ? "border border-rose-400/20 bg-rose-500/[0.06]"
+                        : "border border-rose-600/20 bg-rose-500/[0.05]"
+                    }`}
+                  >
+                    <div className="flex items-center gap-1.5">
+                      <span className="inline-flex h-3.5 w-3.5 items-center justify-center rounded-full bg-rose-600/80 text-white text-[9px] font-bold">
+                        ✗
+                      </span>
+                      <span
+                        className={`font-mono text-[9.5px] font-bold uppercase tracking-wider ${
+                          dark ? "text-rose-300" : "text-rose-800"
+                        }`}
+                      >
+                        Evaluated &amp; Rejected
+                      </span>
+                    </div>
+                    <p className="font-display text-[13.5px] font-semibold leading-snug line-through decoration-rose-500/50">
+                      {t.rejected.name}
+                    </p>
+                    <p
+                      className={`text-[12px] leading-relaxed ${
+                        dark ? "text-on-night/70" : "text-[#161616]/75"
+                      }`}
+                    >
+                      {t.rejected.detail}
+                    </p>
+                  </div>
+                </div>
+
+                <div
+                  className={`rounded-lg sm:rounded-xl p-3 text-[12px] sm:text-[13px] leading-relaxed flex flex-col sm:flex-row sm:items-center justify-between gap-2 border ${
+                    dark
+                      ? "border-white/10 bg-white/[0.04] text-on-night/90"
+                      : "border-[#161616]/10 bg-[#161616]/[0.04] text-[#161616]/90"
+                  }`}
+                >
+                  <div className="flex-1">
+                    <span
+                      className={`font-mono text-[9.5px] font-bold uppercase tracking-wider mr-1.5 ${
+                        dark ? "text-amber" : "text-[#b45309]"
+                      }`}
+                    >
+                      Decision Rationale:
+                    </span>
+                    <span>{t.rationale}</span>
+                  </div>
+                  {t.governanceHurdle && (
+                    <div
+                      className={`shrink-0 rounded-lg px-2.5 py-1 font-mono text-[10px] font-bold ${
+                        dark
+                          ? "bg-amber/20 text-amber border border-amber/30"
+                          : "bg-amber/20 text-[#161616] border border-amber/40"
+                      }`}
+                    >
+                      {t.governanceHurdle}
+                    </div>
+                  )}
                 </div>
               </m.div>
             ))}

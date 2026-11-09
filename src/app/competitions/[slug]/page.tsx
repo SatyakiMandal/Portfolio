@@ -46,7 +46,7 @@ export default async function CompetitionPage({ params }: PageProps<"/competitio
     { id: "situation", num: "01", label: "Situation" },
     { id: "method", num: "02", label: "Method" },
     { id: "proposal", num: "03", label: "Proposal" },
-    ...(framework ? [{ id: "framework", num: "04", label: "Framework" }] : []),
+    ...(framework ? [{ id: "framework", num: "04", label: "Trade-offs & Framework" }] : []),
     { id: "evidence", num: framework ? "05" : "04", label: "Evidence" },
     ...(c.charts.length > 0 ? [{ id: "exhibits", num: framework ? "06" : "05", label: "Exhibits" }] : []),
   ];

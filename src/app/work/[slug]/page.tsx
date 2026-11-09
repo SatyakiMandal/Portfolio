@@ -40,7 +40,7 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
   const sections = [
     { id: "situation", num: "01", label: "Situation" },
     { id: "method", num: "02", label: "Method" },
-    ...(framework ? [{ id: "framework", num: "03", label: "Framework" }] : []),
+    ...(framework ? [{ id: "framework", num: "03", label: "Trade-offs & Framework" }] : []),
     { id: "evidence", num: framework ? "04" : "03", label: "Evidence" },
     ...(p.charts.length > 0 ? [{ id: "exhibits", num: framework ? "05" : "04", label: "Exhibits" }] : []),
   ];

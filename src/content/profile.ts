@@ -25,6 +25,14 @@ export type ExperienceTrack = {
   detail: string;
 };
 
+export type ExperienceTradeoff = {
+  dilemma: string;
+  chosen: { name: string; detail: string };
+  rejected: { name: string; detail: string };
+  rationale: string;
+  governanceHurdle?: string;
+};
+
 export type Experience = {
   company: string;
   role: string;
@@ -35,6 +43,7 @@ export type Experience = {
   skills?: string[];
   bullets: string[];
   tracks?: ExperienceTrack[];
+  tradeoffs?: ExperienceTradeoff[];
 };
 
 export const experience: Experience[] = [
@@ -98,6 +107,21 @@ export const experience: Experience[] = [
         detail: "Conducted RCA for Q4 2024 campaigns, enabling reallocation of ~$4M media spend into live sports, recovering ~3.5pp category share and preventing $1.2M overspend.",
       },
     ],
+    tradeoffs: [
+      {
+        dilemma: "Black-Box Algorithmic Bidding vs. Transparent Self-Serve Dashboards & Governed PySpark LAL Segments",
+        chosen: {
+          name: "Transparent Tableau BI & Governed LAL Clusters",
+          detail: "Built 6 real-time dashboards across 50+ networks with auditable PySpark look-alike segmentation and bi-weekly Walmart review governance.",
+        },
+        rejected: {
+          name: "Fully Automated Black-Box Media Bidding",
+          detail: "Relying on opaque algorithmic black-box bidding tools without cross-team transparency or manual auditability.",
+        },
+        rationale: "Multi-million dollar retail media allocations across Super Bowl and holiday campaigns require institutional accountability. Transparent dashboards earned multi-team trust, cut reporting rework by 100+ hours, and enabled ~$4M media spend reallocation with >99.5% accuracy.",
+        governanceHurdle: ">99.5% reporting accuracy & 20% faster decisions",
+      },
+    ],
   },
   {
     company: "Shree Gajanan Industries (rice mill, Nizamabad)",
@@ -154,6 +178,21 @@ export const experience: Experience[] = [
       {
         title: "Executive BI & Digital Maintenance BOM",
         detail: "Deployed 5+ Zoho Analytics dashboards with 100% C-suite adoption (saving 90 hrs/wk), and catalogued 15,000 spares across 375 machines into a QR maintenance app.",
+      },
+    ],
+    tradeoffs: [
+      {
+        dilemma: "Post-Milling Supplier Penalties vs. Gate-In Multi-Factor Moisture Deduction Algorithm",
+        chosen: {
+          name: "Gate-In Dual-Master Moisture Deduction",
+          detail: "Automated gate-in moisture deduction algorithm embedded in Zoho ERP, closing procurement cost gap immediately on inbound vehicles.",
+        },
+        rejected: {
+          name: "Retrospective Financial Penalties",
+          detail: "Deducting penalties retrospectively after milling yield analysis and warehouse storage.",
+        },
+        rationale: "Retrospective deductions spark severe supplier friction, disputed accounting, and vendor churn. Gate-in algorithm closed the Rs.63K daily gap upfront with zero audit variance (0.00 qtl) across 74,962 quintals.",
+        governanceHurdle: "0.00 qtl shrinkage variance across 555 vehicles",
       },
     ],
   },

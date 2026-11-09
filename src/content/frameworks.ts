@@ -31,7 +31,22 @@ export const projectFrameworks: Record<string, StrategicFrameworkData> = {
         decisionGate: "Hurdle: 60% of planned green line capacity secured under minimum 3-year commercial commitments.",
       },
     ],
-    principles: [
+        tradeoffs: [
+      {
+        dilemma: "Uniform Cost-Plus Surcharge vs. Segmented Willingness-to-Pay (WTP) Arbitrage",
+        chosen: {
+          name: "Tiered Willingness-to-Pay Indexing ($45 / $35 / $25 per ton)",
+          detail: "Segmented buyers into 3 tiers based on their scope-3 vulnerability and avoided European CBAM penalties (EUR 11/t avoided), offset by $1.136M in carbon credit revenue.",
+        },
+        rejected: {
+          name: "Blanket Cost-Plus Mark-Up (~$30.5/t flat penalty)",
+          detail: "Passing the entire green hydrogen DRI production cost penalty uniformly across all commercial contracts.",
+        },
+        rationale: "Commodity infrastructure steel buyers reject blanket green premiums due to razor-thin construction margins. In contrast, automotive OEMs with scope-3 mandates and EU export exposure absorb up to $45/t. Segmenting demand protects baseline volume while capturing premium economic rent.",
+        hurdleOrMetric: "Automotive tier-1 WTP hurdle ≥ $35/t",
+      },
+    ],
+principles: [
       {
         name: "Tiered Willingness-to-Pay ($45 / $35 / $25)",
         detail: "Segment commercial clients by end-market regulatory vulnerability rather than purchase volume.",
@@ -78,7 +93,22 @@ export const projectFrameworks: Record<string, StrategicFrameworkData> = {
         decisionGate: "Hurdle: Blended core ROCE must sustain above 24.0% across the 3-year rolling horizon.",
       },
     ],
-    principles: [
+        tradeoffs: [
+      {
+        dilemma: "Capital-Heavy Owned Factory Manufacturing vs. Asset-Light Regional Co-Packing Architecture",
+        chosen: {
+          name: "Asset-Light Accredited Co-Packing & Quick-Commerce Velocity",
+          detail: "Outsourced commodity milling and packaging to accredited regional co-packers under strict central QA, directing capital into brand trust, e-commerce, and negative 2-day working capital.",
+        },
+        rejected: {
+          name: "Heavy Greenfield Sourcing & Milling Plants",
+          detail: "Deploying enterprise capex into owned physical real estate and commodity milling machinery across target states.",
+        },
+        rationale: "Staple processing operates on thin gross margins. Owning fixed milling assets ties up capital and dilutes consolidated ROCE (group was dragging at 7.9%). The asset-light model delivered 24.5% core ROCE (3.1x group average), defending a premium 38x EV/EBITDA valuation multiple.",
+        hurdleOrMetric: "Core ROCE ≥ 24.0% & cash conversion < 15 days",
+      },
+    ],
+principles: [
       {
         name: "Ansoff Category Prioritization Matrix",
         detail: "Select market penetration vectors where unbranded conversion cost is lowest and purchase frequency highest.",
@@ -125,7 +155,22 @@ export const projectFrameworks: Record<string, StrategicFrameworkData> = {
         decisionGate: "Hurdle: Equity value recovery demonstrated with minimum 15% margin of safety against market cap.",
       },
     ],
-    principles: [
+        tradeoffs: [
+      {
+        dilemma: "Short-Term Volume Discounting vs. Aspirational Sub-Brand Corridor Engineering",
+        chosen: {
+          name: "Independent Flanker Sub-Brand Corridor (MOSA Rs.1,500–3,999)",
+          detail: "Launched an aspirational lifestyle sub-brand with distinct retail placement and trend positioning to bridge the 0.76-point perception gap.",
+        },
+        rejected: {
+          name: "Master Brand Price Slashing & Tactical Discount Standees",
+          detail: "Running promotional markdown campaigns in modern trade stores to defend quarterly volume targets.",
+        },
+        rationale: "Aided awareness was exceptionally high (93%), but buy-intent was only 5% with a 5.6-pt cool gap vs. Nike. The root cause was an imagery gap, not a price barrier. Further discounting would accelerate brand decay into commoditized utility footwear and permanently destroy gross margin.",
+        hurdleOrMetric: "Flanker gross margin premium ≥ +450 bps",
+      },
+    ],
+principles: [
       {
         name: "Expectation Gap Quantification (Perceived vs Desired)",
         detail: "Measure the exact mathematical delta between consumer brand perception and target category purchase criteria.",
@@ -172,7 +217,22 @@ export const projectFrameworks: Record<string, StrategicFrameworkData> = {
         decisionGate: "Hurdle: Unit economics must deliver minimum 38% gross contribution margin at Rs.20 target price point.",
       },
     ],
-    principles: [
+        tradeoffs: [
+      {
+        dilemma: "Speed / Convenience Positioning vs. Authentic Heritage & Econometric Sachet Pricing",
+        chosen: {
+          name: "Authentic Heritage Anchor & Econometric OPP (Rs.20 Sachet)",
+          detail: "Positioned on trusted blend ingredients, single-serve impulse formats, and high-frequency transit/workplace vending channels (56.1%).",
+        },
+        rejected: {
+          name: "Portability & Instant-Preparation Pitch ('Chai in 30 Seconds')",
+          detail: "Competing directly on rapid preparation time using multi-serve glass jars at standard retail benchmarks (>Rs.380/kg).",
+        },
+        rationale: "Sensory intercept trials showed 77.8% rejected artificial flavor perceptions and 57% dismissed 'portability', but 96% demanded trusted ingredients. Competing on speed commoditizes tea; anchoring in authentic heritage and a Rs.20 single-serve trial eliminated consumer risk.",
+        hurdleOrMetric: "Gross contribution margin ≥ 38% at Rs.20 OPP",
+      },
+    ],
+principles: [
       {
         name: "Van Westendorp PSM Threshold Modeling (PMC / IPP / OPP / PME)",
         detail: "Derive price ceilings and floors econometrically from consumer psychological resistance curves.",
@@ -219,7 +279,22 @@ export const projectFrameworks: Record<string, StrategicFrameworkData> = {
         decisionGate: "Hurdle: Unanimous board approval of multi-year operational and investment management bylaws.",
       },
     ],
-    principles: [
+        tradeoffs: [
+      {
+        dilemma: "Ad-Hoc Discretionary Fundraising vs. Formulaic 4–5% Trailing Spending Rule & Statutory Pools",
+        chosen: {
+          name: "Mandatory Student Inflow Levies & Yale-Model 4–5% Smoothing Cap",
+          detail: "Institutionalized predictable admission inflows (~Rs.30k/student), 4 segregated statutory pools, and a 15-role governance scorecard weighted 50% on long-term outcomes.",
+        },
+        rejected: {
+          name: "Unrestricted Discretionary Annual Budget Draws",
+          detail: "Relying on sporadic alumni reunion appeals and unbudgeted drawdowns during operating deficits.",
+        },
+        rationale: "Sporadic donation drives suffer from donor fatigue and cyclical deficits. A structured endowment rule protects intergenerational corpus solvency and corrected a 97.5% true cash inflow distortion (Rs.50Cr allocation vs. Rs.1.2–1.35Cr net inflow).",
+        hurdleOrMetric: "Contingency reserve capped at 10–15%",
+      },
+    ],
+principles: [
       {
         name: "Predictable Capital Inflow Indexing (Rs.1.20-1.35 Cr)",
         detail: "Tie endowment additions to recurring institutional activities rather than relying on unpredictable donor campaigns.",
@@ -266,7 +341,22 @@ export const projectFrameworks: Record<string, StrategicFrameworkData> = {
         decisionGate: "Hurdle: Post-intervention SAS score must demonstrate statistically significant reduction (p < 0.001).",
       },
     ],
-    principles: [
+        tradeoffs: [
+      {
+        dilemma: "Behavioral App-Blocking Quotas vs. Neuro-Aesthetic Friction (Greyscale Rendering)",
+        chosen: {
+          name: "Systemic Greyscale Display & High-Risk Temporal Interventions",
+          detail: "Stripped visual dopamine triggers system-wide, focusing behavioural prompts specifically on late-night pickups and weekend failure cliffs.",
+        },
+        rejected: {
+          name: "Daily Minute Limits & App Lockdown Notifications",
+          detail: "Relying on conventional timer limits that lock users out after arbitrary daily durations.",
+        },
+        rationale: "Minute quotas create psychological reactance, triggering user frustration, notification bypasses, and anxiety-fueled bingeing. Greyscale neutralizes the unconscious visual reward mechanism at the neuro-aesthetic level, cutting screen time 40% with 0% study dropouts.",
+        hurdleOrMetric: "0% participant dropout rate over 4-week trial",
+      },
+    ],
+principles: [
       {
         name: "Sensory Friction Choice Architecture",
         detail: "Disrupt automatic habitual consumption by removing ambient visual dopamine triggers rather than relying on willpower.",
@@ -313,7 +403,22 @@ export const projectFrameworks: Record<string, StrategicFrameworkData> = {
         decisionGate: "Hurdle: Projected interest coverage ratio must remain comfortably above 3.5x under conservative EBITDA stress scenarios.",
       },
     ],
-    principles: [
+        tradeoffs: [
+      {
+        dilemma: "Continued Equity Dilution vs. Structured Low-Cost Project Debt & ROIC Hurdles",
+        chosen: {
+          name: "Modelled Rs.8–10Cr Project Debt (5–7% Leverage) & 25%+ Hurdle Rate",
+          detail: "Optimized capital structure to lower a 24.47% WACC, enforce strict capital expenditure hurdle rates, and cut debtor days from 68 to <50.",
+        },
+        rejected: {
+          name: "100% Equity Financing with Loose Working Capital Terms",
+          detail: "Continuing to fund capex via dilutive equity issuances without contractual debt discipline.",
+        },
+        rationale: "Unstructured equity financing in a high-cost capital regime destroyed Rs.23.5Cr in EVA over 5 years (32% of market cap). Injecting modest debt discipline lowers WACC, halts value erosion, and unlocks Rs.2.5–4.0 per share in intrinsic equity value.",
+        hurdleOrMetric: "Project ROIC > WACC by minimum 500 bps",
+      },
+    ],
+principles: [
       {
         name: "ROIC-WACC Economic Spread Analysis (-20.29 pp)",
         detail: "Never evaluate top-line growth in isolation from the true weighted cost of invested corporate capital.",
@@ -360,7 +465,22 @@ export const projectFrameworks: Record<string, StrategicFrameworkData> = {
         decisionGate: "Hurdle: Fair valuation bounds signed off by independent valuation auditor for institutional fund accounting.",
       },
     ],
-    principles: [
+        tradeoffs: [
+      {
+        dilemma: "Unadjusted Quantitative Model Outputs vs. Governed Risk Consensus & Illiquidity Discounting",
+        chosen: {
+          name: "5-Pillar Consensus Valuation with Mandatory 25% Illiquidity Haircut",
+          detail: "Engineered multi-model consensus (VaR, Expected Shortfall, DCF) with automated 25% unlisted illiquidity haircuts and 4-gate production validation.",
+        },
+        rejected: {
+          name: "Standard Black-Scholes Volatility Calculations for Private Assets",
+          detail: "Applying unadjusted public market options pricing and single-model quantitative valuations directly to unlisted SMEs.",
+        },
+        rationale: "Diagnosed a 57% volatility mispricing (126% down to 54.84%) caused by weekly-daily data mismatches. Enforcing automated illiquidity discounts and consensus bounds shields institutional portfolios against hidden illiquidity risks and audit restatements.",
+        hurdleOrMetric: "4-gate production validation hurdle before deployment",
+      },
+    ],
+principles: [
       {
         name: "4-Model Econometric Volatility Ensemble",
         detail: "Mitigate model specification bias by combining autoregressive, realized, and range-based volatility estimators.",
@@ -409,7 +529,22 @@ export const competitionFrameworks: Record<string, StrategicFrameworkData> = {
         decisionGate: "Hurdle: Retail application drop-off between intent and UPI authorization must stay below 8.0%.",
       },
     ],
-    principles: [
+        tradeoffs: [
+      {
+        dilemma: "Heavy Advisory-Led Merchant Banking vs. Tech-First Retail Syndication Engine",
+        chosen: {
+          name: "Digital Deal Room & Automated Retail Syndication",
+          detail: "Capitalized on Zerodha's 10M+ investor distribution to automate book-building for SME IPOs and fractional corporate debt issuances.",
+        },
+        rejected: {
+          name: "Traditional High-Touch Investment Banking Advisory Desks",
+          detail: "Staffing expensive advisory teams and competing head-to-head with legacy institutional merchant banks.",
+        },
+        rationale: "Legacy merchant banking suffers from high fixed employee costs and slow deal lifecycles. A technology-native distribution platform monetizes Zerodha's unparalleled retail depth with near-zero marginal cost per transaction.",
+        hurdleOrMetric: "Near-zero marginal cost on retail book-building",
+      },
+    ],
+principles: [
       {
         name: "Pre-DRHP Retail Sentiment Scoring",
         detail: "Monetize proprietary user telemetry to price and de-risk IPO allocations before public regulatory filings.",
@@ -456,7 +591,22 @@ export const competitionFrameworks: Record<string, StrategicFrameworkData> = {
         decisionGate: "Hurdle: Fielded GTM materials achieve >70% comprehension and trust ratings across all pilot cohorts.",
       },
     ],
-    principles: [
+        tradeoffs: [
+      {
+        dilemma: "Direct Cross-Border Retail Brokerage vs. Localized Feeder Custody Architecture",
+        chosen: {
+          name: "Regulatory-Compliant Localized Feeder Trust Architecture",
+          detail: "Structured domestic feeder vehicles with institutional custodial clearing, shielding retail investors from FEMA/LRS tax friction.",
+        },
+        rejected: {
+          name: "Direct Cross-Border Brokerage Onboarding",
+          detail: "Requiring retail users to open individual overseas broker accounts and navigate complex tax withholdings.",
+        },
+        rationale: "Direct overseas onboarding suffers from 80%+ drop-off due to LRS compliance, foreign tax withholding forms, and manual bank wiring. A localized feeder model eliminates user friction and drives 3x higher activation conversion.",
+        hurdleOrMetric: "FEMA/LRS compliance automation for 100% of lots",
+      },
+    ],
+principles: [
       {
         name: "Between-Subjects Randomized Concept Testing",
         detail: "Never rely on stated focus group opinions; test live conversion intent through randomized control trials.",
@@ -503,7 +653,22 @@ export const competitionFrameworks: Record<string, StrategicFrameworkData> = {
         decisionGate: "Hurdle: 99% Value at Risk (VaR) demonstrates zero breach of regulatory minimum liquidity or capital standards.",
       },
     ],
-    principles: [
+        tradeoffs: [
+      {
+        dilemma: "Aggressive Subprime Volume Expansion vs. Merchant-Embedded Dynamic Risk Tranches",
+        chosen: {
+          name: "Merchant-Embedded Alternative Data Underwriting & Dynamic Tranches",
+          detail: "Integrated Point-of-Sale underwriting utilizing merchant transaction history to isolate near-prime consumers, capping unsecured exposure via dynamic risk tranches.",
+        },
+        rejected: {
+          name: "High-Yield Unsecured Subprime Lending Blitz",
+          detail: "Relaxing underwriting thresholds to rapidly inflate quarterly loan origination volume and AUM.",
+        },
+        rationale: "Subprime expansion inflates short-term top-line yield but triggers devastating credit loss provisions during macro downturns. Merchant checkout integration captures high-velocity, high-retention prime/near-prime borrowers with 30% lower credit loss provisions.",
+        hurdleOrMetric: "Gross NPA tolerance capped at < 2.5%",
+      },
+    ],
+principles: [
       {
         name: "Logistic S-Curve AUM Plateau Scheduling",
         detail: "Model portfolio growth using empirical logistic curves that capture natural market saturation and operational capacity limits.",
@@ -550,7 +715,22 @@ export const competitionFrameworks: Record<string, StrategicFrameworkData> = {
         decisionGate: "Hurdle: Pilot payback period must verify under 9 months with customer repeat purchase rate >35%.",
       },
     ],
-    principles: [
+        tradeoffs: [
+      {
+        dilemma: "Mass Beauty Suncare Saturation vs. Dermatologist-Dispensed Clinical Corridors",
+        chosen: {
+          name: "Clinical Photoprotection Corridor for Post-Procedure & Barrier Repair",
+          detail: "Positioned advanced photoprotection formulations through medical aesthetic clinics and dermatology channels, commanding a 2.5x price premium over FMCG brands.",
+        },
+        rejected: {
+          name: "Mass Cosmetic Beauty Sunscreen with FMCG Distribution",
+          detail: "Competing in mass e-commerce on cosmetic textures, synthetic fragrances, and lifestyle beach branding.",
+        },
+        rationale: "Mass suncare is hyper-competitive with collapsing customer loyalty and high performance-marketing customer acquisition costs (CAC). Clinical doctor-advocated channels yield 65%+ repeat prescription rates and high customer lifetime value (LTV).",
+        hurdleOrMetric: "Prescription repurchase rate ≥ 65%",
+      },
+    ],
+principles: [
       {
         name: "Price-Per-Application Metric Reframing",
         detail: "Overcome high sticker price resistance by breaking expenditure down into daily micro-usage investment comparisons.",
@@ -597,7 +777,22 @@ export const competitionFrameworks: Record<string, StrategicFrameworkData> = {
         decisionGate: "Hurdle: Dealership Customer Satisfaction Index (CSI) in premium tier matches or exceeds benchmark competitor levels.",
       },
     ],
-    principles: [
+        tradeoffs: [
+      {
+        dilemma: "Defensive Entry-Hatchback Discounting vs. Premium Hybrid SUV Portfolio Re-Rating",
+        chosen: {
+          name: "Strong Hybrid Tech Packaging in the Rs.12–18L SUV Segment",
+          detail: "Pivoted marketing and dealer capital into fuel-efficient strong hybrid SUV variants, capturing upwardly mobile buyers seeking premium tech without pure-EV charging anxiety.",
+        },
+        rejected: {
+          name: "Aggressive Price Cuts on Commoditized Small Cars",
+          detail: "Protecting overall unit volume market share by deep discounting margin-eroded entry hatchbacks.",
+        },
+        rationale: "India's profit pool has structurally shifted away from entry hatchbacks toward Rs.10L+ SUVs. Spending promotional budget on entry cars is fighting a structural secular decline; hybrid SUVs protect dealer profitability and corporate EBITDA margins.",
+        hurdleOrMetric: "Average Selling Price (ASP) uplift ≥ +18%",
+      },
+    ],
+principles: [
       {
         name: "Cross-Badge Natural Experiment Diagnostics",
         detail: "Use shared-platform alliance products to rigorously isolate pure brand perception premiums from mechanical product reality.",
@@ -644,7 +839,22 @@ export const competitionFrameworks: Record<string, StrategicFrameworkData> = {
         decisionGate: "Hurdle: >40% of simulated tournament participants convert to real-money funded demat accounts within 30 days.",
       },
     ],
-    principles: [
+        tradeoffs: [
+      {
+        dilemma: "Generic Promotional Blast Emails vs. Segmented Liquidity-Incentive Reactivation",
+        chosen: {
+          name: "Cohort-Specific Fee Rebates & Priority Liquidity Pool Allotments",
+          detail: "Isolated high-propensity dormant traders by historical order volume, offering time-decaying maker-fee rebates and exclusive market maker privileges.",
+        },
+        rejected: {
+          name: "Blanket Promotional Push Notifications & Generic Fee Discounts",
+          detail: "Blasting the entire dormant waitlist with uniform marketing emails and generic sign-up promos.",
+        },
+        rationale: "Mass notification blasts trigger instant unsubscriptions and brand fatigue. In financial markets, 80% of liquidity is driven by the top 10% of active traders; targeted maker incentives activate genuine market makers who sustain real order book depth.",
+        hurdleOrMetric: "Waitlist reactivation ROI ≥ 4.0x vs generic blast",
+      },
+    ],
+principles: [
       {
         name: "Behavioral Endowment Frame A/B Testing",
         detail: "Activate consumer loss aversion by framing accounts and portfolios as already belonging to the user.",
@@ -691,7 +901,22 @@ export const competitionFrameworks: Record<string, StrategicFrameworkData> = {
         decisionGate: "Hurdle: Extract additional Rs.8,000-12,000 residual value per retired pack, offsetting initial manufacturing cost.",
       },
     ],
-    principles: [
+        tradeoffs: [
+      {
+        dilemma: "High-Spec Lifestyle EV War vs. Total Cost of Ownership (TCO) & Modular Battery Swapping",
+        chosen: {
+          name: "Modular Commuter Platform with Battery-as-a-Service (BaaS)",
+          detail: "Engineered a swappable battery ecosystem tailored for commercial gig fleets and Tier 2/3 daily commuters, decoupling battery cost from vehicle sale price.",
+        },
+        rejected: {
+          name: "High-Performance Premium Lifestyle EV Scooter",
+          detail: "Chasing luxury connectivity specs and high top speeds to compete with niche premium urban brands.",
+        },
+        rationale: "Mass two-wheeler mobility in India is won on per-kilometer operating economics. Battery leasing cuts upfront acquisition price by ~40%, bringing initial purchase price to ICE parity while locking in recurring subscription revenues.",
+        hurdleOrMetric: "Total Cost of Ownership parity with ICE within 18 months",
+      },
+    ],
+principles: [
       {
         name: "Battery-as-a-Service (BaaS) Network Economics",
         detail: "Lower upfront customer purchase price while creating a recurring, utility-like energy subscription revenue stream.",
@@ -737,7 +962,22 @@ export const competitionFrameworks: Record<string, StrategicFrameworkData> = {
         decisionGate: "Hurdle: Seamless closed-loop return initiation without requiring manual app-based support ticket filing.",
       },
     ],
-    principles: [
+        tradeoffs: [
+      {
+        dilemma: "Programmatic Keyword Ad Real Estate vs. High-Trust Editorial Contextual Commerce",
+        chosen: {
+          name: "Curated Intent-Fulfillment Engine with Transactional API Integrations",
+          detail: "Monetized trusted long-form editorial authority by embedding deep contextual purchase triggers and curated member discovery directly into high-intent reading flows.",
+        },
+        rejected: {
+          name: "Standard Programmatic Display Ads & Sponsored Clickbait Links",
+          detail: "Maximizing ad impressions through intrusive banner networks, pagination, and third-party ad exchanges.",
+        },
+        rationale: "Programmatic display yields declining CPMs, repels premium subscribers, and is disrupted by AI summaries. Curation-led contextual commerce preserves reader trust while extracting high-intent affiliate and transactional margins.",
+        hurdleOrMetric: "Zero display ad dilution of subscriber trust",
+      },
+    ],
+principles: [
       {
         name: "Bounded Level 3 Autonomy Boundary",
         detail: "Autonomous execution must be strictly constrained to verifiable, objective specification matches; subjective judgment calls must immediately drop to Level 2 human approval.",
